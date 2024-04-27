@@ -1,0 +1,124 @@
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {InformationType} from '../../../utils/information-type.enum';
+import {AuthService} from '../../../services/api/auth.service';
+import {RestaurantService} from '../../../services/bussiness-logic/restaurant.service';
+import {Table} from '../../../models/table.model';
+import {Observable, of, Subscription} from 'rxjs';
+import {FinancialOpEnum} from '../../../utils/operations';
+import {ETXType} from '../../../utils/delivery.enum';
+import { Theme } from 'src/app/models/theme';
+
+@Component({
+  selector: 'app-table-layout',
+  templateUrl: './table-layout.component.html',
+  styleUrls: ['./table-layout.component.scss']
+})
+export class TableLayoutComponent implements OnInit, OnDestroy {
+  @Input() columns = 5;
+  tables: Array<Table>;
+  groupTables = [];
+  @Input() restaurantOperations = [
+    ETXType[ETXType.DELIVERY],
+    ETXType[ETXType.PICKUP],
+    ETXType[ETXType.RETAIL],
+    FinancialOpEnum.RECALL,
+    FinancialOpEnum.LOGOUT
+  ];
+  @Input() restaurantColor = ['color2', 'color2', 'color2', 'color6', 'color4'];
+  tableSize: any;
+  sub = new Array<Subscription>();
+  tables$: Observable<any>;
+
+  theme: string = this.th.theme;
+
+<<<<<<< HEAD
+  constructor(private th: Theme, private router: Router, private authService: AuthService, 
+=======
+  constructor(private router: Router, private authService: AuthService,
+>>>>>>> aba1d81a6efefdfb0329f717291ce03f0d579f02
+    private restaurantService: RestaurantService) {
+      this.restaurantService.sendAck().subscribe(
+        next => console.log('sendAck', next), err => console.error(err));
+
+    this.restaurantService.tables().subscribe(
+      next => {
+        this.tables = next;
+        this.tables$ = of(next);
+        this.computeTableSize();
+      }, error => this.restaurantService.utilsServ.openGenericInfo(InformationType.ERROR, error)
+    );
+  }
+
+  ngOnInit() {}
+
+  private computeTableSize() {
+    const length = this.tables.length;
+    this.tableSize = (length <= 8) ? 'big' : (length <= 15) ? 'medium' : 'small' ;
+  }
+
+  setTable(table: Table) {
+    this.setOrder(ETXType.DINEIN, table.id);
+  }
+
+  setOrder(type: ETXType, table?: string) {
+    console.log('setOrder', type, table);
+    this.restaurantService.setOrder(type, table, () => this.createdInvoice());
+  }
+
+  operationKey($event: any) {
+    console.log('customerKey', $event);
+    switch ($event) {
+      case ETXType[ETXType.DELIVERY]:
+        this.setOrder(ETXType.DELIVERY);
+        break;
+      case ETXType[ETXType.PICKUP]:
+        this.setOrder(ETXType.PICKUP);
+        break;
+      case ETXType[ETXType.RETAIL]:
+        this.setOrder(ETXType.RETAIL);
+        break;
+      case FinancialOpEnum.RECALL:
+        this.recall();
+        break;
+      case FinancialOpEnum.LOGOUT:
+        this.logout();
+        break;
+    }
+  }
+
+  private createdInvoice(inv?: any) {
+      console.log('createdInvoiceWithOrder', inv);
+        if (this.restaurantService.operationType === ETXType.PICKUP) {
+          this.restaurantService.invoiceServ.pickUp(() => this.updatedOrder(ETXType.PICKUP));
+        } else if (this.restaurantService.operationType === ETXType.DELIVERY) {
+          this.restaurantService.invoiceServ.delivery(() => this.updatedOrder(ETXType.DELIVERY));
+        } else {
+          this.router.navigateByUrl('cash/order');
+        }
+  }
+
+  updatedOrder(next: ETXType) {
+    console.log('updatedOrder', next);
+    if ([ETXType.DELIVERY, ETXType.PICKUP].includes(next)) {
+      this.router.navigateByUrl('/cash/order');
+    }
+  }
+
+  logout() {
+    this.authService.logout().subscribe(value => {
+      console.log('logoutOp', value);
+      this.restaurantService.invoiceServ.logoutOpResponse();
+    }, error1 => {
+      console.error('LogoutOp', error1);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.map( sub => sub.unsubscribe());
+  }
+
+  private recall() {
+    this.restaurantService.recallCheck();
+  }
+}

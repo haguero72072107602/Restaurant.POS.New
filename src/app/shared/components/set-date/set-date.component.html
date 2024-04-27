@@ -1,0 +1,33 @@
+<div oncontextmenu="return false">
+  <mat-toolbar class="flex justify-between" color="primary">
+    {{ title }}
+    <span class="flex-spacer"></span>
+    <button color="primary" mat-dialog-close mat-raised-button>&times;</button>
+  </mat-toolbar>
+  <div mat-dialog-content>
+    <!--<p>{{ subtitle }}</p>-->
+    <mat-form-field>
+      <input (dateChange)="addEvent('change', $event)" (dateInput)="addEvent('input', $event)" [matDatepicker]="picker"
+             [max]="maxDate"
+             [min]="minDate" [value]="date" disabled matInput placeholder="Choose a date">
+      <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #picker disabled="false" touchUi></mat-datepicker>
+    </mat-form-field>
+    <!--<div class="buttons">
+      <button mat-button fxFlex="170px" *ngFor="let i of data.arr" [mat-dialog-close]="i.value" [ngClass]="i.color">
+        {{i.text | uppercase}}
+      </button>
+    </div>-->
+  </div>
+  <div mat-dialog-actions>
+    @if (data.timeWorked) {
+      <button mat-raised-button (click)="dateTimeWorked()">Time Worked</button>
+    }
+    @if (data.closeWeek || data.closeDay) {
+      <button mat-raised-button (click)="dateClose()">Date</button>
+    }
+    @if (data.closeDay) {
+      <button mat-raised-button (click)="lastClose()">Close Current Day</button>
+    }
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<button #dropdownToggleButtonTable class="w-[200px] h-[40px] bg-white  focus:ring-2 focus:outline-none
+                             border border-gray-300 text-gray-900 text-sm
+                             focus:ring-blue-300 font-medium rounded-lg
+                             px-5 py-3 text-center justify-between
+                             inline-flex items-center"
+        data-dropdown-toggle="dropdownToggle" id="dropdownToggleButtonTable"
+        type="button">
+  <span>{{ getSelectedTable }}</span>
+  <svg aria-hidden="true" class="w-2.5 h-2.5 ml-2.5" fill="none" viewBox="0 0 10 6"
+       xmlns="http://www.w3.org/2000/svg">
+    <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="2"/>
+  </svg>
+</button>
+
+<div #dropdownToggleTable class="z-10 hidden bg-white divide-y border-gray-500 border-1
+            divide-gray-100 rounded-lg shadow-2xl  w-48 dark:bg-gray-700 dark:divide-gray-600"
+     id="dropdownToggleTable">
+
+
+  <ul aria-labelledby="dropdownUsersButton" class="w-full h-60 py-2 overflow-y-auto text-gray-700 dark:text-gray-200">
+    <button
+      (click)="onFilterTable(null)"
+      class="w-full flex items-center justify-start px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+      All tables
+    </button>
+    @for (table of selectedTables; track table) {
+      <li>
+        <button
+          class="w-full flex items-center justify-start px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+          (click)="onFilterTable(table)">
+          {{ table.label }}
+        </button>
+      </li>
+    }
+  </ul>
+</div>
+

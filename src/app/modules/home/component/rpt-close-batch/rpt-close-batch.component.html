@@ -1,0 +1,31 @@
+<!-- bg-[#F8F9FD] -->
+<section class="w-[calc(100vw-(340px))] h-[calc(100vh-80px)] ">
+  <div class="flex flex-col h-[calc(100vh-80px)]">
+    <div class="flex m-4 h-full justify-center items-center">
+      <button (click)="closeBatch()"
+              class="inline-flex w-[140px] min-h-[40px] rounded-md
+                      bg-[#557AD9] items-center justify-center mx-[14px] disabled:bg-gray-300
+                      disabled:text-gray-600 text-white "
+              type="button">Close Batch
+      </button>
+    </div>
+    <div class="w-[calc(100vw-(340px))] h-[calc(100vh)]">
+      <div class="h-[100%] w-[100%] flex justify-center">
+        <!--
+        <ag-grid-angular
+          style="width: 98%; height: 97%; "
+          class="ag-theme-material"
+          [rowHeight]="76"
+          [defaultColDef]="defaultColDef"
+          [columnDefs]="columnDefs"
+          [rowData]="rowData"
+          [rowClass]="rowClass"
+          (firstDataRendered)="onFirstDataRendered($event)"
+        ></ag-grid-angular>
+        -->
+      </div>
+      <div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,9 @@
+<div fxLayout="column">
+  <label [fxLayoutAlign]="align">{{ title }}</label>
+  @if (format === 'currency') {
+    <span [fxLayoutAlign]="align">{{ value | currency }}</span>
+  }
+  @if (format !== 'currency') {
+    <span [fxLayoutAlign]="align">{{ value }}</span>
+  }
+</div>

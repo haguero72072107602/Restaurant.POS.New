@@ -1,0 +1,33 @@
+<form (ngSubmit)="onFormSubmit()" [formGroup]="dateRangeForm">
+
+  <mat-form-field>
+
+    <mat-label>Enter Session Period</mat-label>
+
+    <mat-date-range-input [rangePicker]="picker">
+      <input formControlName="fromDate" matStartDate placeholder="From Date" required>
+      <input formControlName="toDate" matEndDate placeholder="To Date" required>
+    </mat-date-range-input>
+
+    <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+
+    <!-- Invalid Date Messages -->
+    <!--
+    <mat-error *ngIf="dateRangeForm.controls.fromDate.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+    <mat-error *ngIf="dateRangeForm.controls.toDate.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+    -->
+
+    <!-- Required Date Messages -->
+    <!--
+    <mat-error *ngIf="dateRangeForm.controls.fromDate.errors?.required">From Date Required</mat-error>
+    <mat-error *ngIf="dateRangeForm.controls.toDate.errors?.required">To Date Required</mat-error>
+    -->
+
+  </mat-form-field>
+
+  <p>Selected Date Range: {{ dateRangeForm.value | json }}</p>
+
+  <button>Submit</button>
+
+</form>

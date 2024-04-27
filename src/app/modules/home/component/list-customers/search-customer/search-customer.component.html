@@ -1,0 +1,88 @@
+<!-- w-[1094px] h-[610px] -->
+<section class="w-full h-full">
+  <div class="w-[100%] h-full flex flex-col">
+    <div class="w-full min-h-[70px] flex items-center border ">
+      <div class="flex justify-between items-center w-full mx-5">
+        <span class="text-[16px] text-black font-semibold">Search customer</span>
+        <button (click)="onCancelDialog()"
+                class="bg-white px-2 py-3 text-black">
+          <svg aria-hidden="true" class="w-3 h-3 text-black font-semibold dark:text-white"
+               fill="none" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+            <path d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" stroke="currentColor" stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="flex h-full">
+      <div class="w-3/5 flex flex-col border-r-2" >
+
+        <div class="h-[40px] relative mb-2 flex items-center mt-2">
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+            </svg>
+          </div>
+          <!-- shadow-none focus:shadow-none focus:outline-none border-none focus:border-none outline-none -->
+          <input
+                [formControl]="searchCustomer"
+                aria-autocomplete="none"
+                ngxTouchKeyboard
+                ngxTouchKeyboardFullScreen
+                #tkbSearch="ngxTouchKeyboard"
+                (focus)="tkbSearch.openPanel()"
+                class="bg-transparent text-gray-900 text-sm rounded-lg border-transparent appearance-none
+                        mx-4 border-none
+                        focus:outline-none focus:border-blue-500/50
+                        block w-full
+                        ps-10 p-2.5
+                        dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                        dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                 placeholder="Search customer">
+        </div>
+
+        @if (loadingCustomer) {
+          <div class="w-full h-full">
+            <app-progress-circle/>
+          </div>
+        } @else {
+          <ag-grid-angular
+            style="width: 100%; height: 100%; padding: 4px"
+            class="ag-theme-material"
+            [suppressCellFocus]="true"
+            [defaultColDef]="varGlobalService.defaultColDef"
+            [columnDefs]="columnDefs"
+            [rowData]="rowData"
+            (gridReady)="onGridReady($event)"
+            (selectionChanged)="onSelectionChanged($event)"
+            rowSelection="single"
+          ></ag-grid-angular>
+        }
+      </div>
+      <div class="w-2/5">
+        <form [formGroup]="formGroup">
+          <div class="m-4">
+            <app-card-customer controlKey="dataCustomer"/>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="min-h-[83px] flex items-center justify-center gap-8">
+      <button (click)="onCancelDialog()" class="text-white bg-[#FF7CA3] w-[224px] h-[48px] hover:bg-red-500 shadow text-center
+                    focus:ring-2 focus:ring-red-500 cursor-pointer mr-2
+                    font-medium rounded-lg text-sm px-24 focus:outline-none select-none"
+              type="button">Cancel
+      </button>
+      <button
+        (click)="onProcessDialog()"
+        [disabled]="!validateForm"
+        class="text-white bg-[#50D1AA] w-[224px] h-[48px] hover:bg-green-300 shadow text-center ml-2
+                    focus:z-10 focus:ring-2 focus:ring-green-500 cursor-pointer
+                    disabled:bg-gray-300 disabled:text-white
+                    font-medium rounded-lg text-sm px-24 focus:outline-none select-none">Add
+      </button>
+
+    </div>
+  </div>
+</section>

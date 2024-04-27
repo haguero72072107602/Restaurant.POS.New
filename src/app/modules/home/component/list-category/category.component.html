@@ -1,0 +1,40 @@
+<div
+  class="w-[calc(100vw-(90px+369px))] h-[calc(100vh-80px)] flex flex-col justify-between bg-[#EBF0F7]">
+
+  <section
+    class="w-[100%] h-[100%] overscroll-y-contain overflow-x-hidden select-none">
+    <div class="flex flex-wrap gap-4 m-2">
+      @for (departament of departaments; track departament) {
+        <app-card-category [departament]="departament"/>
+      }
+    </div>
+  </section>
+  <!--
+  <section class="flex w-full min-h-[88px] items-center justify-center bg-[#EBF0F7]">
+    <div class="w-[90%] h-[72px] bg-white rounded-l-full rounded-r-full shadow-xl flex items-center my-6">
+      <button class="w-[52px] h-[52px] rounded-full bg-[#E0E6E9] flex items-center justify-center ml-2">
+        <svg fill="none" height="24" viewBox="0 0 25 24" width="25" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M18.9272 7V17C18.9272 17.62 18.9072 18.17 18.8374 18.66C18.5481 21.29 17.311 22 13.9388 22H11.9435C8.57131 22 7.3342 21.29 7.04487 18.66C6.97503 18.17 6.95508 17.62 6.95508 17V7C6.95508 6.38 6.97503 5.83 7.04487 5.34C7.3342 2.71 8.57131 2 11.9435 2H13.9388C17.311 2 18.5481 2.71 18.8374 5.34C18.9072 5.83 18.9272 6.38 18.9272 7Z"
+            stroke="#1C2537" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+          <path
+            d="M6.95555 17.0001C6.95555 17.6201 6.97551 18.1701 7.04534 18.6601C6.90567 18.6701 6.77597 18.6701 6.62632 18.6701H6.28711C3.63329 18.6701 2.96484 18.0001 2.96484 15.3301V8.67008C2.96484 6.00008 3.63329 5.33008 6.28711 5.33008H6.62632C6.77597 5.33008 6.90567 5.33008 7.04534 5.34008C6.97551 5.83008 6.95555 6.38008 6.95555 7.00008V17.0001Z"
+            stroke="#1C2537" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+          <path
+            d="M22.9184 8.67008V15.3301C22.9184 18.0001 22.2499 18.6701 19.5961 18.6701H19.2569C19.1073 18.6701 18.9776 18.6701 18.8379 18.6601C18.9077 18.1701 18.9277 17.6201 18.9277 17.0001V7.00008C18.9277 6.38008 18.9077 5.83008 18.8379 5.34008C18.9776 5.33008 19.1073 5.33008 19.2569 5.33008H19.5961C22.2499 5.33008 22.9184 6.00008 22.9184 8.67008Z"
+            stroke="#1C2537" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        </svg>
+      </button>
+
+      <div class="w-full my-auto">
+        <app-scroll-earring #scrollEarring (evOpenInvoice)="evOpenInvoice($event)"/>
+      </div>
+
+    </div>
+  </section>
+  -->
+
+</div>
+
+
+

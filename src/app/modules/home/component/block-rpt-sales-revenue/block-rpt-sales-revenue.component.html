@@ -1,0 +1,180 @@
+@if (showReport) {
+
+  <div
+    class="flex items-center my-6 mt-[10px] p-2 gap-4 w-full justify-between cursor-pointer"
+  >
+    <div
+      class="flex-col w-full rounded-2xl border-2 h-[400px] bg-white"
+      (click)="onClickSalesRevenue()"
+    >
+      @if (optionsSalesRevenue) {
+
+        <div class="text-center h-[20px] mt-2">
+          <span class="text-gray-500 text-md"> Sales revenue </span>
+        </div>
+        <apx-chart
+          [series]="optionsSalesRevenue.series"
+          [chart]="optionsSalesRevenue.chart"
+          [xaxis]="optionsSalesRevenue.xaxis"
+          [fill]="optionsSalesRevenue.fill"
+          [plotOptions]="optionsSalesRevenue.plotOptions"
+        ></apx-chart>
+        <!--
+    <ag-charts-angular
+            class="relative w-[350px] h-[200px] mt-5"
+            [options]="optionsSalesRevenue"
+          />
+
+           -->
+      }
+    </div>
+    <!--
+  <div class="flex flex-col h-[400px] w-2/5">
+        <div class="rounded-2xl border-2 h-full bg-white">
+
+          <div class="text-center h-[20px] mt-2">
+            <span class="text-gray-500 text-md"> Sales by types </span>
+          </div>
+          <div class="w-full h-[90%]">
+            <ag-charts-angular
+            class="relative  cursor-pointer"
+            (click)="onClickSalesRevenue()"
+            [options]="optionsSalesTypesChart"
+          />
+
+          </div>
+
+        </div>
+      </div>
+
+      -->
+  </div>
+
+  <div class="flex gap-2 xl:gap-52 p-2 mt-[15px] justify-between mx-auto items-center">
+    <div
+      class="flex p-2 w-[60%] bg-white rounded-2xl border-2 h-[120px] cursor-pointer"
+      (click)="onClickSalesRevenue()"
+    >
+      <div class="flex flex-col w-1/5 text-center justify-center items-center">
+        <svg
+          class="text-[#557AD9] w-[30px] h-[30px] xl:w-[50px] xl:h-[50px]"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </div>
+      <div class="flex flex-col justify-between w-4/5">
+        <div class="text-start">
+          <span class="text-md"> Average sales revenue </span>
+        </div>
+
+        <div class="text-start">
+          <span class="text-[#557AD9] text-2xl xl:text-4xl"> {{ averageSales | currency }} </span>
+        </div>
+        <!--
+        <div class="text-start">
+        <span class="text-gray-500 text-[12px] xl:text-sm font-bold mt-3">
+          {{ getDateRangeFormat }}
+        </span>
+        </div>
+        -->
+      </div>
+    </div>
+    <div
+      class="flex p-2 w-[60%] bg-white rounded-2xl border-2 h-[120px] cursor-pointer"
+      (click)="onClickSalesRevenue()"
+    >
+      <div class="flex flex-col w-1/5 text-center justify-center items-center">
+        <svg
+          class="text-[#3EC8AC] w-[30px] h-[30px] xl:w-[50px] xl:h-[50px]"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </div>
+      <div class="flex flex-col justify-between w-4/5">
+        <div class="text-start">
+          <span class="text-md"> Highest sales revenue </span>
+        </div>
+
+        <div class="text-start">
+          <span class="text-[#3EC8AC] text-2xl xl:text-4xl"> {{ maxSales | currency }} </span>
+        </div>
+        <!--
+        <div class="text-start">
+        <span class="text-gray-500 text-[10px] xl:text-sm font-bold mt-3">
+          {{ getDateRangeFormat }}
+        </span>
+        </div>
+        -->
+      </div>
+    </div>
+    <div
+      class="flex p-2 w-[60%] bg-white rounded-2xl border-2 h-[120px] cursor-pointer"
+      (click)="onClickSalesRevenue()"
+    >
+      <div class="flex flex-col w-1/5 justify-center text-center items-center">
+        <svg
+          class="text-[#F35C6E] w-[30px] h-[30px] xl:w-[50px] xl:h-[50px]"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12 13a1 1 0 100 2h5a1 1 0 001-1V9a1 1 0 10-2 0v2.586l-4.293-4.293a1 1 0 00-1.414 0L8 9.586 3.707 5.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0L11 9.414 14.586 13H12z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </div>
+      <div class="flex flex-col justify-between w-4/5">
+        <div class="text-start">
+          <span class="text-md"> Lowest sales revenue </span>
+        </div>
+
+        <div class="text-start">
+          <span class="text-[#F35C6E] text-2xl xl:text-4xl"> {{ minSales | currency }} </span>
+        </div>
+        <!--
+        <div class="text-start">
+        <span class="text-gray-500 text-[10px] xl:text-sm font-bold mt-3">
+          {{ getDateRangeFormat }}
+        </span>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="flex flex-col px-4 py-8 text-center justify-center">
+    <svg class="w-[100px] h-[100px] mb-4 ms-auto me-auto text-center dark:text-gray-400" aria-hidden="true"
+         xmlns="http://www.w3.org/2000/svg" fill="#3b5998" viewBox="0 0 18 20">
+      <path
+        d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 14H5a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-4H5a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Zm0-5H5a1 1 0 0 1 0-2h2V2h4v2h2a1 1 0 1 1 0 2Z"/>
+    </svg>
+    <p class=" text-xl mb-2 pb-1">No data to show</p>
+    <p class="mb-4 text-md text-gray-800 pb-2">Please, remember select a valid range date</p>
+  </div>
+}
+
+
+
+
+
+
+

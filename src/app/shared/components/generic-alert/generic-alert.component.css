@@ -1,0 +1,9 @@
+/*
+.mat-dialog-container {
+  border-radius: 20px !important;
+}
+*/
+
+.dialog-notification .mat-dialog-container {
+  border-radius: 50px !important;
+}

@@ -1,0 +1,10 @@
+$width: 230px;
+
+:host {
+  display: block;
+  width: $width;
+
+  img {
+    width: $width;
+  }
+}

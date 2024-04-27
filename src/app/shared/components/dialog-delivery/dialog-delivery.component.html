@@ -1,0 +1,17 @@
+<div oncontextmenu="return false">
+  <mat-toolbar color="primary">
+    {{ title }}
+    <span class="flex-spacer"></span>
+    <button color="primary" mat-dialog-close mat-raised-button>&times;</button>
+  </mat-toolbar>
+  <div mat-dialog-content>
+    <p>{{ subtitle }}</p>
+    <div class="buttons">
+      @for (i of data.arr; track i) {
+        <button mat-button fxFlex="170px" [mat-dialog-close]="i.value" [ngClass]="i.color ? i.color : 'red'">
+          {{ i.text | uppercase }}
+        </button>
+      }
+    </div>
+  </div>
+</div>

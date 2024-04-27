@@ -1,0 +1,252 @@
+<div class="flex w-full h-[calc(100vh-80px)] bg-[#F8F9FD]">
+  <div
+    class="mx-auto my-auto w-[736px] h-[90%] bg-white rounded-[16px] border border-l overflow-x-hidden overflow-y-auto"
+  >
+    <div
+      class="flex justify-between items-center w-full h-[60px] border-b-2 dark:bg-gray-600 mb-[18px]"
+    >
+      <div class="flex justify-between items-center mx-5 w-full">
+        <h1 class="text-[20px] font-bold my-4 ml-4">New Permissions</h1>
+      </div>
+      <hr/>
+    </div>
+    <div
+      class="w-full flex flex-col min-h-[300px]  items-center justify-center space-x-4 mb-1 mx-6"
+    >
+      <div class="w-full flex justify-between">
+        <div class="flex flex-col w-full space-y-6">
+          <div class="flex flex-col h-[50px]">
+            <label
+              class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+            >
+              <input
+                (change)="change_allowPayment()"
+                [checked]="newConfig.allowPayment"
+                class="sr-only peer"
+                type="checkbox"
+                value="1"
+              />
+              <div
+                class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+              ></div>
+              <span
+                class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+              >Allow Payment Operations</span
+              >
+            </label>
+          </div>
+          <div class="flex flex-col h-[50px]">
+            <label
+              class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+            >
+              <input
+                (change)="change_allowUserPrepareOrder()"
+                [checked]="newConfig.allowUserPrepareOrder"
+                class="sr-only peer"
+                type="checkbox"
+                value="1"
+              />
+              <div
+                class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+              ></div>
+              <span
+                class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+              >Allow username for prepare order</span
+              >
+            </label>
+          </div>
+          <div class="flex flex-col h-[50px]">
+            <label
+              class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+            >
+              <input
+                (change)="change_prepareOrderToHoldInvoice()"
+                [checked]="newConfig.prepareOrderToHoldInvoice"
+                class="sr-only peer"
+                type="checkbox"
+                value="1"
+              />
+              <div
+                class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+              ></div>
+              <span
+                class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+              >Allow prepare order to hold invoice</span
+              >
+            </label>
+          </div>
+          <div class="flex flex-col h-[50px]">
+            <label
+              class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+            >
+              <input
+                (change)="change_printDefaultAggregates()"
+                [checked]="newConfig.printDefaultAggregates"
+                class="sr-only peer"
+                type="checkbox"
+                value="1"
+              />
+              <div
+                class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+              ></div>
+              <span
+                class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+              >Allow Print Default Aggregates</span
+              >
+            </label>
+          </div>
+          <div class="flex flex-col h-[50px]">
+            <label
+              class="relative inline-flex items-center mt-auto mb-auto w-[350px] cursor-pointer"
+            >
+              <input
+                (change)="change_removeTax()"
+                [checked]="newConfig.removeTax"
+                class="sr-only peer"
+                type="checkbox"
+                value="1"
+              />
+              <div
+                class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+              ></div>
+              <span
+                class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+              >Allow Remove Taxes in Cash Payments</span
+              >
+            </label>
+          </div>
+
+        </div>
+        <div class="flex flex-col w-full">
+          <div class="flex flex-col w-full ml-3 space-y-6 ">
+            <div class="flex flex-col h-[50px]">
+              <label
+                class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+              >
+                <input
+                  (change)="change_allowMarketCafeteria()"
+                  [checked]="newConfig.allowMarketCafeteria"
+                  class="sr-only peer"
+                  type="checkbox"
+                  value="1"
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+                ></div>
+                <span
+                  class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+                >Allow Cafeteria Options in Market</span
+                >
+              </label>
+            </div>
+            <div class="flex flex-col h-[50px]">
+              <label
+                class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+              >
+                <input
+                  (change)="change_printTicketInProgress()"
+                  [checked]="newConfig.printTicketInProgress"
+                  class="sr-only peer"
+                  type="checkbox"
+                  value="1"
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+                ></div>
+                <span
+                  class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+                >Allow Print Tickets in Progress</span
+                >
+              </label>
+            </div>
+            <div class="flex flex-col h-[50px]">
+              <label
+                class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+              >
+                <input
+                  (change)="change_allowRetailInRestaurant()"
+                  [checked]="newConfig.allowRetailInRestaurant"
+                  class="sr-only peer"
+                  type="checkbox"
+                  value="1"
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+                ></div>
+                <span
+                  class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+                >Allow Retail in Restaurant</span
+                >
+              </label>
+            </div>
+            <div class="flex flex-col h-[50px]">
+              <label
+                class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+              >
+                <input
+                  (change)="changeAllowTip()"
+                  [checked]="newConfig.allowTip"
+                  class="sr-only peer"
+                  type="checkbox"
+                  value="1"
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+                ></div>
+                <span
+                  class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+                >Allow Tips during payment</span
+                >
+              </label>
+            </div>
+            <div class="flex flex-col h-[50px]">
+              <label
+                class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+              >
+                <input
+                  (change)="change_allowAuth()"
+                  [checked]="newConfig.allowAuth"
+                  class="sr-only peer"
+                  type="checkbox"
+                  value="1"
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+                ></div>
+                <span
+                  class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+                >Allow authorization payment</span
+                >
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="ml-auto me-auto w-[600px] flex justify-between mb-5 mt-3">
+      <button
+        (click)="onSaveSetting()"
+        class="w-[224px] h-[48px] mx-[6px] text-[#557AD9] hover:bg-blue-800
+        hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300
+        font-medium rounded-[10px] text-sm bg-white border-2 border-blue-600 mt-2
+        dark:bg-blue-600
+        dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button"
+      >
+        Cancel
+      </button>
+      <button
+        (click)="onSaveSetting()"
+        class="w-[224px] h-[48px] mx-[6px] text-white hover:bg-blue-800
+         focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium
+          rounded-[10px] text-sm bg-[#557AD9] mt-2 dark:bg-blue-600
+          dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</div>

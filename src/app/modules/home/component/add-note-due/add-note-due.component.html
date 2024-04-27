@@ -1,0 +1,107 @@
+<section class="w-[520px] h-[420px] border rounded-[16px]
+                 bg-white relative">
+  <div class="flex justify-between items-center w-full h-[60px] bg-white dark:bg-gray-600">
+    <div class="flex justify-between items-center mx-5 w-full">
+      <span class="text-[16px] text-black font-semibold">Add note</span>
+      <button (click)="onClose()"
+              class="px-5 py-3 text-white">
+        <svg aria-hidden="true" class="w-3 h-3 text-black font-semibold dark:text-white"
+             fill="none" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+          <path d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex flex-col justify-between mt-4">
+    <div class="flex items-center justify-center ml-6 mb-4">
+      <div class="inline-flex rounded-md shadow-sm" role="group">
+        <button (click)="onchangeRadio(1)"
+                class="w-[160px] inline-flex items-center justify-center px-4 py-2 text-[16px] font-semibold
+                      text-gray-900 bg-white border border-gray-200 rounded-l-lg
+                      hover:bg-gray-100 hover:text-blue-700
+                      focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 focus:bg-gray-100
+                      dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white
+                      dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                type="button">
+          <!--
+          <svg class="w-3 h-3 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+          </svg>
+          -->
+          Invoice
+        </button>
+        <button (click)="onchangeRadio(2)" class="w-[160px] inline-flex items-center justify-center  px-4 py-2 text-[16px] font-semibold
+            text-gray-900 bg-white border border-gray-200 rounded-r-md
+            hover:bg-gray-100 hover:text-blue-700
+            focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 focus:bg-gray-100
+            dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600
+            dark:focus:ring-blue-500 dark:focus:text-white"
+                type="button">
+          <!--
+          <svg class="w-3 h-3 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z"/>
+            <path d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/>
+          </svg>
+          -->
+          Prepared
+        </button>
+      </div>
+    </div>
+    <div class="h-full flex flex-col mx-5">
+      <!-- <label for="message" class="block mb-2 font-medium text-[#828487] text-[12px] dark:text-white">Add note</label> -->
+      @if (selectPrint == 1) {
+
+        <textarea id="messageInvoice" rows="4" [(ngModel)]="noteInvoice"
+                  ngxTouchKeyboard
+                  ngxTouchKeyboardFullScreen
+                  #touchKeyboard1="ngxTouchKeyboard"
+                  (focus)="touchKeyboard1.openPanel()"
+                  style="overflow:auto;resize:none"
+                  class="w-full h-[180px] text-[20px] text-gray-900 bg-gray-50 rounded-lg border border-gray-300
+                       focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600
+                       dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                       dark:focus:border-blue-500" placeholder="Write note here..."></textarea>
+
+      }
+
+      @if (selectPrint == 2) {
+
+        <textarea id="messagePrepared" rows="4" [(ngModel)]="notePrepared"
+                  ngxTouchKeyboard
+                  ngxTouchKeyboardFullScreen
+                  #touchKeyboard1="ngxTouchKeyboard"
+                  (focus)="touchKeyboard1.openPanel()"
+                  style="overflow:auto;resize:none"
+                  class="w-full h-[180px] text-[20px] text-gray-900 bg-gray-50 rounded-lg border border-gray-300
+                       focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600
+                       dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                       dark:focus:border-blue-500" placeholder="Write note here..."></textarea>
+
+      }
+
+    </div>
+    <div class="flex items-center space-x-[24px] justify-center mt-[24px]">
+      <button (click)="onClose()"
+              class="w-[169px] h-[48px] inline-flex items-center border border-blue-400
+                     text-blue-400 justify-center
+                     hover:border-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg
+                     text-sm text-center"
+              type="button">
+        Cancel
+      </button>
+      <button (click)="onSubmit()"
+              [disabled]="!enableButtonOk"
+              class="w-[169px] h-[48px] text-white inline-flex items-center hover:text-white border border-blue-400
+                     bg-blue-400 justify-center disabled:bg-blue-200
+                     hover:border-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg
+                     text-sm text-center">
+        Create
+      </button>
+    </div>
+  </div>
+</section>
+
+

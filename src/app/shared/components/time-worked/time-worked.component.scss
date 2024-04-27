@@ -1,0 +1,50 @@
+:host {
+  font-size: 18px;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  height: 600px;
+}
+
+ag-grid-angular {
+  width: 500px;
+  height: 500px;
+  margin-bottom: 2px;
+  font: 400 18px "Roboto", sans-serif;
+
+  & ::ng-deep .ag-paging-row-summary-panel {
+    margin-left: 10px !important;
+  }
+
+  & ::ng-deep .ag-paging-page-summary-panel {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  & ::ng-deep button.ag-paging-button {
+    background-size: 32px !important;
+    margin: 0 8px !important;
+    cursor: none !important;
+    height: 100%;
+  }
+
+  & ::ng-deep .ag-header {
+    font-size: 15px !important;
+  }
+
+  & ::ng-deep .ag-font-style {
+    cursor: none !important;
+  }
+}
+
+.show {
+  display: initial;
+}
+
+.hide {
+  display: none;
+}

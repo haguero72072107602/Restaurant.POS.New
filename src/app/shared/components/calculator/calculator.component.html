@@ -1,0 +1,37 @@
+<!--
+<div fxLayout="row" class="row">
+  <div class="column">
+    [fxLayoutGap]="space"
+    [fxLayoutGap]="space"
+    <button mat-button fxFlex="100px"  *ngFor="let i of rightOperations" class="right"
+            (click)="sendKey(i,  TypeKey.LEFT)">{{i}}</button>
+  </div>
+  <div fxFlex="320px" class="column">
+    <button mat-button fxFlex="100px"  *ngFor="let j of numbers" class="numbers"
+            (click)="sendKey(j, TypeKey.NUMBER)">{{j}}</button>
+  </div>
+  <div class="column" fxFlex="20">
+    <button mat-button fxFlex="100px" *ngFor="let k of leftOperations;" class="left"
+            (click)="sendKey(k, TypeKey.LEFT)" [disabled]="valid && k === 'Enter'">{{k}}</button>
+  </div>
+</div>
+-->
+
+<div class="flex w-[425px] h-[340px] justify-between">
+  <div class="w-2/3 h-full grid grid-cols-3 justify-center items-center gap-2">
+    @for (j of numbers; track j) {
+      <button class="py-6 bg-[#F8F9FD] font-bold flex items-center justify-center text-black shadow-xl
+                  rounded-2xl hover:scale-90 transition-all delay-200 border-2 focus:outline-none select-none"
+              (click)="sendKey(j, TypeKey.NUMBER)">{{ j }}
+      </button>
+    }
+  </div>
+  <div class="w-1/3 flex flex-col justify-between items-center">
+    @for (k of leftOperations; track k) {
+      <button class=" py-16 px-6 bg-[#F8F9FD] font-bold flex items-center justify-center shadow-xl
+                  rounded-2xl hover:scale-90 transition-all delay-200 border-2 focus:outline-none select-none text-black"
+              (click)="sendKey(k, TypeKey.LEFT)" [disabled]="valid && k === 'Enter'">{{ k }}
+      </button>
+    }
+  </div>
+</div>

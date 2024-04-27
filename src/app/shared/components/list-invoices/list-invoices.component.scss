@@ -1,0 +1,46 @@
+
+:host {
+}
+
+button {
+}
+
+.red {
+  background-color: var(--color4);
+  border: 3px solid var(--color4-border);
+  color: var(--color4-text);
+}
+
+.yellow {
+  background-color: var(--color1);
+  border: 3px solid var(--color1-border);
+  color: var(--color1-text);
+}
+
+.green {
+  background-color: var(--color2);
+  border: 3px solid var(--color2-border);
+  color: var(--color2-text);
+}
+
+.break-all {
+  word-break: break-all;
+}
+
+.break-word {
+  word-wrap: break-word;
+}
+
+button.selected {
+  background-color: var(--background);
+}
+
+::ng-deep {
+  .mat-slider-thumb-label-text {
+    opacity: 1 !important;
+  }
+
+  .mat-slider-thumb-label-text {
+    opacity: 1 !important;
+  }
+}

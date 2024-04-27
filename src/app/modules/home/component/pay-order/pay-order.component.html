@@ -1,0 +1,278 @@
+<div class="w-[calc(100vw-125px)] h-[calc(100vh-80px)] font-poppins flex flex-col justify-between">
+  <section class="w-full min-h-[68px] bg-white border-b">
+    <button (click)="onAllOrder()"
+            class=" w-[173px] h-full bg-[#3B5162] flex items-center justify-center text-white">
+      <svg fill="none" height="25" viewBox="0 0 25 25" width="25" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M5.75 4.25H19.25C19.4489 4.25 19.6397 4.32902 19.7803 4.46967C19.921 4.61032 20 4.80109 20 5V19.25C20 19.8467 19.7629 20.419 19.341 20.841C18.919 21.2629 18.3467 21.5 17.75 21.5H7.25C6.65326 21.5 6.08097 21.2629 5.65901 20.841C5.23705 20.419 5 19.8467 5 19.25V5C5 4.80109 5.07902 4.61032 5.21967 4.46967C5.36032 4.32902 5.55109 4.25 5.75 4.25Z"
+          fill="#E0E6E9"
+          opacity="0.2"/>
+        <path d="M9.5 12.5H15.5" stroke="#E0E6E9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <path d="M9.5 15.5H15.5" stroke="#E0E6E9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <path
+          d="M5.75 4.25H19.25C19.4489 4.25 19.6397 4.32902 19.7803 4.46967C19.921 4.61032 20 4.80109 20 5V19.25C20 19.8467 19.7629 20.419 19.341 20.841C18.919 21.2629 18.3467 21.5 17.75 21.5H7.25C6.65326 21.5 6.08097 21.2629 5.65901 20.841C5.23705 20.419 5 19.8467 5 19.25V5C5 4.80109 5.07902 4.61032 5.21967 4.46967C5.36032 4.32902 5.55109 4.25 5.75 4.25Z"
+          fill="#E5EDFE" fill-opacity="0.5" stroke="#E0E6E9" stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="1.5"/>
+        <path d="M8 2.75V5.75" stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <path d="M12.5 2.75V5.75" stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <path d="M17 2.75V5.75" stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      </svg>
+      <span>All Orders</span>
+    </button>
+  </section>
+  <!-- <div class="w-full h-[calc(100vh-(290px))] bg-[#F8F9FD] mx-2">-->
+
+  <div class="w-full h-full overscroll-y-contain overflow-x-hidden bg-[#F8F9FD]
+              dark:scrollbar-thick dark:scrollbar-thumb dark:scrollbar-track">
+    <div class="flex flex-wrap gap-4 mx-4 mt-4">
+
+      @if (invoiceService!.invoice != undefined) {
+
+
+        @if (splitInvoice!.length === 0) {
+
+          <app-card-invoice
+            [productOrders]="invoiceService!.invoice!.productOrders!"
+            [positions]="0"
+            [editProductOrders]="false">
+          </app-card-invoice>
+
+        }
+
+        @if (splitInvoice!.length != 0) {
+
+          @for (split of splitInvoice!; track split) {
+
+            <app-card-invoice
+              [productOrders]="filterProductOrder(invoiceService!.invoice!.productOrders!, split)"
+              [positions]="0"
+              [editProductOrders]="false">
+            </app-card-invoice>
+
+          }
+
+        }
+
+
+      }
+    </div>
+  </div>
+
+  <div class="flex w-full min-h-[98px] justify-between border-t bg-white py-2">
+    <div class="flex">
+      <div class="flex items-center justify-normal">
+        <button
+          (click)="onFormPayment(PaymentOpEnum.CASH)"
+          class="font-semibold text-[#557AD9] bg-[#F8F9FD] mx-2 w-[120px] lg:w-[120px] h-[3.5rem] hover:bg-blue-800 hover:text-white shadow
+                    text-center focus:ring-2 focus:ring-blue-700 focus:bg-[#557AD9] focus:text-white
+                    rounded-lg text-sm focus:outline-none flex justify-center items-center ">
+          <!--
+          <svg width="32" height="32" viewBox="0 0 176 164" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_4438_14256)">
+              <path d="M16.9062 109.5L159.094 109.5C162.114 109.5 164.562 107.038 164.562 104V27C164.562 23.9624 162.114 21.5 159.094 21.5L16.9062 21.5C13.8859 21.5 11.4375 23.9624 11.4375 27V104C11.4375 107.038 13.8859 109.5 16.9062 109.5Z" stroke="#50D1AA" stroke-width="7" stroke-linejoin="round"/>
+              <path d="M22.375 126H153.625" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M33.3125 142.5H142.688" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M88 93C103.102 93 115.344 80.6878 115.344 65.5C115.344 50.3122 103.102 38 88 38C72.8985 38 60.6562 50.3122 60.6562 65.5C60.6562 80.6878 72.8985 93 88 93Z" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M164.562 49C157.31 49 150.355 46.1027 145.228 40.9454C140.1 35.7882 137.219 28.7935 137.219 21.5" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M11.4375 49C15.0283 49 18.584 48.2887 21.9015 46.9067C25.219 45.5247 28.2333 43.499 30.7725 40.9454C33.3116 38.3918 35.3257 35.3602 36.6998 32.0238C38.074 28.6873 38.7812 25.1114 38.7812 21.5" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M164.562 82C157.31 82 150.355 84.8973 145.228 90.0546C140.1 95.2118 137.219 102.207 137.219 109.5" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M11.4375 82C15.0283 82 18.584 82.7113 21.9015 84.0933C25.219 85.4753 28.2333 87.501 30.7725 90.0546C33.3116 92.6082 35.3257 95.6397 36.6998 98.9762C38.074 102.313 38.7812 105.889 38.7812 109.5" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_4438_14256">
+                <rect width="175" height="164" fill="white" transform="translate(0.5)"/>
+              </clipPath>
+            </defs>
+          </svg>
+          -->
+          <span class="ml-2">Cash</span>
+        </button>
+        <!--
+        <button class="font-semibold text-[#557AD9] bg-[#F8F9FD] mx-2 w-[120px] h-[3.5rem] hover:bg-blue-800 hover:text-white shadow
+                    text-center focus:z-10 focus:ring-2 focus:ring-blue-700 focus:bg-[#557AD9] focus:text-white
+                    rounded-lg text-sm focus:outline-none flex justify-center items-center"
+                disabled
+                (click)="onFormPayment(PaymentOpEnum.CHECK)">Offline card
+        </button>
+        -->
+        <button
+          (click)="onFormPayment(PaymentOpEnum.DEBIT_CARD)"
+          [disabled]="disableRefound"
+          class="font-semibold text-[#557AD9] bg-[#F8F9FD] mx-2 w-[120px] lg:w-[120px] h-[3.5rem]
+                    disabled:bg-gray-200 disabled:text-white
+                    hover:bg-blue-800 hover:text-white shadow
+                    text-center focus:z-10 focus:ring-2 focus:ring-blue-700 focus:bg-[#557AD9] focus:text-white
+                    rounded-lg text-sm focus:outline-none flex justify-center items-center">
+          <!--
+          <svg width="32" height="32" viewBox="0 0 176 164" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_4439_14371)">
+              <path d="M139.953 27H36.0469C25.4758 27 16.9062 35.6185 16.9062 46.25V117.75C16.9062 128.381 25.4758 137 36.0469 137H139.953C150.524 137 159.094 128.381 159.094 117.75V46.25C159.094 35.6185 150.524 27 139.953 27Z" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16.9062 60H159.094" stroke="#50D1AA" stroke-width="20" stroke-linejoin="round"/>
+              <path d="M60.6562 97.125H44.25V104H60.6562V97.125Z" stroke="#50D1AA" stroke-width="7" stroke-linejoin="round"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_4439_14371">
+                <rect width="175" height="164" fill="white" transform="translate(0.5)"/>
+              </clipPath>
+            </defs>
+          </svg>
+          -->
+          <span class="ml-1">Debit Card</span>
+        </button>
+        <button
+          (click)="onFormPayment(PaymentOpEnum.CREDIT_CARD)"
+          class="font-semibold text-[#557AD9] bg-[#F8F9FD] mx-2 w-[120px] lg:w-[120px] h-[3.5rem] hover:bg-blue-800 hover:text-white shadow
+                    text-center focus:z-10 focus:ring-2 focus:ring-blue-700 focus:bg-[#557AD9] focus:text-white
+                    rounded-lg text-sm focus:outline-none flex justify-center items-center">
+          <!--
+          <svg width="32" height="32" viewBox="0 0 176 164" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_4439_14371)">
+              <path d="M139.953 27H36.0469C25.4758 27 16.9062 35.6185 16.9062 46.25V117.75C16.9062 128.381 25.4758 137 36.0469 137H139.953C150.524 137 159.094 128.381 159.094 117.75V46.25C159.094 35.6185 150.524 27 139.953 27Z" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16.9062 60H159.094" stroke="#50D1AA" stroke-width="20" stroke-linejoin="round"/>
+              <path d="M60.6562 97.125H44.25V104H60.6562V97.125Z" stroke="#50D1AA" stroke-width="7" stroke-linejoin="round"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_4439_14371">
+                <rect width="175" height="164" fill="white" transform="translate(0.5)"/>
+              </clipPath>
+            </defs>
+          </svg>
+          -->
+          <span class="ml-1">Credit Card</span>
+        </button>
+        <button
+          (click)="onFormPayment(PaymentOpEnum.ZELLE)"
+          [disabled]="disableRefound"
+          class="font-semibold text-[#557AD9] bg-[#F8F9FD] mx-2 w-[120px] lg:w-[120px] h-[3.5rem] hover:bg-blue-800 hover:text-white shadow
+                    disabled:bg-gray-200 disabled:text-white
+                    text-center focus:z-10 focus:ring-2 focus:ring-blue-700 focus:bg-[#557AD9] focus:text-white
+                    rounded-lg text-sm focus:outline-none flex justify-center items-center">
+          <!--
+          <svg width="32" height="32" viewBox="0 0 176 164" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M55.0735 62.5547H22.261V29.5547" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M130.537 39.22C124.951 33.6021 118.32 29.1457 111.021 26.1053C103.723 23.0649 95.9001 21.5 88.0003 21.5C80.1005 21.5 72.278 23.0649 64.9795 26.1053C57.681 29.1457 51.0494 33.6021 45.4634 39.22L22.2615 62.5546" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M120.927 101.445H153.739V134.445" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M45.4634 124.78C51.0494 130.398 57.681 134.854 64.9795 137.895C72.278 140.935 80.1004 142.5 88.0003 142.5C95.9001 142.5 103.723 140.935 111.021 137.895C118.32 134.854 124.951 130.398 130.537 124.78L153.739 101.445" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M105 92.713C105 95.0857 104.397 97.3161 103.192 99.4041C102.035 101.492 100.3 103.248 97.9855 104.672C95.7197 106.095 93.02 106.949 89.8864 107.234V113H85.186V107.234C80.6543 106.807 76.9904 105.407 74.1942 103.034C71.3981 100.662 70 97.5297 70 93.6383H78.8223C78.9669 95.4891 79.5696 97.0314 80.6302 98.2652C81.6908 99.4516 83.2094 100.211 85.186 100.543V84.8829C81.9559 84.0762 79.3285 83.2694 77.3037 82.4627C75.2789 81.6085 73.5434 80.2798 72.0971 78.4765C70.699 76.6732 70 74.2055 70 71.0735C70 67.1347 71.3981 63.884 74.1942 61.3215C76.9904 58.7114 80.6543 57.1929 85.186 56.7658V51H89.8864V56.7658C94.1288 57.1454 97.5275 58.4742 100.083 60.752C102.686 62.9824 104.156 66.067 104.494 70.0057H95.6715C95.5269 68.5346 94.9483 67.2296 93.936 66.0907C92.9236 64.9043 91.5737 64.0976 89.8864 63.6705V79.0459C93.1164 79.8052 95.7438 80.6119 97.7686 81.4661C99.7934 82.2729 101.505 83.5779 102.903 85.3812C104.301 87.137 105 89.5809 105 92.713ZM78.3884 70.6464C78.3884 72.592 78.9669 74.1106 80.124 75.2021C81.3292 76.2935 83.0165 77.1715 85.186 77.8358V63.4569C83.1129 63.6942 81.4497 64.4298 80.1963 65.6636C78.991 66.8974 78.3884 68.5584 78.3884 70.6464ZM89.8864 100.543C92.0076 100.211 93.6708 99.3804 94.876 98.0517C96.0813 96.6755 96.6839 95.0383 96.6839 93.1401C96.6839 91.2419 96.0813 89.7708 94.876 88.7268C93.719 87.6353 92.0558 86.7574 89.8864 86.093V100.543Z" fill="#50D1AA"/>
+          </svg>
+          -->
+          <span>Zelle</span>
+        </button>
+        <button
+          (click)="onFormPayment(PaymentOpEnum.DOORDASH)"
+          [disabled]="disableRefound"
+          class="font-semibold text-[#557AD9] bg-[#F8F9FD] mx-2 w-[120px] lg:w-[120px] h-[3.5rem] hover:bg-blue-800 hover:text-white shadow
+                    disabled:bg-gray-200 disabled:text-white
+                    text-center focus:z-10 focus:ring-2 focus:ring-blue-700 focus:bg-[#557AD9] focus:text-white
+                    rounded-lg text-sm focus:outline-none flex justify-center items-center">
+          <!--
+          <svg width="32" height="32" viewBox="0 0 176 164" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M55.0735 62.5547H22.261V29.5547" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M130.537 39.22C124.951 33.6021 118.32 29.1457 111.021 26.1053C103.723 23.0649 95.9001 21.5 88.0003 21.5C80.1005 21.5 72.278 23.0649 64.9795 26.1053C57.681 29.1457 51.0494 33.6021 45.4634 39.22L22.2615 62.5546" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M120.927 101.445H153.739V134.445" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M45.4634 124.78C51.0494 130.398 57.681 134.854 64.9795 137.895C72.278 140.935 80.1004 142.5 88.0003 142.5C95.9001 142.5 103.723 140.935 111.021 137.895C118.32 134.854 124.951 130.398 130.537 124.78L153.739 101.445" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M105 92.713C105 95.0857 104.397 97.3161 103.192 99.4041C102.035 101.492 100.3 103.248 97.9855 104.672C95.7197 106.095 93.02 106.949 89.8864 107.234V113H85.186V107.234C80.6543 106.807 76.9904 105.407 74.1942 103.034C71.3981 100.662 70 97.5297 70 93.6383H78.8223C78.9669 95.4891 79.5696 97.0314 80.6302 98.2652C81.6908 99.4516 83.2094 100.211 85.186 100.543V84.8829C81.9559 84.0762 79.3285 83.2694 77.3037 82.4627C75.2789 81.6085 73.5434 80.2798 72.0971 78.4765C70.699 76.6732 70 74.2055 70 71.0735C70 67.1347 71.3981 63.884 74.1942 61.3215C76.9904 58.7114 80.6543 57.1929 85.186 56.7658V51H89.8864V56.7658C94.1288 57.1454 97.5275 58.4742 100.083 60.752C102.686 62.9824 104.156 66.067 104.494 70.0057H95.6715C95.5269 68.5346 94.9483 67.2296 93.936 66.0907C92.9236 64.9043 91.5737 64.0976 89.8864 63.6705V79.0459C93.1164 79.8052 95.7438 80.6119 97.7686 81.4661C99.7934 82.2729 101.505 83.5779 102.903 85.3812C104.301 87.137 105 89.5809 105 92.713ZM78.3884 70.6464C78.3884 72.592 78.9669 74.1106 80.124 75.2021C81.3292 76.2935 83.0165 77.1715 85.186 77.8358V63.4569C83.1129 63.6942 81.4497 64.4298 80.1963 65.6636C78.991 66.8974 78.3884 68.5584 78.3884 70.6464ZM89.8864 100.543C92.0076 100.211 93.6708 99.3804 94.876 98.0517C96.0813 96.6755 96.6839 95.0383 96.6839 93.1401C96.6839 91.2419 96.0813 89.7708 94.876 88.7268C93.719 87.6353 92.0558 86.7574 89.8864 86.093V100.543Z" fill="#50D1AA"/>
+          </svg>
+          -->
+          <span>Doordash</span>
+        </button>
+        <button
+          (click)="onFormPayment(PaymentOpEnum.UBER)"
+          [disabled]="disableRefound"
+          class="font-semibold text-[#557AD9] bg-[#F8F9FD] mx-2 w-[120px] lg:w-[120px] h-[3.5rem] hover:bg-blue-800 hover:text-white shadow
+                    disabled:bg-gray-200 disabled:text-white
+                    text-center focus:z-10 focus:ring-2 focus:ring-blue-700 focus:bg-[#557AD9] focus:text-white
+                    rounded-lg text-sm focus:outline-none flex justify-center items-center">
+          <!--
+          <svg width="32" height="32" viewBox="0 0 176 164" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M55.0735 62.5547H22.261V29.5547" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M130.537 39.22C124.951 33.6021 118.32 29.1457 111.021 26.1053C103.723 23.0649 95.9001 21.5 88.0003 21.5C80.1005 21.5 72.278 23.0649 64.9795 26.1053C57.681 29.1457 51.0494 33.6021 45.4634 39.22L22.2615 62.5546" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M120.927 101.445H153.739V134.445" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M45.4634 124.78C51.0494 130.398 57.681 134.854 64.9795 137.895C72.278 140.935 80.1004 142.5 88.0003 142.5C95.9001 142.5 103.723 140.935 111.021 137.895C118.32 134.854 124.951 130.398 130.537 124.78L153.739 101.445" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M105 92.713C105 95.0857 104.397 97.3161 103.192 99.4041C102.035 101.492 100.3 103.248 97.9855 104.672C95.7197 106.095 93.02 106.949 89.8864 107.234V113H85.186V107.234C80.6543 106.807 76.9904 105.407 74.1942 103.034C71.3981 100.662 70 97.5297 70 93.6383H78.8223C78.9669 95.4891 79.5696 97.0314 80.6302 98.2652C81.6908 99.4516 83.2094 100.211 85.186 100.543V84.8829C81.9559 84.0762 79.3285 83.2694 77.3037 82.4627C75.2789 81.6085 73.5434 80.2798 72.0971 78.4765C70.699 76.6732 70 74.2055 70 71.0735C70 67.1347 71.3981 63.884 74.1942 61.3215C76.9904 58.7114 80.6543 57.1929 85.186 56.7658V51H89.8864V56.7658C94.1288 57.1454 97.5275 58.4742 100.083 60.752C102.686 62.9824 104.156 66.067 104.494 70.0057H95.6715C95.5269 68.5346 94.9483 67.2296 93.936 66.0907C92.9236 64.9043 91.5737 64.0976 89.8864 63.6705V79.0459C93.1164 79.8052 95.7438 80.6119 97.7686 81.4661C99.7934 82.2729 101.505 83.5779 102.903 85.3812C104.301 87.137 105 89.5809 105 92.713ZM78.3884 70.6464C78.3884 72.592 78.9669 74.1106 80.124 75.2021C81.3292 76.2935 83.0165 77.1715 85.186 77.8358V63.4569C83.1129 63.6942 81.4497 64.4298 80.1963 65.6636C78.991 66.8974 78.3884 68.5584 78.3884 70.6464ZM89.8864 100.543C92.0076 100.211 93.6708 99.3804 94.876 98.0517C96.0813 96.6755 96.6839 95.0383 96.6839 93.1401C96.6839 91.2419 96.0813 89.7708 94.876 88.7268C93.719 87.6353 92.0558 86.7574 89.8864 86.093V100.543Z" fill="#50D1AA"/>
+          </svg>
+          -->
+          <span>Uber</span>
+        </button>
+        <button
+          (click)="onFormPayment(PaymentOpEnum.SAUCE)"
+          [disabled]="disableRefound"
+          class="font-semibold text-[#557AD9] bg-[#F8F9FD] mx-2 w-[120px] lg:w-[120px] h-[3.5rem] hover:bg-blue-800 hover:text-white shadow
+                    disabled:bg-gray-200 disabled:text-white
+                    text-center focus:z-10 focus:ring-2 focus:ring-blue-700 focus:bg-[#557AD9] focus:text-white
+                    rounded-lg text-sm focus:outline-none flex justify-center items-center">
+          <!--
+          <svg width="32" height="32" viewBox="0 0 176 164" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M55.0735 62.5547H22.261V29.5547" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M130.537 39.22C124.951 33.6021 118.32 29.1457 111.021 26.1053C103.723 23.0649 95.9001 21.5 88.0003 21.5C80.1005 21.5 72.278 23.0649 64.9795 26.1053C57.681 29.1457 51.0494 33.6021 45.4634 39.22L22.2615 62.5546" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M120.927 101.445H153.739V134.445" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M45.4634 124.78C51.0494 130.398 57.681 134.854 64.9795 137.895C72.278 140.935 80.1004 142.5 88.0003 142.5C95.9001 142.5 103.723 140.935 111.021 137.895C118.32 134.854 124.951 130.398 130.537 124.78L153.739 101.445" stroke="#50D1AA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M105 92.713C105 95.0857 104.397 97.3161 103.192 99.4041C102.035 101.492 100.3 103.248 97.9855 104.672C95.7197 106.095 93.02 106.949 89.8864 107.234V113H85.186V107.234C80.6543 106.807 76.9904 105.407 74.1942 103.034C71.3981 100.662 70 97.5297 70 93.6383H78.8223C78.9669 95.4891 79.5696 97.0314 80.6302 98.2652C81.6908 99.4516 83.2094 100.211 85.186 100.543V84.8829C81.9559 84.0762 79.3285 83.2694 77.3037 82.4627C75.2789 81.6085 73.5434 80.2798 72.0971 78.4765C70.699 76.6732 70 74.2055 70 71.0735C70 67.1347 71.3981 63.884 74.1942 61.3215C76.9904 58.7114 80.6543 57.1929 85.186 56.7658V51H89.8864V56.7658C94.1288 57.1454 97.5275 58.4742 100.083 60.752C102.686 62.9824 104.156 66.067 104.494 70.0057H95.6715C95.5269 68.5346 94.9483 67.2296 93.936 66.0907C92.9236 64.9043 91.5737 64.0976 89.8864 63.6705V79.0459C93.1164 79.8052 95.7438 80.6119 97.7686 81.4661C99.7934 82.2729 101.505 83.5779 102.903 85.3812C104.301 87.137 105 89.5809 105 92.713ZM78.3884 70.6464C78.3884 72.592 78.9669 74.1106 80.124 75.2021C81.3292 76.2935 83.0165 77.1715 85.186 77.8358V63.4569C83.1129 63.6942 81.4497 64.4298 80.1963 65.6636C78.991 66.8974 78.3884 68.5584 78.3884 70.6464ZM89.8864 100.543C92.0076 100.211 93.6708 99.3804 94.876 98.0517C96.0813 96.6755 96.6839 95.0383 96.6839 93.1401C96.6839 91.2419 96.0813 89.7708 94.876 88.7268C93.719 87.6353 92.0558 86.7574 89.8864 86.093V100.543Z" fill="#50D1AA"/>
+          </svg>
+          -->
+          <span>Sauce</span>
+        </button>
+
+
+      </div>
+
+    </div>
+    <div class="flex items-center justify-center">
+
+      <!--
+      <button
+        [disabled]="false"
+        class="w-[105px] lg:w-[98px] h-[64px] text-white bg-[#557AD9] hover:bg-green-700 shadow text-center mr-4
+                    font-semibold rounded-lg text-sm focus:outline-none flex items-center justify-center"
+        (click)="onSplitPay()">
+        <span>Split</span>
+      </button>
+      <button
+        [disabled]="true"
+        class="w-[105px] lg:w-[98px] h-[64px] text-white bg-[#557AD9] hover:bg-green-700 shadow text-center mr-4
+                    font-semibold rounded-lg text-sm focus:outline-none flex items-center justify-center"
+      >
+        <span>Merge</span>
+      </button>
+
+      <button class="w-[105px] h-[64px] text-white bg-[#557AD9] hover:bg-green-700 shadow text-center mr-4
+                    font-semibold rounded-lg text-sm focus:outline-none flex items-center justify-center"
+              (click)="onPrintPreparedOrder()">
+        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path opacity="0.2" d="M17.1244 6.75H4.20769C3.4598 6.75 2.85352 7.30965 2.85352 8V14.25H5.66602V12.375H15.666V14.25H18.4785V8C18.4785 7.30965 17.8722 6.75 17.1244 6.75Z" fill="#F8F9FD"/>
+          <path d="M15.666 3.625H5.66602V6.75H15.666V3.625Z" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15.666 12.375H5.66602V17.6875H15.666V12.375Z" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5.66602 14.25H2.85352V8C2.85352 7.30964 3.4598 6.75 4.20768 6.75H17.1244C17.8722 6.75 18.4785 7.30964 18.4785 8V14.25H15.666" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15.354 10.5C15.8718 10.5 16.2915 10.0803 16.2915 9.5625C16.2915 9.04473 15.8718 8.625 15.354 8.625C14.8362 8.625 14.4165 9.04473 14.4165 9.5625C14.4165 10.0803 14.8362 10.5 15.354 10.5Z" fill="#F8F9FD"/>
+        </svg>
+        <span>Pay</span>
+      </button>
+      -->
+      <button (click)="onCancelOperation()"
+              class="w-[105px] lg:w-[98px] h-[64px] text-white bg-[#FF7CA3] shadow text-center mr-4
+                    font-semibold rounded-lg text-sm focus:outline-none
+                    disabled:bg-gray-300
+                    flex items-center justify-center">
+        <span class="ml-1">Cancel</span>
+      </button>
+      <!--
+      <button class="w-[105px] h-[64px] text-white bg-[#50D1AA] shadow text-center mr-4
+                    font-semibold rounded-lg text-sm focus:outline-none flex items-center justify-center
+                    disabled:bg-gray-300"
+              disabled>
+        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path opacity="0.2" d="M10.3335 18C14.4756 18 17.8335 14.6421 17.8335 10.5C17.8335 6.35786 14.4756 3 10.3335 3C6.19136 3 2.8335 6.35786 2.8335 10.5C2.8335 14.6421 6.19136 18 10.3335 18Z" fill="#F8F9FD"/>
+          <path d="M10.3335 6.125V7.375" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10.3335 13.625V14.875" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10.3335 18C14.4756 18 17.8335 14.6421 17.8335 10.5C17.8335 6.35786 14.4756 3 10.3335 3C6.19136 3 2.8335 6.35786 2.8335 10.5C2.8335 14.6421 6.19136 18 10.3335 18Z" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8.4585 13.625H11.271C11.6854 13.625 12.0828 13.4604 12.3759 13.1674C12.6689 12.8743 12.8335 12.4769 12.8335 12.0625C12.8335 11.6481 12.6689 11.2507 12.3759 10.9576C12.0828 10.6646 11.6854 10.5 11.271 10.5H9.396C8.9816 10.5 8.58417 10.3354 8.29114 10.0424C7.99812 9.74933 7.8335 9.3519 7.8335 8.9375C7.8335 8.5231 7.99812 8.12567 8.29114 7.83265C8.58417 7.53962 8.9816 7.375 9.396 7.375H12.2085" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="ml-1">Refund</span>
+      </button>
+      -->
+    </div>
+  </div>
+</div>
+
+
+

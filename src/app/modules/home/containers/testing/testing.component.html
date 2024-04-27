@@ -1,0 +1,50 @@
+<div class="w-[calc(100vw-125px)] h-[91vh] flex flex-col justify-center">
+  <div class="w-full justify-center items-center">
+    <!-- <app-banner [slides]="slides" class="mx-20" />-->
+  </div>
+  <div class="w-full justify-center items-center">
+    <input (change)="onFileSelected($event)" type="file"/>
+    <br/><br/>
+    base64 Output : <br/>
+    {{ base64Output }}
+  </div>
+
+  <div class="container-circle">
+    <div class="horizontal-scroll">
+      <!--
+      <button class="btn-scroll" (click)="onClickHorizontal(1)"> <<</button>
+      <button class="btn-scroll" (click)="onClickHorizontal(-1)"> >></button>
+      -->
+      <div class="storys-container">
+        <div class="story-circle">
+          <img (swipeleft)="onClickHorizontal(-1)" (swiperight)="onClickHorizontal(1)"
+               alt="" src="assets/verified.png">
+          <img (swipeleft)="onClickHorizontal(-1)" (swiperight)="onClickHorizontal(1)"
+               alt="" src="assets/verified.png">
+          <img (swipeleft)="onClickHorizontal(-1)" (swiperight)="onClickHorizontal(1)"
+               alt="" src="assets/verified.png">
+          <img (swipeleft)="onClickHorizontal(-1)" (swiperight)="onClickHorizontal(1)"
+               alt="" src="assets/verified.png">
+          <!--
+          <img src="assets/verified.png" alt=""
+               (swiperight)="onClickHorizontal(1)" (swipeleft)="onClickHorizontal(-1)">
+          <img src="assets/verified.png" alt=""
+               (swiperight)="onClickHorizontal(1)" (swipeleft)="onClickHorizontal(-1)">
+          <img src="assets/verified.png" alt=""
+               (swiperight)="onClickHorizontal(1)" (swipeleft)="onClickHorizontal(-1)">
+          <img src="assets/verified.png" alt=""
+               (swiperight)="onClickHorizontal(1)" (swipeleft)="onClickHorizontal(-1)">
+          <img src="assets/verified.png" alt=""
+               (swiperight)="onClickHorizontal(1)" (swipeleft)="onClickHorizontal(-1)">
+          <img src="assets/verified.png" alt=""
+               (swiperight)="onClickHorizontal(1)" (swipeleft)="onClickHorizontal(-1)">
+          <img src="assets/verified.png" alt=""
+               (swiperight)="onClickHorizontal(1)" (swipeleft)="onClickHorizontal(-1)">
+           -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

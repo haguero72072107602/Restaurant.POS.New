@@ -1,0 +1,27 @@
+<section class="w-full min-h-[80px] flex flex-col item-center bg-gray-50 rounded-2xl">
+  <div class="flex flex-col justify-center mx-6 my-4">
+    <label class="block text-[12px] font-semibold text-gray-900 dark:text-white" for="dropdownSearchType">
+      Discount
+    </label>
+    <div class="w-full flex items-center justify-between">
+      <input [(ngModel)]="scheduler!.price"
+             class="w-2/3 h-[40px] bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                  focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600
+                                  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                  dark:focus:border-blue-500"
+             type="number"
+      />
+      <div class="mx-4"></div>
+      <select [(ngModel)]="scheduler!.schedulerDiscountType"
+              class="w-1/3 h-[40px] bg-white border border-gray-300 text-gray-900 text-[14px] rounded-lg text-left
+                                 focus:ring-blue-500 focus:border-blue-500 block p-2.5
+                                 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              id="dropdownSearchType">
+        @for (item of operations; track item) {
+          <option value="{{item.id}}" selected>{{ item.name }}</option>
+        }
+      </select>
+    </div>
+  </div>
+</section>

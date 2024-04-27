@@ -1,0 +1,77 @@
+@import "~src/paletas";
+
+.block {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  width: 75%;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.image {
+  display: block;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  margin: auto;
+  width: 40vw !important;
+  height: 45% !important;
+}
+
+.options {
+  width: 25%;
+}
+
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-image: url('../../../../assets/restaurant/restaurant-plate-back.jpg');
+  background-size: cover;
+  opacity: 0.2;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+app-table-button {
+  height: 150px;
+  width: 150px;
+  margin: 10px;
+}
+
+.body-container {
+  display: flex;
+  height: 100%;
+}
+
+.big {
+  width: 250px;
+  height: 250px;
+}
+
+.medium {
+  width: 180px;
+  height: 180px;
+}
+
+.small {
+  width: 120px;
+  height: 120px;
+}

@@ -1,0 +1,107 @@
+<div class="flex  my-6 mt-[40px] p-2 gap-4 w-full justify-between">
+  <div
+    (click)="onClickSalesRevenue()"
+    class="flex-col w-full rounded-2xl border-2 h-[600px]"
+  >
+    @if (optionsItemsMenu) {
+
+      <div class="text-center h-[20px] mt-2">
+        <span class="text-gray-500 text-md"> Best Sellers Products </span>
+      </div>
+      <apx-chart
+        [series]="optionsItemsMenu.series"
+        [chart]="optionsItemsMenu.chart"
+        [xaxis]="optionsItemsMenu.xaxis"
+        [fill]="optionsItemsMenu.fill"
+        [plotOptions]="optionsItemsMenu.plotOptions"
+      ></apx-chart>
+      <!--
+<ag-charts-angular
+        class="relative w-[350px] h-[200px] mt-5"
+        [options]="optionsSalesRevenue"
+      />
+
+       -->
+    }
+  </div>
+  <!--
+<div class="flex flex-col h-[300px] w-1/4">
+    <div
+      class="flex-shrink-0 relative justify-between overflow-hidden h-full bg-[#32C5FF] rounded-lg max-w-xs shadow-lg"
+    >
+     <div class="flex flex-col ">
+      <svg
+      class="absolute bottom-0 left-0 mb-8"
+      viewBox="0 0 375 283"
+      fill="none"
+      style="transform: scale(1.5); opacity: 0.1"
+    >
+      <rect
+        x="159.52"
+        y="175"
+        width="152"
+        height="152"
+        rx="8"
+        transform="rotate(-45 159.52 175)"
+        fill="white"
+      />
+      <rect
+        y="107.48"
+        width="152"
+        height="152"
+        rx="8"
+        transform="rotate(-45 0 107.48)"
+        fill="white"
+      />
+    </svg>
+    <div class="relative pt-10 px-10 flex items-center justify-center">
+      <div
+        class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"
+        style="
+          background: radial-gradient(black, transparent 60%);
+          transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1);
+          opacity: 0.2;
+        "
+      ></div>
+
+
+<img
+        class="relative w-40"
+        src="https://user-images.githubusercontent.com/2805249/64069899-8bdaa180-cc97-11e9-9b19-1a9e1a254c18.png"
+        alt=""
+      />
+
+
+      <svg
+      class="text-white w-[200px] h-[120px]"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+
+
+    </div>
+      </div>
+
+      <div class="flex-col relative text-white px-6 pb-6 mt-[50px]">
+        <span class="block opacity-75 -mb-1">{{items_menu[0]!.productName}}</span>
+        <div class="flex justify-between">
+          <span class="block font-semibold text-xl"
+            >Best Selling Product</span
+          >
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  -->
+
+</div>

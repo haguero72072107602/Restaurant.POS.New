@@ -1,0 +1,9 @@
+@if (showElements) {
+  <div class="column" [ngClass]="layout">
+    @for (i of operations; track i) {
+      <button mat-button [ngClass]="setColor(i)" fxLayoutGap="10px"
+              (click)="pressKey($event, i)" [disabled]="setDisabled(i)">{{ showText ? i : "" }}
+      </button>
+    }
+  </div>
+}

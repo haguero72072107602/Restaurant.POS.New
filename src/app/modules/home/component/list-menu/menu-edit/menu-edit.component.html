@@ -1,0 +1,514 @@
+<section class="w-[calc(100vw-230px)] h-[calc(100vh-80px)]">
+  <div class="h-full flex flex-col justify-between">
+    <!--
+    <section class="w-full min-h-[68px] bg-white border-b">
+      <button class=" w-[173px] h-full bg-[#3B5162] flex items-center justify-center text-white"
+              (click)="onAllProducts()">
+        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path opacity="0.2"
+                d="M5.75 4.25H19.25C19.4489 4.25 19.6397 4.32902 19.7803 4.46967C19.921 4.61032 20 4.80109 20 5V19.25C20 19.8467 19.7629 20.419 19.341 20.841C18.919 21.2629 18.3467 21.5 17.75 21.5H7.25C6.65326 21.5 6.08097 21.2629 5.65901 20.841C5.23705 20.419 5 19.8467 5 19.25V5C5 4.80109 5.07902 4.61032 5.21967 4.46967C5.36032 4.32902 5.55109 4.25 5.75 4.25Z"
+                fill="#E0E6E9"/>
+          <path d="M9.5 12.5H15.5" stroke="#E0E6E9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9.5 15.5H15.5" stroke="#E0E6E9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path
+            d="M5.75 4.25H19.25C19.4489 4.25 19.6397 4.32902 19.7803 4.46967C19.921 4.61032 20 4.80109 20 5V19.25C20 19.8467 19.7629 20.419 19.341 20.841C18.919 21.2629 18.3467 21.5 17.75 21.5H7.25C6.65326 21.5 6.08097 21.2629 5.65901 20.841C5.23705 20.419 5 19.8467 5 19.25V5C5 4.80109 5.07902 4.61032 5.21967 4.46967C5.36032 4.32902 5.55109 4.25 5.75 4.25Z"
+            fill="#E5EDFE" fill-opacity="0.5" stroke="#E0E6E9" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round"/>
+          <path d="M8 2.75V5.75" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12.5 2.75V5.75" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M17 2.75V5.75" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>All Products</span>
+      </button>
+    </section>
+    -->
+
+
+    <section class="w-full h-[calc(100vh-(200px))] flex items-center mt-2 ">
+      <div class="w-full h-full flex space-x-4 mt-2 mx-2">
+        <div class="w-1/2 h-full bg-white border rounded-2xl items-center justify-center">
+          <form (ngSubmit)="onSubmit()" [formGroup]="menuForm!"
+                class="flex flex-col items-center justify-center space-x-4 mx-6">
+            <div class="h-[70px] w-full flex flex-col">
+              <div class="my-4 flex justify-between items-center">
+                <button
+                  class=" w-full h-[36px] flex items-center justify-start text-black font-semibold"
+                  type="button">
+                  {{ productEdit?.name }}
+                </button>
+                <button
+                  (click)="adjustProduct()"
+                  class=" w-[100px] xl:w-[152px] h-[36px] bg-[#557AD9] flex items-center justify-center border-[#557AD9]
+                         border-2 rounded-md text-white"
+                  type="button">
+                  Adjust
+                </button>
+              </div>
+              <hr>
+            </div>
+            <div class="h-[170px] w-full flex items-center justify-between mx-[24px]">
+              <div class="min-w-[140px] min-h-[140px] mr-[27px]">
+                <input #fileUpload
+                       (change)="onFileSelected($event)"
+                       [hidden]="true"
+                       accept="image/*"
+                       class="file-input" type="file">
+                <img (click)="fileUpload.click()" [src]="imageMenu"
+                     alt=""
+                     class="w-[140px] h-[140px] rounded-[12px] object-cover my-[12px]">
+              </div>
+              <div class="w-full">
+                <div><span class="font-semibold">Description</span></div>
+                <textarea #touchKeyboard1="ngxTouchKeyboard" (focus)="touchKeyboard1.openPanel()"
+                          class="w-full h-[120px] text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300
+                       focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600
+                       dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                       dark:focus:border-blue-500"
+                          formControlName="description"
+                          id="message"
+                          ngxTouchKeyboard
+                          ngxTouchKeyboardFullScreen
+                          placeholder="Write description here..."
+                          rows="4" style="overflow:auto;resize:none"></textarea>
+              </div>
+            </div>
+            <div class="w-full h-[calc(100vh-(460px))] overscroll-y-contain overflow-x-hidden bg-[#F8F9FD]
+              dark:scrollbar-thick dark:scrollbar-thumb dark:scrollbar-track">
+              <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 mx-4 my-4">
+                <div class="flex flex-col w-full space-y-6">
+                  <span class="text-[20px] font-semibold">Details</span>
+                  <div class="flex flex-col">
+                    <label class="block mb-2 text-[12px] md:text-[14px] font-semibold text-gray-900 dark:text-white"
+                           for="productName">Product
+                      Name</label>
+                    <input #touchKeyboardproductName="ngxTouchKeyboard" (focus)="touchKeyboardproductName.openPanel()"
+                           aria-autocomplete="none"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                dark:focus:border-blue-500"
+                           formControlName="name"
+                           id="productName"
+                           ngxTouchKeyboard
+                           ngxTouchKeyboardFullScreen
+                           placeholder="Product name" required type="text">
+                  </div>
+                  <div class="flex flex-col">
+                    <label class="block mb-2 text-[12px] md:text-[14px] font-semibold text-gray-900 dark:text-white"
+                           for="dropdownSearchDepart">Department
+                    </label>
+
+                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-[14px] rounded-lg text-left
+                                   focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                   dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                   dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            formControlName="departmentId"
+                            id="dropdownSearchDepart">
+                      @for (item of departments; track item) {
+                        <option value="{{item.id}}" selected>{{ item.name }}</option>
+                      }
+                    </select>
+                  </div>
+                  <div class="flex flex-col">
+                    <label class="block mb-2  md:text-[14px] font-semibold text-gray-900 dark:text-white"
+                           for="itemCode">Item
+                      code</label>
+                    <input #touchKeyboardItemCode="ngxTouchKeyboard" (focus)="touchKeyboardItemCode.openPanel()"
+                           aria-autocomplete="none"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                dark:focus:border-blue-500"
+                           formControlName="upc"
+                           id="itemCode"
+                           ngxTouchKeyboard
+                           ngxTouchKeyboardFullScreen
+                           placeholder="Item code" required type="text">
+                  </div>
+                  <div class="flex flex-col">
+                    <label class="block mb-2 text-[12px] md:text-[14px] font-semibold text-gray-900 dark:text-white"
+                           for="measureCode">measure
+                    </label>
+                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-[14px] rounded-lg text-left
+                                   focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                   dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                   dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            formControlName="measureId"
+                            id="measureCode">
+                      @for (item of selMeasures; track item) {
+                        <option value="{{ item.id }}" selected>{{ item.name }}</option>
+                      }
+                    </select>
+
+                  </div>
+                  <div class="flex">
+                    <div class="w-full flex items-center">
+                      <div class="w-full flex items-center mt-4 ">
+                        <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
+                                          dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2
+                                          dark:bg-gray-700 dark:border-gray-600" formControlName="visible" id="visible"
+                               type="checkbox"
+                               value="">
+                        <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                               for="default-checkbox">
+                          Visible
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col w-full">
+                  <div class="flex flex-col w-full space-y-6">
+                    <span class="text-[20px] font-semibold">Pricing & Tax</span>
+                    <div class="flex flex-col">
+                      <label class="block mb-2 text-[12px] md:text-[14px] font-semibold text-gray-900 dark:text-white"
+                             for="buyPrice">
+                        Buy price
+                      </label>
+                      <input #touchKeyboardBuyPrice="ngxTouchKeyboard" (focus)="touchKeyboardBuyPrice.openPanel()"
+                             aria-autocomplete="none"
+                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                dark:focus:border-blue-500"
+                             formControlName="currentPrice"
+                             id="buyPrice"
+                             ngxTouchKeyboard
+                             ngxTouchKeyboardFullScreen
+                             placeholder="Buy price" required type="text">
+                    </div>
+                    <div class="flex flex-col">
+
+                      <label class="block mb-2 text-[12px] md:text-[14px] font-semibold text-gray-900 dark:text-white"
+                             for="costPrice">Cost
+                        price</label>
+                      <input #touchKeyboardCostPrice="ngxTouchKeyboard"
+                             (focus)="touchKeyboardCostPrice.openPanel()"
+                             aria-autocomplete="none"
+                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                dark:focus:border-blue-500"
+                             formControlName="unitCost"
+                             id="costPrice"
+                             ngxTouchKeyboard
+                             ngxTouchKeyboardFullScreen
+                             placeholder="Cost price" required type="text">
+                    </div>
+                    <div class="flex flex-col">
+                      <label class="block mb-2 text-[12px] md:text-[14px] font-semibold text-gray-900 dark:text-white"
+                             for="salesPrice">Tax</label>
+                      <input #touchKeyboardSalesPrice="ngxTouchKeyboard"
+                             (focus)="touchKeyboardSalesPrice.openPanel()"
+                             aria-autocomplete="none"
+                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                dark:focus:border-blue-500"
+                             formControlName="tax"
+                             id="salesPrice"
+                             ngxTouchKeyboard
+                             ngxTouchKeyboardFullScreen
+                             placeholder="Sales price" required type="text">
+                    </div>
+                    <div class="flex flex-col">
+                      <label class="block mb-2 text-[12px] md:text-[14px] font-semibold text-gray-900 dark:text-white"
+                             for="measureCode">Star
+                        product
+                      </label>
+                      <div class="flex flex-col space-y-2">
+                        <div class="flex items-center">
+                          <!--
+                          <label class="w-1/3 text-sm font-medium text-gray-900 dark:text-gray-300"
+                                 for="starPrice">
+                            Star price
+                          </label>
+                          -->
+                          <input #touchKeyboardStarPrice="ngxTouchKeyboard"
+                                 (focus)="touchKeyboardStarPrice.openPanel()"
+                                 aria-autocomplete="none"
+                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                        focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                                        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                        dark:focus:border-blue-500"
+                                 formControlName="starPrice"
+                                 id="StarPrice"
+                                 inputmode='decimal'
+                                 ngxTouchKeyboard
+                                 ngxTouchKeyboardFullScreen
+                                 placeholder="Star price" required type="text">
+                        </div>
+                        <div class="w-1/4 flex items-center">
+                          <div class="w-full flex items-center ">
+                            <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
+                                          dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2
+                                          dark:bg-gray-700 dark:border-gray-600" formControlName="isStar"
+                                   id="default-checkbox"
+                                   type="checkbox"
+                                   value="">
+                            <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                                   for="default-checkbox">
+                              Active
+                            </label>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="flex">
+                        <div class="w-full flex items-center">
+                          <div class="w-full flex items-center mt-4 ">
+                            <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
+                                          dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2
+                                          dark:bg-gray-700 dark:border-gray-600" formControlName="firstFree"
+                                   id="firstFree"
+                                   type="checkbox"
+                                   value="">
+                            <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                                   for="default-checkbox">
+                              First free
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="w-1/2 h-full bg-white border rounded-2xl items-center justify-center">
+          @if (isNewProduct === false) {
+            <div class="flex flex-col items-center justify-center space-x-2 mx-2 xl:mx-4">
+              <div class="h-[70px] w-full flex flex-col">
+                <div class="my-4 flex justify-between space-x-4">
+                  <button
+                    [ngClass]="optionSelected === 0 ? 'text-blue-500 bg-[#E0E6E9] py-2 px-3 rounded-md' : 'text-black'"
+                    class="flex items-center justify-center text-[14px] xl:text-[18px] max-h-[40px] text-black font-semibold
+                           font-poppins cursor-pointer"
+                    (click)="selectOptionButton(0)">
+                    Elaborations
+                  </button>
+                  <button
+                    [ngClass]="optionSelected === 1 ? 'text-blue-500 bg-[#E0E6E9] py-2 px-3 rounded-md' : 'text-black'"
+                    class="flex items-center justify-center text-[14px] xl:text-[18px] max-h-[40px] text-black font-semibold
+                           font-poppins cursor-pointer"
+                    (click)="selectOptionButton(1)">
+                    Modifiers
+                  </button>
+                  <button
+                    [ngClass]="optionSelected === 2 ? 'text-blue-500 bg-[#E0E6E9] py-2 px-3 rounded-md' : 'text-black'"
+                    class="flex items-center justify-center text-[14px] xl:text-[18px] max-h-[40px] text-black font-semibold
+                           font-poppins cursor-pointer"
+                    (click)="selectOptionButton(2)">
+                    Movements
+                  </button>
+                </div>
+                <hr>
+              </div>
+
+              @if (optionSelected === 0) {
+                <div class="h-[94px] w-[96%] flex items-center justify-between bg-gray-100 rounded-xl mt-4">
+
+                  <div class="w-full flex space-x-2 mx-2">
+                    <div class="w-[50%] flex flex-col xl:ml-4">
+                      <label for="product" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">
+                        Product
+                      </label>
+                      <app-dropdown-component id="product" (evSelectedInvoice)="evSelectedInvoice($event)"
+                      ></app-dropdown-component>
+                    </div>
+                    <div class="w-[20%] flex flex-col">
+                      <label for="measure" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Measure
+                      </label>
+                      <select id="measure"
+                              [(ngModel)]="selMeasureId"
+                              class="block w-full text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50
+                            focus:ring-blue-300 focus:border-blue-300 dark:bg-gray-700 dark:border-gray-600
+                            dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                            dark:focus:border-blue-500">
+                        @for (item of measures; track item) {
+                          <option value="{{item.id}}">{{ item.name }}</option>
+                        }
+                      </select>
+
+                    </div>
+
+                    <div class="w-[20%] flex flex-col">
+                      <label for="quantity" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Quantity
+                      </label>
+                      <input type="number" id="quantity"
+                             [(ngModel)]="selQuantity"
+                             class="h-[40px] bg-gray-50 border border-gray-300 text-gray-900
+                              text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500
+                              dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                              dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                             placeholder="Quantity" required>
+                    </div>
+
+
+                    <button
+                      class="w-[10%] xl:w-[120px] h-[40px] bg-[#50D1AA] mt-7 mr-2 text-white flex items-center justify-center
+                                  hover:bg-green-400 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium
+                                  rounded-xl text-sm px-2 xl:px-5 py-2.5 text-center dark:bg-green-600
+                                  dark:hover:bg-green-700 dark:focus:ring-green-800 "
+                      (click)="AddComponent()">
+                      <svg class="w-[24px] h-[24px]" xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <path opacity="0.2"
+                              d="M12.5 21C17.4706 21 21.5 16.9706 21.5 12C21.5 7.02944 17.4706 3 12.5 3C7.52944 3 3.5 7.02944 3.5 12C3.5 16.9706 7.52944 21 12.5 21Z"
+                              fill="#F8F9FD"/>
+                        <path
+                          d="M12.5 21C17.4706 21 21.5 16.9706 21.5 12C21.5 7.02944 17.4706 3 12.5 3C7.52944 3 3.5 7.02944 3.5 12C3.5 16.9706 7.52944 21 12.5 21Z"
+                          stroke="#F8F9FD" stroke-width="1.5" stroke-miterlimit="10"/>
+                        <path d="M8.75 12H16.25" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M12.5 8.25V15.75" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      <span class="hidden xl:block">Add</span>
+                    </button>
+
+
+                  </div>
+
+
+                </div>
+
+                <div class="w-full h-[400px] overscroll-y-contain overflow-x-hidden mt-4
+                      dark:scrollbar-thick dark:scrollbar-thumb dark:scrollbar-track">
+                  <div class="w-full flex flex-col space-y-4 bg-[#F8F9FD] py-2">
+                    @for (item of productComponent; track item) {
+                      <app-list-product-component
+                        [productComponent]="item"
+                        (evDeleteComponentProduct)="deleteProductComponent($event)"
+                      >
+                      </app-list-product-component>
+                    }
+                  </div>
+                </div>
+
+              }
+
+              @if (optionSelected === 1) {
+                <div
+                  class="h-[94px] w-[100%] flex items-center justify-between mx-[24px] bg-gray-100 space-x-4 rounded-xl mt-4">
+                  <div class="w-[80%] flex flex-col ml-4">
+                    <label for="modifiers" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      Modifiers group
+                    </label>
+                    <app-dropdown-modifier id="modifiers" #cmpModifierGroup
+                                           (evSelectedModifierGroup)="selectModifierGroup($event)"></app-dropdown-modifier>
+
+                  </div>
+                  <div class="w-[20%] flex items-center justify-center mt-8">
+                    <button class="w-[120px] h-[48px] bg-[#50D1AA] text-white flex space-x-2 items-center
+                                hover:bg-green-400 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium
+                                rounded-xl text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600
+                                dark:hover:bg-green-700 dark:focus:ring-green-800"
+                            (click)="addModifierGroup()">
+                      <svg class="w-[24px] h-[24px]" xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <path opacity="0.2"
+                              d="M12.5 21C17.4706 21 21.5 16.9706 21.5 12C21.5 7.02944 17.4706 3 12.5 3C7.52944 3 3.5 7.02944 3.5 12C3.5 16.9706 7.52944 21 12.5 21Z"
+                              fill="#F8F9FD"/>
+                        <path
+                          d="M12.5 21C17.4706 21 21.5 16.9706 21.5 12C21.5 7.02944 17.4706 3 12.5 3C7.52944 3 3.5 7.02944 3.5 12C3.5 16.9706 7.52944 21 12.5 21Z"
+                          stroke="#F8F9FD" stroke-width="1.5" stroke-miterlimit="10"/>
+                        <path d="M8.75 12H16.25" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M12.5 8.25V15.75" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                      </svg>
+                      <span>Add</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="w-full h-[450px] overscroll-y-contain overflow-x-hidden mt-4
+                      dark:scrollbar-thick dark:scrollbar-thumb dark:scrollbar-track">
+                  <div class="w-full flex flex-col space-y-4">
+
+                    @for (item of productModifiersGroup; track item) {
+                      <app-list-product-modifier-group
+                        [productModifiersGroup]="item"
+                        (evDeleteModifierGroupByMenu)="deleteModifierByMenu($event)"/>
+                    }
+
+                  </div>
+                </div>
+              }
+              @if (optionSelected === 2) {
+                <div class="h-[75px] w-[100%] flex flex-col items-center justify-center mx-[24px]
+                            bg-gray-100 rounded-xl mt-4">
+                  <div class="flex justify-end items-center w-full mr-8">
+                    <app-button-date-range [emitInitialRange]="true" [dateRange]="RangeDateOperation.ThisMonth"
+                                           (onChangeDate)="showDetailMenu($event)"/>
+                  </div>
+                </div>
+                <div class="w-[100%] h-[450px] flex mx-auto items-center mt-5">
+                  <div class="w-full h-[450px] flex items-center">
+                    @if (loading) {
+                      <div class="w-full h-full flex items-center justify-center">
+                        <svg
+                          aria-hidden="true"
+                          role="status"
+                          class="inline w-[70px] h-[70px] mr-3 text-white animate-spin"
+                          viewBox="0 0 100 101"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                            fill="#9747FF"
+                          />
+                          <path
+                            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                            fill="#50D1AA"
+                          />
+                        </svg>
+                      </div>
+                    } @else {
+                      <ag-grid-angular
+                        style="width: 100%; height: 100%; padding: 4px"
+                        class="ag-theme-material"
+                        [rowHeight]="35"
+                        [suppressCellFocus]="true"
+                        [defaultColDef]="varGlobalService.defaultColDef"
+                        [columnDefs]="columnDefs"
+                        [rowData]="rowData"
+                        (gridReady)="onGridReady($event)"
+                        (firstDataRendered)="onFirstDataRendered($event)"
+                      ></ag-grid-angular>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <div class="flex min-w-full min-h-[98px] justify-end border-t bg-white py-2 mt-4">
+      <div class="flex items-center justify-center">
+        <button (click)="onSubmit()"
+                [disabled]="!menuForm?.valid"
+                class="w-[244px] h-[64px] text-white bg-[#50D1AA] shadow text-center mr-4
+                    font-semibold rounded-lg text-sm focus:outline-none
+                    disabled:bg-gray-300
+                    flex items-center justify-center">
+          <svg fill="none" height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.9375 3.9375V15.8125L5.1875 17.0625H17.0625V3.9375H3.9375Z" fill="#F8F9FD" opacity="0.2"/>
+            <path
+              d="M3.9375 11.6932V4.5625C3.9375 4.39674 4.00335 4.23777 4.12056 4.12056C4.23777 4.00335 4.39674 3.9375 4.5625 3.9375H16.4375C16.6033 3.9375 16.7622 4.00335 16.8794 4.12056C16.9967 4.23777 17.0625 4.39674 17.0625 4.5625V16.4375C17.0625 16.6033 16.9967 16.7622 16.8794 16.8794C16.7622 16.9967 16.6033 17.0625 16.4375 17.0625H11.0966"
+              stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <path d="M10.5 12.375L5.5 17.375L3 14.875" stroke="white" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="1.5"/>
+          </svg>
+          <span class="ml-1">{{ isNewProduct ? "Save" : "Update" }}</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+

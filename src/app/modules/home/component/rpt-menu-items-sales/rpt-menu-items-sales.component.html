@@ -1,0 +1,104 @@
+<div class="w-[calc(100vw-(335px))] h-[calc(100vh-80px)] bg-[#F8F9FD] flex justify-center items-center">
+
+  <section
+    class="w-[calc(100vw-(365px))] h-[calc(100vh-120px)] justify-center overscroll-y-contain overflow-x-hidden
+    dark:scrollbar-thick dark:scrollbar-thumb dark:scrollbar-track">
+    <div class="rounded-lg bg-white">
+      <div class="w-full flex justify-between items-center">
+        <div class="mt-4 ml-4 font-poppins text-[20px] font-semibold">
+          Best Seller Products
+        </div>
+        <div class="flex gap-4 mt-4 mr-4">
+          <!--
+          <input
+            (datesUpdated)="onDateUpdate($event)"
+            [(ngModel)]="selected"
+            [customRangeDirection]="true"
+            [locale]="{ applyLabel: 'ok', format: 'MM-DD-YYYY' }"
+            [maxDate]="maxDate!"
+            [minDate]="minDate!"
+            autocomplete="off"
+            class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            endKey="end"
+            matInput
+            name="daterange"
+            ngxDaterangepickerMd
+            startKey="start"
+            type="text"
+          />
+          -->
+          <app-button-date-range
+            (onChangeDate)="onDateUpdate($event)"
+            [dateRange]="RangeDateOperation.ThisMonth"
+            [emitInitialRange]="true"/>
+        </div>
+      </div>
+      <div class="p-3 w-full">
+        <app-block-rpt-menu-items-bestseller
+          #menuitems
+          [reportEndDate]="reportEndDate"
+          [reportStartDate]="reportStartDate"/>
+      </div>
+    </div>
+
+    <!--
+    <div class="rounded-lg bg-white mt-5">
+      <div class="w-full flex justify-between items-center">
+        <div class="mt-4 ml-4 font-poppins text-[20px] font-semibold">
+          Sales by Products
+        </div>
+        <div class="flex gap-4 mt-4 mr-4">
+
+          <input
+            (datesUpdated)="onDateUpdate($event)"
+            [(ngModel)]="selected"
+            [customRangeDirection]="true"
+            [locale]="{ applyLabel: 'ok', format: 'MM-DD-YYYY' }"
+            [maxDate]="maxDate!"
+            [minDate]="minDate!"
+            class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            endKey="end"
+            matInput
+            name="daterange2"
+            ngxDaterangepickerMd
+            startKey="start"
+            type="text"
+          />
+
+
+          <input
+            #touchKeyboard1="ngxTouchKeyboard"
+            (focus)="touchKeyboard1.openPanel()"
+            (ngModelChange)="onChangeFilterProduct($event)"
+            [(ngModel)]="filterName"
+            class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            name="filterName"
+            ngxTouchKeyboard
+            ngxTouchKeyboardFullScreen
+            placeholder="Filter by product, department or price"
+            type="text"
+          />
+
+        </div>
+      </div>
+      <div
+        class="h-[calc(100vh-(310px))] w-[80%] m-3 mt-[50px] rounded-2xl border-2 mx-auto"
+      >
+
+        <ag-grid-angular
+          (firstDataRendered)="onFirstDataRendered($event)"
+          [columnDefs]="columnDefs"
+          [defaultColDef]="defaultColDef"
+          [rowClass]="rowClass"
+          [rowData]="rowData"
+          [rowHeight]="76"
+          class="ag-theme-material"
+          style="width: 98%; height: 97%"
+        ></ag-grid-angular>
+
+      </div>
+    </div>
+    -->
+  </section>
+</div>
+

@@ -1,0 +1,21 @@
+@if (elementModifierGroup) {
+  <!--<div class="min-w-full h-[55px] flex flex-col space-y-4 items-center bg-amber-200">-->
+  <div class="min-w-full flex">
+    <div class="w-[60%] ml-4 mr-2">
+      {{ elementModifierGroup!.name }}
+    </div>
+    <div class="w-[20%] mx-2">
+      {{ elementModifierGroup!.price.toFixed(2) }}
+    </div>
+    <div class="w-[20%] mx-2 flex justify-center items-center ">
+      <button id="button_operati1on"
+              class=" w-[100px] bg-[#557AD9] px-6 py-2 block border-blue-400 text-white text-[14px]
+                                rounded-xl  hover:scale-95 transition-all delay-100"
+              (click)="delElementModifierGroup()">
+        Add
+      </button>
+    </div>
+  </div>
+  <!--</div>-->
+}
+

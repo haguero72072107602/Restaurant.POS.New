@@ -1,0 +1,253 @@
+<div oncontextmenu="return false">
+  <mat-toolbar color="primary">
+    {{ data.title }}
+    <span class="flex-spacer"></span>
+    <button color="primary" mat-dialog-close mat-raised-button>&times;</button>
+  </mat-toolbar>
+  <div class="content" mat-dialog-content>
+    <!--<mat-form-field>
+      <mat-label>Admin privileges for Clear and Void:</mat-label>
+      <mat-checkbox [(value)] = 'adminClearVoid' (change)="setAdmin4ClearVoid($event)"></mat-checkbox>
+    </mat-form-field>-->
+    <mat-list>
+      <!--Inactivity time for Logout (min):-->
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Inactivity time for Logout (min):</mat-label>
+          <mat-select (selectionChange)="setTime4Logout($event)" [(value)]='timeLogout'>
+            <mat-option>None</mat-option>
+            <mat-option value="60">60</mat-option>
+            <mat-option value="30">30</mat-option>
+            <mat-option value="15">15</mat-option>
+            <mat-option value="5">5</mat-option>
+            <mat-option value="1">1</mat-option>
+            <mat-option value="0.5">0.5</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+      <!--Company type:-->
+      <mat-list-item>
+        <mat-form-field>
+          <mat-label>Company type:</mat-label>
+          <mat-select (selectionChange)="setCompanyType($event)" [(value)]='companyType'>
+            <mat-option>None</mat-option>
+            <mat-option value="2">MARKET</mat-option>
+            <mat-option value="5">RESTAURANT</mat-option>
+            <mat-option value="6">ISLANDS</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+      <!--Allow to all users add generic product-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setAddProdGen($event)" [checked]='allowAddProdGen'
+                          ariaLabel="Add Generic Product for all users"
+                          labelPosition="before">
+          Allow to all users add generic product
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Allow to all users delete products from invoice-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setDeleteProd($event)" [checked]='allowDeleteProd'
+                          ariaLabel="Allow to all users delete products from invoice"
+                          labelPosition="before">
+          Allow to all users delete products from invoice
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--PAX Online-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setPaxConnType($event)" [checked]='paxConnType' ariaLabel="PAX Online"
+                          labelPosition="before">
+          PAX Online
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--External Scale-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setExternalScale($event)" [checked]='externalScale' ariaLabel="External Scale"
+                          labelPosition="before">
+          External Scale
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Allow EBT Options-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setEBT($event)" [checked]='allowEBT' ariaLabel="Allow EBT Options"
+                          labelPosition="before">
+          Allow EBT Options
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Allow split payment-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setSplitPayment($event)" [checked]='allowSplitPayment'
+                          ariaLabel="Allow split payment"
+                          labelPosition="before">
+          Allow split payment
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Full refund-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setFullRefund($event)" [checked]='fullRefund' ariaLabel="Full refund"
+                          labelPosition="before">
+          Full refund
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Break products name by word-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setBreakWord($event)" [checked]='breakWord' ariaLabel="Break products name by word"
+                          labelPosition="before">
+          Break products name by word
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Close return cash automatically-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setCloseChange($event)" [checked]='closeChange'
+                          ariaLabel="Close return cash automatically"
+                          labelPosition="before">
+          Close return cash automatically
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Allow Gift Card-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setGiftCard($event)" [checked]='giftCard' ariaLabel="Allow Gift Card"
+                          labelPosition="before">
+          Allow Gift Card
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Allow Clear Last Product-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setClearLastProd($event)" [checked]='clearLastProd'
+                          ariaLabel="Allow Clear Last Product"
+                          labelPosition="before">
+          Allow Clear Last Product
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Allow Promotions-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setPromotions($event)" [checked]='promotions' ariaLabel="Allow Promotions"
+                          labelPosition="before">
+          Allow Promotions
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Allow Mark for FoodStamp Product-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setFoodStampMark($event)" [checked]='foodStampMark'
+                          ariaLabel="Allow Mark for FoodStamp Product"
+                          labelPosition="before">
+          Allow Mark for FoodStamp Product
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Allow Supervisor Apply Discount-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setApplyDiscount($event)" [checked]='applyDiscount'
+                          ariaLabel="Allow Supervisor Apply Discount"
+                          labelPosition="before">
+          Allow Supervisor Apply Discount
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Allow Change Price By Selection-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setChangePriceBySelection($event)" [checked]='changePriceBySelection'
+                          ariaLabel="Allow Change Price By Selection"
+                          labelPosition="before">
+          Allow Change Price By Selection
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Allow Supervisor Change Price-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setAllowChangePrice($event)" [checked]='allowChangePrice'
+                          ariaLabel="Allow Supervisor Change Price"
+                          labelPosition="before">
+          Allow Supervisor Change Price
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Allow ClockIn / ClockOut-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setAllowClock($event)" [checked]='allowClock' ariaLabel="Allow ClockIn / ClockOut"
+                          labelPosition="before">
+          Allow ClockIn / ClockOut
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Allow Close Auth-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setAllowCloseAuth($event)" [checked]='allowCloseAuth'
+                          ariaLabel="Allow Close Authorization"
+                          labelPosition="before">
+          Allow Close Authorization
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Debit as Credit Card-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setAllowDebitAsCreditCard($event)" [checked]='allowDebitAsCreditCard'
+                          ariaLabel="Allow Debit as Credit Card"
+                          labelPosition="before">
+          Allow Debit as Credit Card
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Close Day Automatic-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setAllowCloseDayAutom($event)" [checked]='allowCloseDayAutom'
+                          ariaLabel="Allow Close Day Automatic"
+                          labelPosition="before">
+          Allow Close Day Automatic
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Restart Day Automatic-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setAllowRestartDayAutom($event)" [checked]='allowRestartDayAutom'
+                          ariaLabel="Allow Restart Day Automatic"
+                          labelPosition="before">
+          Allow Restart Day Automatic
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Print-->
+      <!--Print Close Day Automatic-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setPrintCloseDayAutom($event)" [checked]='printCloseDayAutom'
+                          ariaLabel="Allow Print Close Day Automatic"
+                          labelPosition="before">
+          Allow Print Close Day Automatic
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Print Void-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setPrintVoid($event)" [checked]='printVoid' ariaLabel="Allow Print Void"
+                          labelPosition="before">
+          Allow Print Void
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Print Hold-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setPrintHold($event)" [checked]='printHold' ariaLabel="Allow Print Hold"
+                          labelPosition="before">
+          Allow Print Hold
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Print Ticket-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setPrintTicket($event)" [checked]='printTicket' ariaLabel="Allow Print Ticket"
+                          labelPosition="before">
+          Allow Print Ticket
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Print Merchant Ticket-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setPrintMerchantTicket($event)" [checked]='printMerchantTicket'
+                          ariaLabel="Allow Print Merchant Ticket"
+                          labelPosition="before">
+          Allow Print Merchant Ticket
+        </mat-slide-toggle>
+      </mat-list-item>
+      <!--Print Init Ticket-->
+      <mat-list-item>
+        <mat-slide-toggle (change)="setPrintInitTicket($event)" [checked]='printInitTicket'
+                          ariaLabel="Allow Print Init Ticket"
+                          labelPosition="before">
+          Allow Print Init Ticket
+        </mat-slide-toggle>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <mat-dialog-actions>
+    <button [disabled]="loading" mat-dialog-close mat-raised-button>Cancel</button>
+    <button (click)="done()" [disabled]="loading" class="background-primary text-floral-white" mat-raised-button>Done
+    </button>
+  </mat-dialog-actions>
+</div>

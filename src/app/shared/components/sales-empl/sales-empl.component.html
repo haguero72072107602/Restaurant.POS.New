@@ -1,0 +1,55 @@
+<div class="header">
+  @if (emplSel) {
+    <div class="employee">
+      <label>Employee: {{ emplSel.userName }}</label>
+    </div>
+  }
+  @if (emplSel) {
+    <div class="payment">
+      <label>Payments Type:</label>
+      <mat-radio-group (change)="paymentMethodFilter($event)">
+        @for (pType of pTypes; track pType) {
+          <mat-radio-button [value]="pType.value"
+                            [checked]="pType.label === 'ALL'">
+            {{ pType.label }}
+          </mat-radio-button>
+        }
+      </mat-radio-group>
+    </div>
+  }
+</div>
+@if (listType === 'grid') {
+  <div class="grid">
+    <ag-grid-angular [ngClass]="(sales && sales.length > 0 && emplSel) ? 'show': 'hide'"
+                     #topGrid
+                     class="ag-theme-material"
+                     [gridOptions]="gridOptions"
+                     [columnDefs]="columnDefs"
+                     [pagination]="true"
+                     [paginationAutoPageSize]="true"
+                     [pinnedBottomRowData]="bottomData"
+    >
+    </ag-grid-angular>
+  </div>
+}
+
+@if (listType === 'button') {
+  <div class="button">
+    <list-invoices [data]="listButtonData" [sizePage]="sizePage" [page]="page"
+                   [label]="listButtonData!.label!" [detail]="listButtonData!.detail"
+                   [subdetail]="listButtonData!.subdetail" [extradetail]="listButtonData!.extradetail"
+                   (evCloseDialog)="invoiceToReview($event)">
+    </list-invoices>
+    <div class="paginator">
+      <pos-paginator [countElements]="listButtonData!.invoice!.length" [sizePage]="sizePage"
+                     (evSetPage)="setPage($event)">
+      </pos-paginator>
+    </div>
+  </div>
+}
+
+@if (sales && sales.length === 0 && emplSel !== undefined) {
+  <i class="no-sale">
+    <span>This employee haven't sold anything yet today</span>
+  </i>
+}

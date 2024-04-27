@@ -1,0 +1,139 @@
+<div class="flex w-full h-[calc(100vh-80px)]">
+  <div class="flex flex-col w-[245px] h-full bg-white border border-l">
+    @if (authService.adminLogged()) {
+
+      <button
+        class="mt-[26px] [mb-16] relative inline-flex items-center w-full px-4 py-[14px] text-sm font-medium hover:border-[#557AD9] hover:border-r-4 hover:text-blue-700 hover:bg-[#E5EDFE] whitespace-nowrap focus:z-10 focus:border-[#557AD9] focus:border-r-4 focus:text-blue-700 focus:bg-[#E5EDFE]"
+        routerLink="/home/layout/reports/dashboard"
+        style="font-size: 14px"
+        type="button"
+      >
+        <svg aria-hidden="true" class="w-6 h-6 text-gray-800 dark:text-white mr-[12px]" fill="none"
+             viewBox="0 0 18 16" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1v14h16M4 10l3-4 4 4 5-5m0 0h-3.207M16 5v3.207" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"/>
+        </svg>
+        Dashboard
+      </button>
+      <button
+        class="mt-[26px] [mb-16] relative inline-flex items-center w-full px-4 py-[14px] text-sm font-medium hover:border-[#557AD9] hover:border-r-4 hover:text-blue-700 hover:bg-[#E5EDFE] focus:z-10 focus:border-[#557AD9] focus:border-r-4 focus:text-blue-700 focus:bg-[#E5EDFE]"
+        routerLink="/home/layout/reports/rptsalesrevenue"
+        style="font-size: 14px"
+        type="button"
+      >
+        <svg aria-hidden="true" class="w-6 h-6 text-gray-800 dark:text-white mr-[12px]" fill="none"
+             viewBox="0 0 18 20" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"
+            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2"/>
+        </svg>
+
+        Sales revenue
+      </button>
+      <!--
+      <button
+        class="mt-[26px] [mb-16] relative inline-flex items-center w-full px-4 py-[14px] text-sm font-medium hover:border-[#557AD9] hover:border-r-4 hover:text-blue-700 hover:bg-[#E5EDFE] focus:z-10 focus:border-[#557AD9] focus:border-r-4 focus:text-blue-700 focus:bg-[#E5EDFE]"
+        routerLink="/home/layout/reports/rptfinancialdetails"
+        style="font-size: 14px"
+        type="button"
+      >
+        <svg aria-hidden="true" class="w-6 h-6 text-gray-800 dark:text-white mr-[12px]" fill="none"
+             viewBox="0 0 11 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.75 15.363a4.954 4.954 0 0 0 2.638 1.574c2.345.572 4.653-.434 5.155-2.247.502-1.813-1.313-3.79-3.657-4.364-2.344-.574-4.16-2.551-3.658-4.364.502-1.813 2.81-2.818 5.155-2.246A4.97 4.97 0 0 1 10 5.264M6 17.097v1.82m0-17.5v2.138" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2"/>
+        </svg>
+        Financial details
+      </button>
+      -->
+      <button
+        class="mt-[26px] [mb-16] relative inline-flex items-center w-full px-4 py-[14px] text-sm font-medium hover:border-[#557AD9] hover:border-r-4 hover:text-blue-700 hover:bg-[#E5EDFE] focus:z-10 focus:border-[#557AD9] focus:border-r-4 focus:text-blue-700 focus:bg-[#E5EDFE]"
+        routerLink="/home/layout/reports/rptbestselledproducts"
+        style="font-size: 14px"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="w-6 h-6 text-gray-800 mr-[12px]"
+          fill="none"
+          viewBox="0 0 20 18"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1M1 9h14M2 5h12a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+        Products
+      </button>
+    }
+
+    <!--
+<button type="button"
+            class="mt-[26px] [mb-16] relative inline-flex items-center w-full px-4 py-[14px] text-sm font-medium
+                hover:border-[#557AD9] hover:border-r-4 hover:text-blue-700 hover:bg-[#E5EDFE]
+                focus:z-10 focus:border-[#557AD9] focus:border-r-4 focus:text-blue-700 focus:bg-[#E5EDFE] "
+            style="font-size: 14px">
+      <svg class="w-6 h-6 text-gray-800 mr-[12px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+           viewBox="0 0 20 18">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1M1 9h14M2 5h12a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/>
+      </svg>
+      Saved Reports
+    </button>
+<button type="button"
+            class="mt-[26px] [mb-16] relative inline-flex items-center w-full px-4 py-[14px] text-sm font-medium
+                hover:border-[#557AD9] hover:border-r-4 hover:text-blue-700 hover:bg-[#E5EDFE]
+                focus:z-10 focus:border-[#557AD9] focus:border-r-4 focus:text-blue-700 focus:bg-[#E5EDFE] "
+            style="font-size: 14px">
+      <svg class="w-6 h-6 text-gray-800 mr-[12px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+           viewBox="0 0 20 18">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1M1 9h14M2 5h12a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/>
+      </svg>
+      Feedbacks
+    </button>
+-->
+
+    <button
+      class="mt-[26px] [mb-16] relative inline-flex items-center w-full px-4 py-[14px] text-sm font-medium hover:border-[#557AD9] hover:border-r-4 hover:text-blue-700 hover:bg-[#E5EDFE] focus:z-10 focus:border-[#557AD9] focus:border-r-4 focus:text-blue-700 focus:bg-[#E5EDFE]"
+      routerLink="/home/layout/reports/rptclockshift"
+      style="font-size: 14px"
+      type="button"
+    >
+      <svg aria-hidden="true" class="w-6 h-6 text-gray-800 mr-[12px] dark:text-white" fill="none"
+           viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-linejoin="round"
+              stroke-width="2"/>
+      </svg>
+      Close shift
+    </button>
+    @if (authService.adminLogged()) {
+
+      <button
+        type="button"
+        class="mt-[26px] [mb-16] relative inline-flex items-center w-full px-4 py-[14px] text-sm font-medium hover:border-[#557AD9] hover:border-r-4 hover:text-blue-700 hover:bg-[#E5EDFE] focus:z-10 focus:border-[#557AD9] focus:border-r-4 focus:text-blue-700 focus:bg-[#E5EDFE]"
+        style="font-size: 14px"
+        routerLink="/home/layout/reports/rptclockday"
+      >
+        <svg class="w-6 h-6 text-gray-800 mr-[12px] dark:text-white" aria-hidden="true"
+             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                d="M10 6v4l3.276 3.276M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+        </svg>
+        Close day
+      </button>
+
+    }
+  </div>
+
+  <div class="w-[calc(100vw-(340px))] h-[calc(100vh-80px)]">
+    <router-outlet></router-outlet>
+  </div>
+</div>

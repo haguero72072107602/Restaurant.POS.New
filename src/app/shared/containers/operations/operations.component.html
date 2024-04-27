@@ -1,0 +1,108 @@
+<!--<operation-group fxFlex.lg="17" fxFlex.lt-lg="22" fxFlex.md="21" fxFlex.gt-lg="16"
+                 [operations]="financeOperations" [colors]="financeColor"
+                 (evPressKeys)="financeKey($event)" [disable]="operationService.cashService.disabledFinOp"
+                  [showElements]="!authService.adminLogged()">
+</operation-group>-->
+<operation-group (evPressKeys)="financeKey($event)" [colors]="financeColor"
+                 [disable]="operationService.cashService.disabledFinOp" [operations]="financeOperations"
+                 [showElements]="!showForAdmin"
+                 fxFlex.gt-lg="16" fxFlex.gt-md="17"
+                 fxFlex.lg="18" fxFlex.lt-md="9"
+                 fxFlex.md="11">
+</operation-group>
+
+<!--<operation-group id="other" fxFlex.lg="9" fxFlex.lt-lg="11" fxFlex.md="10" fxFlex.gt-lg="8"
+                 [operations]="otherOperations" [colors]="otherColor"
+                 (evPressKeys)="otherKey($event)" [disable]="operationService.cashService.disabledOtherOp"
+                 *ngIf="!showForAdmin">
+</operation-group>-->
+
+<div class="border" fxFlex.gt-lg="48" fxFlex.lg="42" fxFlex.md="45">
+  <operation-group (evPressKeys)="invoiceKey($event)" [colors]="invoiceColor"
+                   [disable]="operationService.cashService.disabledInvOp" [operations]="invoiceOperations"
+                   [showElements]="!showForAdmin" fxFlex="20"
+                   fxFlex.md="25"></operation-group>
+
+  <numpad (evPressKeys)="numpadKey($event)" [disableOp]="operationService.cashService.disabledInput" fxFlex="60"
+          fxFlex.md="50"
+          lastKey="@/FOR"></numpad>
+
+  @if (!showForAdmin) {
+    <operation-group fxFlex="20" fxFlex.md="25" [operations]="totalsOperations" [colors]="totalColor"
+                     layout="two-layout"
+                     (evPressKeys)="totalKey($event)" [disable]="operationService.cashService.disabledTotalOp"
+    ></operation-group>
+  }
+
+  @if (showForAdmin) {
+    <operation-group fxFlex="20" fxFlex.md="25" [operations]="backOperations" [colors]="backColor"
+                     layout="two-layout" (evPressKeys)="backKey($event)"
+                     [disable]="operationService.cashService.disabledTotalOp"
+    ></operation-group>
+  }
+</div>
+
+<div class="border" fxFlex.gt-lg="35" fxFlex.lg="44" fxFlex.lt-lg="42" fxFlex.md="44">
+  @if (!showForAdmin) {
+    <operation-group id="payment" fxFlex="20" fxFlex.md="25" [operations]="paymentOperations" [colors]="paymentColor"
+                     (evPressKeys)="paymentKey($event)" [disable]="operationService.cashService.disabledPayment"
+    >
+    </operation-group>
+  }
+
+
+  @if (!showForAdmin) {
+    <operation-group id="money" fxFlex="40" fxFlex.md="25" [operations]="moneyOperations" [colors]="moneyColor"
+                     btnSize="100px" showText="false" (evPressKeys)="moneyKey($event)"
+                     [disable]="operationService.cashService.disabledPaymentMoney"
+    >
+    </operation-group>
+  }
+
+  <!--<operation-group id="other" fxFlex="40" fxFlex.lt-lg="33" [operations]="otherOperations" [colors]="otherColor"
+                   (evPressKeys)="otherKey($event)" [disable]="operationService.cashService.disabledOtherOp"
+                   *ngIf="!authService.adminLogged()">
+  </operation-group>-->
+
+  @if (!showForAdmin) {
+    <operation-group id="customer" fxFlex="20" fxFlex.md="25" [operations]="customerOperations" [colors]="customerColor"
+                     btnSize="100px" (evPressKeys)="customerKey($event)"
+                     [disable]="operationService.cashService.disabledCustomerOp"
+    >
+    </operation-group>
+  }
+
+  @if (showForAdmin) {
+    <operation-group id="reports" fxFlex="20" fxFlex.md="25" [operations]="reportOperations" [colors]="reportColor"
+                     (evPressKeys)="reportKey($event)" [disable]="operationService.cashService.disabledReportsAdminOp"
+    >
+    </operation-group>
+  }
+
+  @if (showForAdmin) {
+    <operation-group fxFlex.lg="40" fxFlex.md="25" [operations]="financeAdminOperations" [colors]="financeAdminColor"
+                     (evPressKeys)="financeKey($event)" [disable]="operationService.cashService.disabledFinanceAdminOp"
+    >
+    </operation-group>
+  }
+
+  @if (showForAdmin) {
+    <operation-group fxFlex.lg="20" fxFlex.md="25" [operations]="invoiceAdminOperations" [colors]="invoiceAdminColor"
+                     (evPressKeys)="invoiceKey($event)" [disable]="operationService.cashService.disabledInvoiceAdminOp"
+    >
+    </operation-group>
+  }
+
+  @if (showForAdmin) {
+    <operation-group fxFlex.lg="20" fxFlex.md="25" [operations]="otherAdminOperations" [colors]="otherAdminColor"
+                     (evPressKeys)="otherKey($event)" [disable]="operationService.cashService.disabledOtherAdminOp"
+    >
+    </operation-group>
+  }
+  @if (!showForAdmin) {
+    <operation-group fxFlex.lg="20" fxFlex.md="25" [operations]="restaurantOperations" [colors]="restaurantColor"
+                     (evPressKeys)="restaurantKey($event)"
+    >
+    </operation-group>
+  }
+</div>

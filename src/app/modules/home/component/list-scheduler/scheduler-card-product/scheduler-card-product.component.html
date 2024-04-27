@@ -1,0 +1,43 @@
+<section class="w-full flex flex-col item-center bg-gray-50 rounded-2xl my-6 gap-6">
+  <div class="flex justify-between mx-6 gap-6">
+    <label class="w-[15%] h-[40px] bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                  focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600
+                                  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                  dark:focus:border-blue-500 flex flex-col text-center justify-center">
+      {{ schedulerProduct?.productId }}
+    </label>
+    <label
+      class="w-[60%] h-[40px] px-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                  focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600
+                                  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                  dark:focus:border-blue-500 flex flex-col text-left justify-center">
+      {{ schedulerProduct?.name }}
+    </label>
+    @if (scheduler?.schedulerType === SchedulerType.Promotion) {
+      <label
+        class="w-[25%] h-[40px] px-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                  focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600
+                                  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                  dark:focus:border-blue-500 flex flex-col items-end justify-center mx-4">
+        {{ schedulerProduct?.price!.toFixed(2) }}
+      </label>
+    }
+
+    <button (click)="deleteSchedulerProduct()"
+            class="min-w-[82px] px-6 py-2 text-white text-[14px]
+                      hover:scale-95 transition-all delay-100"
+            id="button_operation">
+      <svg fill="none" height="24" viewBox="0 0 25 24" width="25" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M10.9088 20.2342H7.25622L3.77918 16.7571C3.6399 16.6179 3.52941 16.4525 3.45402 16.2705C3.37864 16.0885 3.33984 15.8935 3.33984 15.6965C3.33984 15.4995 3.37864 15.3044 3.45402 15.1225C3.52941 14.9405 3.6399 14.7751 3.77918 14.6358L9.08248 9.33252L15.4464 15.6965L10.9088 20.2342Z"
+          fill="#C03D4D"
+          opacity="0.2"/>
+        <path d="M9.08203 9.33252L15.446 15.6965" stroke="#C03D4D" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="1.5"/>
+        <path
+          d="M20.7497 20.2346H7.25622L3.77918 16.7576C3.6399 16.6183 3.52941 16.4529 3.45402 16.271C3.37864 16.089 3.33984 15.8939 3.33984 15.6969C3.33984 15.5 3.37864 15.3049 3.45402 15.1229C3.52941 14.9409 3.6399 14.7756 3.77918 14.6363L14.3858 4.02967C14.6671 3.74837 15.0486 3.59033 15.4464 3.59033C15.8443 3.59033 16.2258 3.74837 16.5071 4.02967L20.7497 8.27231C20.889 8.4116 20.9995 8.57696 21.0749 8.75895C21.1503 8.94094 21.1891 9.13599 21.1891 9.33297C21.1891 9.52996 21.1503 9.72501 21.0749 9.907C20.9995 10.089 20.889 10.2543 20.7497 10.3936L10.9088 20.2346"
+          stroke="#C03D4D" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      </svg>
+    </button>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+<form #loginForm="ngForm" fxFlex="100" fxLayout="column" fxLayoutAlign="space-between" novalidate>
+  <div class="form-field" fxFlex="100" fxLayoutAlign="center center">
+    <mat-form-field>
+      <input #password="ngModel" (input)="tryValidation = false" [(ngModel)]="input" [minlength]="4"
+             autocomplete="new-password"
+             matInput name="password" placeholder="Password" required type="password"/>
+      <!--<mat-error *ngIf="password.errors. required">Password is required</mat-error>-->
+    </mat-form-field>
+    @if (!valid && tryValidation) {
+      <mat-error>
+        <span class="fa fa-warning fa-lg"></span>
+        <span class="err-msg">{{ errorMsg }}</span>
+      </mat-error>
+    }
+  </div>
+  <generic-keyboard (evKeys)="getKeys($event)" [valid]="loginForm.form.invalid"></generic-keyboard>
+</form>

@@ -1,0 +1,83 @@
+@if (customer) {
+  <div class="w-full h-[calc(100vh-(80px))]">
+    <section
+      class="w-full h-[80px] flex border-b bg-white items-center justify-between shadow">
+      <div class="ml-4 font-poppins text-[20px] font-semibold">
+        Customer detail
+      </div>
+    </section>
+
+    <div class=" grid gap-6 md:grid-cols-2 p-6 font-poppins">
+      <div class="w-full h-[calc(100vh-(210px))]">
+        <div class="w-full h-[180px] flex">
+          <div class="w-3/4 bg-white shadow-1">
+            <div class="h-full flex flex-col justify-start m-4 gap-2">
+              <div class="text-[32px] font-semibold">
+                {{ customer.name }}
+              </div>
+              <div class="text-[22px] font-semibold">
+                {{ customer.birthday | date: "MM-dd-yyyy" }}
+              </div>
+              <div class="text-[22px] font-semibold">
+                {{ customer.email }}
+              </div>
+            </div>
+          </div>
+          <div class="w-1/4 h-full bg-[#FFB572] rounded-l rounded-2xl text-white shadow-xl">
+            <div class="h-full flex flex-col justify-center items-center">
+              <div class="text-[32px] font-semibold ">{{ customer.gender }}</div>
+              <div class="text-[16px] font-semibold">points</div>
+            </div>
+          </div>
+        </div>
+        <div class="w-full h-[137px] flex mt-10">
+          <div class="w-full bg-white ">
+            <div class="m-4 font-poppins font-semibold">
+              <div class="text-[#ABBBC2] text-[22px]">Favorites</div>
+              <div class="text-black text-[18px] font-poppins">{{ customer.favorites }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="w-full h-[137px] flex mt-10">
+          <div class="w-full h-full flex gap-20 text-[22px] font-semibold">
+            <div class="w-1/2 bg-white flex flex-col items-center justify-center space-y-4">
+              <div class="text-[#557AD9]">{{ customer.clientSales?.orderCount! }}</div>
+              <div class="text-[#ABBBC2]">Order count</div>
+            </div>
+            <div class="w-1/2 bg-white flex flex-col items-center justify-center space-y-4">
+              <div class="text-[#557AD9]">{{ customer.clientSales?.averageSale! | currency }}</div>
+              <div class="text-[#ABBBC2]">Average sale</div>
+            </div>
+          </div>
+        </div>
+        <div class="w-full h-[137px] flex mt-10">
+          <div class="w-full h-full flex gap-20 text-[22px] font-semibold">
+            <div class="w-1/2 bg-white flex flex-col items-center justify-center space-y-4">
+              <div class="text-[#557AD9]">{{ customer.clientSales?.highSale! | currency }}</div>
+              <div class="text-[#ABBBC2]">Hight sale</div>
+            </div>
+            <div class="w-1/2 bg-[#557AD9] flex flex-col items-center justify-center space-y-4 rounded-2xl">
+              <div class="text-white">{{ customer.clientSales?.totalSale! | currency }}</div>
+              <div class="text-white">Total sale</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="h-[calc(100vh-(210px))]">
+        <div class="text-[#9C9C9C] text-[22px] font-bold mb-[16px]">
+          Last orders
+        </div>
+        <div class="w-full h-[calc(100vh-250px)] overscroll-y-contain overflow-x-hidden
+              dark:scrollbar-thick dark:scrollbar-thumb dark:scrollbar-track">
+          <div class="grid grid-cols-1 gap-4">
+            @for (order of customer.clientProductOrders; track $index) {
+              <app-order-customer [order]="order"/>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+}
+

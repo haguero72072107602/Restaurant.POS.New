@@ -1,0 +1,37 @@
+
+div[oncontextmenu] {
+  height: 80%;
+}
+
+mat-dialog-content {
+  height: 100%;
+}
+
+mat-dialog-content p {
+  display: flex;
+  justify-content: space-between;
+}
+
+list-invoices {
+  flex-wrap: wrap;
+}
+
+.paginator, mat-dialog-actions {
+  display: flex;
+  justify-content: center;
+}
+
+mat-toolbar {
+  background-color: var(--backmsj) !important;
+}
+
+.close {
+  background-color: var(--closebtn);
+  color: white;
+  font-weight: bold;
+}
+
+.title {
+  font-weight: bold;
+  color: white;
+}

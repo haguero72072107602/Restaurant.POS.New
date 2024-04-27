@@ -1,0 +1,53 @@
+<section class="w-full flex justify-between mt-4">
+  <div class="w-full py-4 flex border bg-gray-200/50 mx-4 rounded-2xl gap-4">
+    <div class="w-3/5 ml-4 flex flex-col justify-center items-center">
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="description">Group name</label>
+      <input [(ngModel)]="modifierGroup!.description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                    focus:ring-blue-500 focus:border-blue-500 block w-full h-[40px]
+                    dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                    dark:focus:ring-blue-500 dark:focus:border-blue-500" id="description"
+             placeholder="Name group" required type="text">
+    </div>
+    <div class="w-1/5 h-[80px] flex flex-col justify-center items-center">
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="number_operation">Max
+        selected</label>
+      <input [(ngModel)]="modifierGroup!.number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                    focus:ring-blue-500 focus:border-blue-500 block w-full h-[40px]
+                    dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                    dark:focus:ring-blue-500 dark:focus:border-blue-500" id="number_operation"
+             placeholder="" required type="number">
+    </div>
+    <div class="w-1/5 h-[80px] flex flex-col justify-center items-center">
+      <!--
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="number_operation">Default</label>
+      <input [(ngModel)]="modifierGroup!.number" class="border border-gray-300 text-gray-900 text-sm rounded-lg
+                    focus:ring-blue-500 focus:border-blue-500 block
+                    dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                    dark:focus:ring-blue-500 dark:focus:border-blue-500" id="isDefault"
+             placeholder="" required type="checkbox">
+      -->
+      <label class="relative inline-flex items-center w-full cursor-pointer mt-[30px]">
+        <input
+          [(ngModel)]="modifierGroup!.isDefault" class="sr-only peer" type="checkbox" value="false">
+        <div
+          class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4
+                                    peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer
+                                    dark:bg-gray-600 peer-checked:after:translate-x-full
+                                    peer-checked:after:border-white after:content-['']
+                                    after:absolute after:top-[2px] after:left-[2px]
+                                    after:bg-white after:border-gray-300 after:border
+                                    after:rounded-full after:h-4 after:w-4 after:transition-all
+                                    dark:border-gray-500 peer-checked:bg-blue-600"></div>
+        <span
+          class=" ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300">Default</span>
+      </label>
+    </div>
+    <div class="w-1/5 mx-2 flex justify-center items-center ">
+      <button (click)="updateModifierGroup($event)"
+              class=" w-[100px] bg-[#557AD9] px-6 py-2 block border-blue-400 text-white text-[14px] rounded-xl mt-7
+              hover:scale-95 transition-all delay-100" id="button_operation">
+        Update
+      </button>
+    </div>
+  </div>
+</section>

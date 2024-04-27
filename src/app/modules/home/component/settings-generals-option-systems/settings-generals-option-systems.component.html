@@ -1,0 +1,275 @@
+<div class="flex w-full h-[calc(100vh-80px)]">
+  <div
+    class="mx-auto my-auto w-[736px] h-[90%] bg-white rounded-[16px] border border-l overflow-x-hidden overflow-y-auto"
+  >
+    <div
+      class="flex justify-between items-center w-full h-[60px] border-b-2 dark:bg-gray-600 mb-[18px]"
+    >
+      <div class="flex justify-between items-center mx-5 w-full">
+        <h1 class="text-[20px] font-bold my-4 ml-4">System</h1>
+      </div>
+      <hr/>
+    </div>
+    <div
+      class="w-full flex flex-col min-h-[560px]  items-center justify-center space-x-4 mb-1 mx-6"
+    >
+      <div class="w-full flex justify-between">
+        <div class="flex flex-col w-full space-y-6">
+          <div class="flex flex-col mr-6">
+            <label
+              class="block mb-2 text-[14px] font-semibold text-gray-900 dark:text-white"
+              for="itemCode"
+            >Inactivity time for logout</label
+            >
+            <select
+              #selectStatus
+              (change)="onChangeTimeLogout($event)"
+              class="w-full h-[42px] bg-gray-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-gray-10 focus:border-gray-300 block p-2.5 mr-6">
+              @for (item of timeLogout_Options; track item) {
+
+                <option value="{{ item.value! }}" [selected]="newConfig.inactivityTime == item.value">{{
+                    item.title
+                  }}
+                </option>
+
+              }
+            </select>
+          </div>
+          <div class="flex flex-col mr-6">
+            <label
+              class="block mb-2 text-[14px] font-semibold text-gray-900 dark:text-white"
+              for="itemCode"
+            >Bussiness type</label
+            >
+            <select
+              #selectStatus
+              (change)="onChangeBussinessType($event)"
+              class="w-full h-[42px] bg-gray-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-gray-10 focus:border-gray-300 block p-2.5 mr-6"
+            >
+              @for (item of bussiness_type_Options; track item) {
+
+                <option value="{{ item.value! }}"
+                        [selected]="newConfig.companyType == item.value">{{ item.title }}
+                </option>
+
+              }
+            </select>
+          </div>
+          <div class="flex flex-col mr-6">
+            <label
+              class="block mb-2 text-[14px] font-semibold text-gray-900 dark:text-white"
+              for="itemCode"
+            >Language</label
+            >
+            <select
+              #selectStatus
+              (change)="onChangeLanguage($event)"
+              class="w-full h-[42px] bg-gray-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-gray-10 focus:border-gray-300 block p-2.5 mr-6"
+            >
+              @for (item of language_Options; track item) {
+
+                <option [selected]="newConfig.language == item.value" value="{{ item.value! }}">{{
+                    item.title
+                  }}
+                </option>
+
+              }
+            </select>
+          </div>
+          <div class="flex flex-col mr-6">
+            <label
+              class="block mb-2 text-[14px] font-semibold text-gray-900 dark:text-white"
+              for="itemCode"
+            >Limit slides</label
+            >
+            <select
+              #selectStatus
+              (change)="onChangeLimitSlides($event)"
+              class="w-full h-[42px] bg-gray-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-gray-10 focus:border-gray-300 block p-2.5 mr-6"
+            >
+              @for (item of limitSlides_Options; track item) {
+
+                <option [selected]="newConfig.limitSides == item.value" value="{{ item.value! }}">{{
+                    item.title
+                  }}
+                </option>
+
+              }
+            </select>
+          </div>
+          <div class="flex flex-col mr-6">
+            <label
+              class="block mb-2 text-[14px] font-semibold text-gray-900 dark:text-white"
+              for="itemCode"
+            >Debounce time scanner</label
+            >
+            <select
+              #selectStatus
+              (change)="onChangeDebounceTime($event)"
+              class="w-full h-[42px] bg-gray-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-gray-10 focus:border-gray-300 block p-2.5 mr-6"
+            >
+              @for (item of debounceTimeScanner_Options; track item) {
+
+                <option [selected]="newConfig.debounceTime == item.value" value="{{ item.value! }}">{{
+                    item.title
+                  }}
+                </option>
+
+              }
+            </select>
+          </div>
+          <div class="flex flex-col mr-6">
+            <label
+              class="block mb-2 text-[14px] font-semibold text-gray-900 dark:text-white"
+              for="itemCode"
+            >Theme</label
+            >
+            <select
+              #selectStatus
+              (change)="onChangeTheme($event)"
+              class="w-full h-[42px] bg-gray-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-gray-10 focus:border-gray-300 block p-2.5 mr-6"
+            >
+              @for (item of themes_Options; track item) {
+
+                <option [selected]="newConfig.themes == item.value" value="{{ item.value! }}">{{
+                    item.title
+                  }}
+                </option>
+
+              }
+            </select>
+          </div>
+        </div>
+        <div class="flex flex-col w-full">
+          <div class="flex flex-col w-full ml-3 space-y-6 mt-3">
+            <div class="flex flex-col h-[50px]">
+              <label
+                class="relative inline-flex items-center mt-auto mb-auto w-[150px] cursor-pointer"
+              >
+                <input
+                  (change)="changePaxOnline()"
+                  [checked]="newConfig.paxConnType == 'Online'"
+                  class="sr-only peer"
+                  type="checkbox"
+                  value="1"
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+                ></div>
+                <span
+                  class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+                >PAX Online</span
+                >
+              </label>
+            </div>
+            <div class="flex flex-col h-[50px]">
+              <label
+                class="relative inline-flex items-center mt-auto mb-auto w-[150px] cursor-pointer"
+              >
+                <input
+                  (change)="changeExternalScale()"
+                  [checked]="newConfig.externalScale"
+                  class="sr-only peer"
+                  type="checkbox"
+                  value="1"
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+                ></div>
+                <span
+                  class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+                >External scale</span
+                >
+              </label>
+            </div>
+            <div class="flex flex-col h-[50px]">
+              <label
+                class="relative inline-flex items-center mt-auto mb-auto w-[150px] cursor-pointer"
+              >
+                <input
+                  (change)="changeFullRefund()"
+                  [checked]="newConfig.fullRefund"
+                  class="sr-only peer"
+                  type="checkbox"
+                  value="1"
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+                ></div>
+                <span
+                  class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+                >Full refund</span
+                >
+              </label>
+            </div>
+            <div class="flex flex-col h-[50px]">
+              <label
+                class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+              >
+                <input
+                  (change)="changeBreakProduct()"
+                  [checked]="newConfig.breakText == 'break-word'"
+                  class="sr-only peer"
+                  type="checkbox"
+                  value="1"
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+                ></div>
+                <span
+                  class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+                >Break product name by word</span
+                >
+              </label>
+            </div>
+            <div class="flex flex-col h-[50px]">
+              <label
+                class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+              >
+                <input
+                  (change)="changeCloseReturn()"
+                  [checked]="newConfig.closeDayAutomatic"
+                  class="sr-only peer"
+                  type="checkbox"
+                  value="1"
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+                ></div>
+                <span
+                  class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+                >Close return cash automatically</span
+                >
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="ml-auto me-auto w-[600px] flex justify-between mb-3 mt-3">
+      <button
+        (click)="ngOnInit()"
+        class="w-[224px] h-[48px] mx-[6px] text-[#557AD9] hover:bg-blue-800
+      hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300
+      font-medium rounded-[10px] text-sm bg-white border-2 border-blue-600 mt-2
+      dark:bg-blue-600
+      dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button"
+      >
+        Cancel
+      </button>
+      <button
+        (click)="onSaveSetting()"
+        class="w-[224px] h-[48px] mx-[6px] text-white hover:bg-blue-800
+       focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium
+        rounded-[10px] text-sm bg-[#557AD9] mt-2 dark:bg-blue-600
+        dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</div>

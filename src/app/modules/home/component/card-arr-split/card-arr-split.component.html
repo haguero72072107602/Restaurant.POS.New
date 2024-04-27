@@ -1,0 +1,15 @@
+<button (click)="onSelected() "
+        [ngClass]="selectedCard ? 'border-2 border-gray-500' : 'border border-gray-300'"
+        class="h-[100px] rounded-[10px]
+                 bg-white relative flex items-center justify-center px-[6px]">
+  @for (item of arrPosition; track item) {
+
+    <div class="min-w-[61px] min-h-[84px] border border-[#65B0F6] rounded-[10px]
+                text-[#65B0F6]
+                bg-[#F8F9FD] relative flex flex-col items-center justify-center mx-[6px]">
+      <div class="my-2">POS</div>
+      <div class="">{{ item.id }}</div>
+    </div>
+
+  }
+</button>

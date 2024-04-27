@@ -1,0 +1,150 @@
+<div class="w-full h-[calc(100vh-(80px+67px))] ">
+  <section class="w-full h-[68px] flex border-b items-center justify-start">
+    <button (click)="onBackOrder()"
+            class="w-[132px] h-full flex items-center justify-center bg-[#3B5162]">
+      <svg fill="none" height="25" viewBox="0 0 24 25" width="24" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M12 21.25C16.9706 21.25 21 17.2206 21 12.25C21 7.27944 16.9706 3.25 12 3.25C7.02944 3.25 3 7.27944 3 12.25C3 17.2206 7.02944 21.25 12 21.25Z"
+          fill="#E0E6E9"
+          opacity="0.2"/>
+        <path
+          d="M12 21.25C16.9706 21.25 21 17.2206 21 12.25C21 7.27944 16.9706 3.25 12 3.25C7.02944 3.25 3 7.27944 3 12.25C3 17.2206 7.02944 21.25 12 21.25Z"
+          stroke="#E0E6E9" stroke-miterlimit="10" stroke-width="1.5"/>
+        <path d="M11.432 15.4323L8.25 12.2503L11.432 9.06836" stroke="#E0E6E9" stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"/>
+        <path d="M15.75 12.25H8.25" stroke="#E0E6E9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      </svg>
+      <span class="ml-2 text-white font-normal ">Back</span>
+    </button>
+
+    <span class="w-[94x] h-[36px] flex items-center text-[#557AD9] bg-[#F8F9FD] border-[1px] border-[#557AD9] px-[16px] py-[8px]
+                   rounded-xl font-normal ml-[16px]">
+        All Order
+      </span>
+  </section>
+
+  <section class="w-[95%] h-[calc(100vh-(185px))] mx-auto">
+    <div class="w-full flex justify-between items-center">
+      <div class="mt-4 font-poppins text-[20px] font-semibold">All order</div>
+      <div class="flex gap-4 mt-4 items-center">
+        <div>
+          <app-select-table (evHangeSelectedTable)="evChangeSelectedTable($event)"/>
+        </div>
+        <div>
+          <button class="w-[200px] h-[40px] bg-white  focus:ring-2 focus:outline-none
+                             border border-gray-300 text-gray-900 text-sm
+                             focus:ring-blue-300 font-medium rounded-lg
+                             px-5 py-3 text-center justify-between
+                             inline-flex items-center" data-dropdown-toggle="dropdownToggle"
+                  id="dropdownToggleButton"
+                  type="button">
+            <span>Status</span>
+            <svg aria-hidden="true" class="w-2.5 h-2.5 ml-2.5" fill="none" viewBox="0 0 10 6"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="2"/>
+            </svg>
+          </button>
+
+          <div class="z-10 hidden bg-white divide-y border-gray-500 border-1
+                      divide-gray-100 rounded-lg shadow-2xl  w-56 dark:bg-gray-700 dark:divide-gray-600"
+               id="dropdownToggle">
+            <ul aria-labelledby="dropdownToggleButton" class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200">
+              <li>
+                <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                  <label class="relative inline-flex items-center w-full cursor-pointer">
+                    <input
+                      (change)="selectedAll($event)"
+                      [(ngModel)]="selectMovement" class="sr-only peer" type="checkbox"
+                      value="1">
+                    <div
+                      class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4
+                                    peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer
+                                    dark:bg-gray-600 peer-checked:after:translate-x-full
+                                    peer-checked:after:border-white after:content-['']
+                                    after:absolute after:top-[2px] after:left-[2px]
+                                    after:bg-white after:border-gray-300 after:border
+                                    after:rounded-full after:h-4 after:w-4 after:transition-all
+                                    dark:border-gray-500 peer-checked:bg-blue-600"></div>
+                    <span
+                      class=" ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300">All</span>
+                  </label>
+                </div>
+              </li>
+              <hr>
+
+              @for (item of invoiceService!.items!; track item) {
+                <li>
+                  <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                    <label class="relative inline-flex items-center w-full cursor-pointer">
+                      <input
+                        type="checkbox" value="1" class="sr-only peer"
+                        [checked]="invoiceService!.selectionModel!.isSelected(item)"
+                        (change)="changeSelected(item)">
+                      <div
+                        class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4
+                                    peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer
+                                    dark:bg-gray-600 peer-checked:after:translate-x-full
+                                    peer-checked:after:border-white after:content-['']
+                                    after:absolute after:top-[2px] after:left-[2px]
+                                    after:bg-white after:border-gray-300 after:border
+                                    after:rounded-full after:h-4 after:w-4 after:transition-all
+                                    dark:border-gray-500 peer-checked:bg-blue-600"></div>
+                      <span
+                        class=" ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300">{{ item.title }}</span>
+                    </label>
+                  </div>
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+        <div class="w-[300px]">
+          <app-button-date-range
+            (onChangeDate)="evChangeDateRange($event)"
+            [dateRange]="RangeDateOperation.LastDay"
+            [emitInitialRange]="true"/>
+        </div>
+      </div>
+    </div>
+    <div class="h-[calc(100vh-(245px))] w-[100%] mt-4 mx-auto">
+      @if (loading) {
+        <div class="w-full h-full flex items-center justify-center">
+          <svg
+            aria-hidden="true"
+            role="status"
+            class="inline w-[70px] h-[70px] mr-3 text-white animate-spin"
+            viewBox="0 0 100 101"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+              fill="#9747FF"
+            />
+            <path
+              d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+              fill="#50D1AA"
+            />
+          </svg>
+        </div>
+      } @else {
+
+        <ag-grid-angular
+          style="width: 100%; height: 100%;"
+          class="ag-theme-material"
+          [gridOptions]="gridOptions"
+          [rowHeight]="60"
+          [suppressCellFocus]="true"
+          [defaultColDef]="varGlobalService.defaultColDef"
+          [rowData]="rowData"
+          (firstDataRendered)="onFirstDataRendered($event)"
+          (gridReady)="onGridReady($event)"
+        ></ag-grid-angular>
+
+      }
+    </div>
+  </section>
+
+</div>

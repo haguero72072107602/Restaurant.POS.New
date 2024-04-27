@@ -1,0 +1,31 @@
+:host {
+  font-size: 18px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+ag-grid-angular {
+  width: 400px;
+  height: 420px;
+}
+
+.show {
+  display: initial;
+}
+
+.hide {
+  display: none;
+}
+
+button {
+  background-color: var(--button-op);
+  border: 3px solid var(--button-op-bord);
+}
+
+span {
+  color: white;
+}

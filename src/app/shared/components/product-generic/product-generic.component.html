@@ -1,0 +1,19 @@
+<div oncontextmenu="return false">
+  <mat-toolbar class="flex justify-between" color="primary">
+    <span>{{ title.substring(0, 28) }}</span>
+    <button color="primary" mat-dialog-close mat-raised-button>&times;</button>
+  </mat-toolbar>
+  <form #productGenericForm="ngForm" class="m-4" novalidate>
+    <div class="flex flex-col w-full h-full">
+      <mat-form-field>
+        <input #price="ngModel" [(ngModel)]="cost" [max]="max" [maxlength]="maxlength" [size]="maxlength"
+               class="disabled:font-bold"
+               disabled matInput name="price" placeholder="{{label}}" required type="text"/>
+        <!--<mat-error *ngIf="price.errors?.required">{{label}} is required</mat-error>-->
+      </mat-form-field>
+      <div class="flex w-full h-full">
+        <generic-keyboard (evKeys)="getKeys($event)"></generic-keyboard>
+      </div>
+    </div>
+  </form>
+</div>

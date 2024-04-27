@@ -1,0 +1,23 @@
+<div #grid class="page">
+  @for (i of dptos | paginate: {itemsPerPage: sizePage, currentPage: page}; track i) {
+    <button mat-button fxFlex="125px"
+            (click)="doAction($event, i)"
+            [ngClass]="i.generic ? 'generic' : 'normal'" [disabled]="stockService.cashService.disableStock">
+      {{ i.name | uppercase }}
+    </button>
+  }
+</div>
+<div class="paginator">
+  <pos-paginator (evSetPage)="setPage($event)" [countElements]="dptos.length"
+                 [disabled]="stockService.cashService.disableStock"
+                 [sizePage]="sizePage">
+    <button (click)="filter()" [disabled]="stockService.cashService.disableStock" class="filter" mat-button>
+      <span class="fa fa-search fa-lg"></span> FILTER
+    </button>
+    @if (subDept) {
+      <button class="dpto" mat-button (click)="backParentDepts()"
+              [disabled]="stockService.cashService.disableStock"> << DPTOS
+      </button>
+    }
+  </pos-paginator>
+</div>

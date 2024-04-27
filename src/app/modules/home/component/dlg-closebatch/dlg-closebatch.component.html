@@ -1,0 +1,70 @@
+<section class="min-w-[648px] min-h-[360px] border rounded-[10px]
+                 bg-white relative">
+  <div class="flex justify-between items-center w-full h-[60px] bg-blue-700 dark:bg-gray-600">
+    <div class="flex justify-between items-center mx-5 w-full">
+      <span class="text-[16px] text-white font-semibold">Split</span>
+      <button (click)="onClose()"
+              class="bg-blue-500 px-5 py-3 text-white rounded-md shadow-xl">
+        <svg aria-hidden="true" class="w-3 h-3 text-white font-semibold dark:text-white"
+             fill="none" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+          <path d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="m-4 h-[170px] flex overflow-x-auto space-x-8">
+    <ul class="grid w-full flex items-center justify-between gap-6 md:grid-cols-2 mx-10 mt-4">
+      <li>
+        <input (click)="onChangeValue(0)" aria-autocomplete="none" class="hidden peer" id="hosting-small" name="hosting"
+               required type="radio">
+        <label class="inline-flex items-center justify-between w-full p-5 text-gray-500
+                      bg-white border-2 border-gray-200 rounded-lg cursor-pointer
+                      dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500
+                      peer-checked:border-blue-600 peer-checked:text-blue-600
+                      hover:text-gray-600 hover:bg-gray-100
+                      dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+               for="hosting-small">
+          <div class="block items-center">
+            <div class="w-full text-lg font-semibold">Summary</div>
+          </div>
+        </label>
+      </li>
+      <li>
+        <input (click)="onChangeValue(1)" aria-autocomplete="none" class="hidden peer" id="hosting-big" name="hosting"
+               required type="radio">
+        <label class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2
+                      border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700
+                      dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+               for="hosting-big">
+          <div class="block">
+            <div class="w-full text-lg font-semibold">Details</div>
+          </div>
+        </label>
+      </li>
+    </ul>
+  </div>
+  <div class="flex items-center space-x-4 justify-center mt-[30px]">
+    <button (click)="onClose()"
+            class="w-[270px] h-[48px] inline-flex items-center border border-blue-400
+                     text-[#557AD9] text-[16px] justify-center font-normal
+                     hover:border-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg
+                     text-sm text-center"
+            type="button">
+      Cancel
+    </button>
+    <button (click)="OnAccept()"
+            class="w-[270px] h-[48px] text-white text-[16px] inline-flex items-center hover:text-white border border-blue-400
+                     bg-[#557AD9] justify-center disabled:bg-blue-100 font-normal
+                     hover:border-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg
+                     text-sm text-center"
+            type="button">
+
+      Accept
+    </button>
+  </div>
+</section>
+
+

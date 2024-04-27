@@ -1,0 +1,56 @@
+<div class="w-[calc(100vw-340px)] h-[calc(100vh-(80px))] bg-[#F8F9FD]">
+  <section
+    class="w-full h-[80px] flex border-b bg-white items-center justify-between shadow"
+  >
+    <div class=" ml-4 font-poppins text-[20px] font-semibold">
+      Sales revenue
+    </div>
+    <div class="flex gap-4  mr-4">
+      <app-button-date-range
+        (onChangeDate)="onDateUpdate($event)"
+        [dateRange]="RangeDateOperation.ThisMonth"
+        [emitInitialRange]="true"/>
+    </div>
+  </section>
+
+  <section
+    class="w-[calc(100vw-360px)] h-[calc(100vh-(185px))] mx-[18px] my-[18px] rounded-lg  overscroll-y-contain overflow-x-hidden dark:scrollbar-thick dark:scrollbar-thumb dark:scrollbar-track"
+  >
+    <div class="p-3 pt-0">
+
+      <app-block-rpt-sales-revenue
+        #salesrevenues
+        [reportEndDate]="reportEndDate!"
+        [reportStartDate]="reportStartDate!"
+      >
+      </app-block-rpt-sales-revenue>
+
+
+    </div>
+
+    @if (showReport) {
+      <div class="w-[95%] h-[calc(100vh-120px)] bg-white rounded-lg p-3 border-2 py-14">
+        <div class="w-[100%] m-2 text-center">
+          <span class="font-poppins text-center text-[20px] font-semibold">Sales revenue - Details</span>
+        </div>
+        <div class="h-[100%] w-[100%] m-2 mt-6 flex justify-center overflow-x-visible">
+          <ag-grid-angular
+            style="width: 98%; height: 97%; "
+            class="ag-theme-material"
+            [rowHeight]="76"
+            [defaultColDef]="defaultColDef"
+            [columnDefs]="columnDefs"
+            [rowData]="rowData"
+            [rowClass]="rowClass"
+            [suppressHorizontalScroll]="true"
+            (firstDataRendered)="onFirstDataRendered($event)"
+          ></ag-grid-angular>
+        </div>
+
+      </div>
+    }
+  </section>
+
+
+</div>
+

@@ -1,0 +1,45 @@
+<div class="flex items-center justify-center gap-2">
+  <button (click)="editProduct()"
+          [disabled]="false"
+          class="flex items-center justify-center mx-2
+                 min-w-[45px] xl:min-w-[85px] min-h-[46px] rounded-2xl text-white text-[14px] font-semibold
+                 bg-[#557AD9] disabled:bg-gray-300 disabled:text-white"
+          style="font-size: 14px">
+    <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 8.31522L11.6857 5.00088L13.125 3.56154L16.4393 6.87588L15 8.31522Z" fill="#F8F9FD" opacity="0.2"
+            stroke="#F8F9FD" stroke-width="1.5"/>
+      <path
+        d="M7.5 16.8759H3.75C3.58424 16.8759 3.42527 16.81 3.30806 16.6928C3.19085 16.5756 3.125 16.4166 3.125 16.2509V12.7598C3.125 12.6777 3.14117 12.5964 3.17258 12.5206C3.20398 12.4448 3.25002 12.3759 3.30806 12.3178L12.6831 2.94282C12.8003 2.82561 12.9592 2.75977 13.125 2.75977C13.2908 2.75977 13.4497 2.82561 13.5669 2.94282L17.0581 6.43394C17.1753 6.55115 17.2411 6.71012 17.2411 6.87588C17.2411 7.04164 17.1753 7.20061 17.0581 7.31782L7.5 16.8759Z"
+        stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <path d="M10.625 5L15 9.375" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <path d="M16.8753 16.8743H7.50027L3.16504 12.5391" stroke="white" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="1.5"/>
+    </svg>
+    <span class="hidden xl:block">Edit</span>
+  </button>
+
+  <button (click)="deleteComponent()"
+          class="flex items-center justify-center
+                 min-w-[45px] xl:min-w-[85px] min-h-[46px] rounded-2xl text-white text-[14px] font-semibold
+                 bg-[#FF7CA3]"
+          style="font-size: 14px">
+    <svg fill="none" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M15.625 4.375V16.25C15.625 16.4158 15.5592 16.5747 15.4419 16.6919C15.3247 16.8092 15.1658 16.875 15 16.875H5C4.83424 16.875 4.67527 16.8092 4.55806 16.6919C4.44085 16.5747 4.375 16.4158 4.375 16.25V4.375L15.625 4.375Z"
+        fill="white"
+        opacity="0.2"/>
+      <path d="M16.875 4.375L3.125 4.37501" stroke="white" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="1.5"/>
+      <path d="M8.125 8.125V13.125" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <path d="M11.875 8.125V13.125" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <path
+        d="M15.625 4.375V16.25C15.625 16.4158 15.5592 16.5747 15.4419 16.6919C15.3247 16.8092 15.1658 16.875 15 16.875H5C4.83424 16.875 4.67527 16.8092 4.55806 16.6919C4.44085 16.5747 4.375 16.4158 4.375 16.25V4.375"
+        stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <path
+        d="M13.125 4.375V3.125C13.125 2.79348 12.9933 2.47554 12.7589 2.24112C12.5245 2.0067 12.2065 1.875 11.875 1.875H8.125C7.79348 1.875 7.47554 2.0067 7.24112 2.24112C7.0067 2.47554 6.875 2.79348 6.875 3.125V4.375"
+        stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    </svg>
+    <span class="hidden xl:block">Delete</span>
+  </button>
+
+</div>

@@ -1,0 +1,183 @@
+<!-- bg-[#F8F9FD] w-[calc(100vw-(340px))] h-[calc(100vh-110px)] -->
+<section class="w-[calc(100vw-(340px))] h-[calc(100vh-110px)]">
+  <div class="flex flex-col p-2 w-[calc(100vw-(340px))] h-full bg-[#F8F9FD] justify-center items-center">
+    <div class="w-[95%] flex m-4 justify-between items-center">
+      <div class="flex justify-between items-center">
+        <!--
+        <div id="dateRangePicker" #dateRangePicker class="flex items-center">
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                   xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+              </svg>
+            </div>
+            <input name="start" type="text"
+                   [(ngModel)]="viewInitDate"
+                   class="w-[200px] bg-white border border-gray-300 text-gray-900 text-sm rounded-lg
+                            focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5
+                            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                            dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Select date start">
+          </div>
+          <span class="mx-4 text-gray-500">to</span>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                   xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+              </svg>
+            </div>
+            <input name="end" type="text"
+                   [(ngModel)]="viewEndtDate"
+                   class="w-[200px] bg-white border border-gray-300 text-gray-900 text-sm rounded-lg
+                            focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5
+                            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                            dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Select date end">
+          </div>
+          <button type="button"
+                  class="inline-flex w-[140px] min-h-[40px] rounded-md
+                      bg-[#557AD9] items-center justify-center mx-[14px] disabled:bg-gray-300
+                      disabled:text-gray-600 text-white ">Apply
+          </button>
+        </div>
+        -->
+        <div class="flex flex-col mr-6">
+          <select
+            #selectStatus
+            (change)="onChangeSelectRole($event)"
+            class="w-full h-[42px] bg-gray-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-gray-10 focus:border-gray-300 block p-2.5 mr-6"
+          >
+            <option value="-99">All</option>
+            @for (user of userList; track user) {
+              <option value="{{user.firstName!}}">{{ user.firstName! }}</option>
+            }
+          </select>
+        </div>
+        <div class="flex flex-col mr-6">
+          <app-button-date-range
+            (onChangeDate)="onChangeRangeDate($event)"
+            [dateRange]="RangeDateOperation.Last7Days"
+            [emitInitialRange]="true"/>
+          <!--
+          <select
+            #selectStatus
+            (change)="onChangeSelectRole($event)"
+            class="w-full h-[42px] bg-gray-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-gray-10 focus:border-gray-300 block p-2.5 mr-6"
+          >
+            <option value="0">Amount</option>
+            @for (item of optionAmount!; track item) {
+
+              <option value="{{ item.value! }}">{{ item.label }}</option>
+
+            }
+          </select>
+          -->
+        </div>
+        <!--
+ <div class="flex flex-col mr-6">
+          <select
+            #selectStatus
+            class="w-full h-[42px] bg-gray-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-gray-10 focus:border-gray-300 block p-2.5 mr-6"
+            (change)="onChangeSelectRole($event)"
+          >
+            <option value="0">Order Type</option>
+            @for (item of orderTypes!; track item) {
+
+            <option value="{{ item.value! }}">{{ item.label }}</option>
+
+            }
+          </select>
+        </div>
+        <div class="flex flex-col mr-6">
+          <select
+            #selectStatus
+            class="w-full h-[42px] bg-gray-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-gray-10 focus:border-gray-300 block p-2.5 mr-6"
+            (change)="onChangeSelectRole($event)"
+          >
+            <option value="0">Pay method</option>
+            @for (item of payMethods!; track item) {
+
+            <option value="{{ item.value! }}">{{ item.label }}</option>
+
+            }
+          </select>
+        </div>
+
+        -->
+
+      </div>
+
+      <!--
+
+         <input
+          type="text"
+          matInput
+          class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          [customRangeDirection]="true"
+          ngxDaterangepickerMd
+          [locale]="{ applyLabel: 'ok', format: 'MM-DD-YYYY' }"
+          startKey="start"
+          endKey="end"
+          (datesUpdated)="onDateUpdate($event)"
+          [(ngModel)]="selected"
+          [minDate]="minDate!"
+          [maxDate]="maxDate!"
+          name="daterange"
+        />
+
+      -->
+      <!--
+        <div class="flex flex-col mr-6">
+
+        <mat-form-field>
+          <mat-label>Select a date</mat-label>
+          <input matInput class="w-[200px] bg-white  focus:ring-2 focus:outline-none
+          border border-gray-300 text-gray-900 text-sm
+          focus:ring-blue-300 font-medium rounded-lg
+          px-5 py-3 text-center justify-between
+          inline-flex items-center"
+                 [(ngModel)] = "dateSelected"
+                 [matDatepicker]="picker" data-date-format='MM-DD-YYYY'
+                 [max]="maxDate"
+                 disabled>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker touchUi="true" disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      -->
+
+      <div class="flex flex-col mr-6">
+        <button
+          (click)="closeShift()"
+          class="inline-flex w-[140px] min-h-[40px] rounded-md bg-[#557AD9] items-center justify-center mx-[14px] disabled:bg-gray-300 disabled:text-gray-600 text-white"
+          type="button"
+        >
+          Close shift
+        </button>
+      </div>
+    </div>
+    <div class="w-[95%] h-[calc(100vh-200px)]  bg-white rounded p-3">
+      <div class="w-[100%] m-2">
+        <span class="font-poppins text-[20px] font-semibold">Closed shift</span>
+      </div>
+      <div class="h-[100%] w-[100%] flex justify-center">
+        <ag-grid-angular
+          (firstDataRendered)="onFirstDataRendered($event)"
+          [columnDefs]="columnDefs"
+          [defaultColDef]="defaultColDef"
+          [rowClass]="rowClass"
+          [rowData]="rowData"
+          [rowHeight]="70"
+          [suppressCellFocus]="true"
+          [suppressHorizontalScroll]="true"
+          class="ag-theme-material"
+          style="width: 100%; height: 95%"
+        ></ag-grid-angular>
+      </div>
+    </div>
+  </div>
+</section>

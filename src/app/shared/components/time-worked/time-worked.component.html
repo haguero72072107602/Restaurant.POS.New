@@ -1,0 +1,16 @@
+<ag-grid-angular #topGrid
+                 [columnDefs]="columnDefs"
+                 [gridOptions]="gridOptions"
+                 [ngClass]="(records && records.length > 0 && emplSel) ? 'show': 'hide'"
+                 [paginationAutoPageSize]="true"
+                 [pagination]="true"
+                 [pinnedBottomRowData]="bottomData"
+                 class="ag-theme-material"
+>
+</ag-grid-angular>
+
+@if (records && records.length === 0 && emplSel !== undefined) {
+  <i class="no-sale">
+    This employee haven't work records yet today
+  </i>
+}

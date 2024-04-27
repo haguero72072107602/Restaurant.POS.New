@@ -1,0 +1,79 @@
+/*@import "~src/variable";*/
+
+:host, div.column {
+  flex-wrap: wrap;
+}
+
+.row {
+  justify-content: center;
+}
+
+.column.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+button[mat-button] {
+  background-color: rgba(19, 34, 87, 0.71);
+  border-color: rgba(13, 20, 40, 0.71);
+  //@include violet;
+}
+
+button[mat-button].left {
+  height: 170px;
+}
+
+button[mat-button].left:first-of-type {
+  background-color: #fff05f;
+  border-color: #b6a74a;
+  color: black;
+  //@include yellow;
+}
+
+button[mat-button].left:last-of-type {
+  background-color: #ed5f5f;
+  border-color: #913939;
+  //@include red;
+  height: 170px;
+}
+
+button[mat-button].right {
+  background-color: #1fff9c;
+  border-color: #1a9f57;
+  color: black;
+  //@include green;
+}
+
+.blue {
+  background-color: #2ae1ff;
+  border-color: #22539f;
+  color: black;
+  //@include blue;
+}
+
+button[mat-button].right:last-of-type, button[mat-button].right:first-of-type {
+  background-color: #ed5f5f;
+  border-color: #913939;
+  color: white;
+  //@include red;
+}
+
+button[mat-button].numbers {
+  /*
+  & /deep/ span {
+    font-size: 20px !important;
+  }
+  */
+}
+
+button[mat-button].numbers:last-of-type {
+  /*
+  @include light-gray;
+  & /deep/ span {
+    font-size: 18px !important;
+  }
+  */
+}

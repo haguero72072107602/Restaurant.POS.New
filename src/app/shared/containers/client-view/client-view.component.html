@@ -1,0 +1,26 @@
+<div #init class="container" fxLayout="row" fxLayoutAlign="space-between">
+  <div fxFlex.lg="64" fxFlex.lt-lg="54" fxFlex.md="60" fxFlex.xl="70" fxLayout="column" fxLayoutAlign="space-between"
+       id="right">
+    @if (logged) {
+      <invoice fxFlex="100" class="border container" fxLayout="column" style="padding: 5px;"></invoice>
+    }
+    @if (!logged) {
+      <div fxLayoutAlign="center center" fxFlex="100" class="border">
+        <img id="logo" src="{{env.myVarForImageURLS + 'supermarket.jpg'}}" fxFlex="100" alt="Logo"/>
+      </div>
+    }
+  </div>
+
+  <div class="border" fxFlex.lg="35" fxFlex.lt-lg="46" fxFlex.md="40" fxFlex.xl="30" fxLayout="column"
+       fxLayoutAlign="space-between" id="left">
+    <div class="border" fxLayoutAlign="center center">
+      <slide-promotions [height]="'350px'" [path]="env.myVarForImageURLS + pathPromotions"></slide-promotions>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center" id="logoAnnounce">
+      <!--<slide-announce [path]="env.myVarForImageURLS + pathAnnounces" [height]="'400px'"></slide-announce>-->
+      @if (logged) {
+        <img src="{{env.myVarForImageURLS + 'logo-announce.png'}}" fxFlex="100"/>
+      }
+    </div>
+  </div>
+</div>

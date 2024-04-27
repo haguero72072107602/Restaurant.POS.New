@@ -1,0 +1,44 @@
+@import '@angular/cdk/overlay-prebuilt.css';
+
+@import 'material-design-icons-iconfont/dist/material-design-icons.css';
+
+
+@import "@fontsource/poppins";
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/400-italic.css";
+
+@import "@fontsource/plus-jakarta-sans";
+@import "@fontsource/plus-jakarta-sans/400.css";
+@import "@fontsource/plus-jakarta-sans/400-italic.css";
+
+@import "node_modules/ag-grid-community/styles/ag-grid.css";
+@import "node_modules/ag-grid-community/styles/ag-theme-material.min.css";
+/*@import 'swiper/swiper.min.css';*/
+
+/*
+@import 'swiper/modules/navigation/navigation.min.css';
+@import 'swiper/modules/pagination/pagination.min.css';
+@import 'swiper/modules/effect-coverflow/effect-coverflow.min.css';
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+body {
+  font-family: "Poppins", serif;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+.dialog-notification .mat-dialog-container {
+  border-radius: 50px !important;
+}
+
+/*.mat-dialog-container {
+  border-radius: 20px !important;
+}
+*/
+
+

@@ -1,0 +1,8 @@
+<button
+  (click)="onSelected()"
+  [ngClass]="position!.selected ? 'bg-[#65B0F6] text-white' : 'bg-[#F8F9FD] text-[#65B0F6]' "
+  class="w-[61px] h-[84px] border border-[#65B0F6] rounded-[10px] text-[14px]
+         relative flex flex-col items-center justify-center">
+  <div class="my-2">POS</div>
+  <div class="">{{ position?.id }}</div>
+</button>

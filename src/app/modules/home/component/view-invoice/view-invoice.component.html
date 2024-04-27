@@ -1,0 +1,119 @@
+<div class="w-[calc(100vw-125px)] h-[calc(100vh-80px)] font-poppins flex flex-col justify-between">
+  <section class="w-full min-h-[68px] bg-white border-b">
+    <button (click)="onCancelOperation()"
+            class=" w-[173px] h-full bg-[#3B5162] flex items-center justify-center text-white">
+      <svg fill="none" height="25" viewBox="0 0 25 25" width="25" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M5.75 4.25H19.25C19.4489 4.25 19.6397 4.32902 19.7803 4.46967C19.921 4.61032 20 4.80109 20 5V19.25C20 19.8467 19.7629 20.419 19.341 20.841C18.919 21.2629 18.3467 21.5 17.75 21.5H7.25C6.65326 21.5 6.08097 21.2629 5.65901 20.841C5.23705 20.419 5 19.8467 5 19.25V5C5 4.80109 5.07902 4.61032 5.21967 4.46967C5.36032 4.32902 5.55109 4.25 5.75 4.25Z"
+          fill="#E0E6E9"
+          opacity="0.2"/>
+        <path d="M9.5 12.5H15.5" stroke="#E0E6E9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <path d="M9.5 15.5H15.5" stroke="#E0E6E9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <path
+          d="M5.75 4.25H19.25C19.4489 4.25 19.6397 4.32902 19.7803 4.46967C19.921 4.61032 20 4.80109 20 5V19.25C20 19.8467 19.7629 20.419 19.341 20.841C18.919 21.2629 18.3467 21.5 17.75 21.5H7.25C6.65326 21.5 6.08097 21.2629 5.65901 20.841C5.23705 20.419 5 19.8467 5 19.25V5C5 4.80109 5.07902 4.61032 5.21967 4.46967C5.36032 4.32902 5.55109 4.25 5.75 4.25Z"
+          fill="#E5EDFE" fill-opacity="0.5" stroke="#E0E6E9" stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="1.5"/>
+        <path d="M8 2.75V5.75" stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <path d="M12.5 2.75V5.75" stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <path d="M17 2.75V5.75" stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      </svg>
+      <span>All Orders</span>
+    </button>
+  </section>
+  <!-- <div class="w-full h-[calc(100vh-(290px))] bg-[#F8F9FD] mx-2">-->
+
+  <div class="w-full h-full overscroll-y-contain overflow-x-hidden bg-[#F8F9FD]
+              dark:scrollbar-thick dark:scrollbar-thumb dark:scrollbar-track">
+    <div class="flex flex-wrap gap-4 mx-4 mt-4">
+
+      @if (invoiceService!.invoice != undefined) {
+
+        <app-card-invoice
+          [productOrders]="invoiceService!.invoice!.productOrders!"
+          [positions]="0"
+          [editProductOrders]="false">
+        </app-card-invoice>
+
+      }
+    </div>
+  </div>
+
+  <div class="flex w-full min-h-[98px] justify-between border-t bg-white py-2">
+    <div class="flex">
+      <div class="flex items-center justify-normal">
+        <!--
+        <button class="font-semibold text-[#557AD9] bg-[#F8F9FD] mx-2 w-[120px] h-[3.5rem] hover:bg-blue-800 hover:text-white shadow
+                    text-center focus:ring-2 focus:ring-blue-700 focus:bg-[#557AD9] focus:text-white
+                    rounded-lg text-sm focus:outline-none flex justify-center items-center"
+                (click)="onFormPayment(PaymentOpEnum.CASH)">
+          Cash
+        </button>
+        -->
+        <!--
+        <button class="font-semibold text-[#557AD9] bg-[#F8F9FD] mx-2 w-[120px] h-[3.5rem] hover:bg-blue-800 hover:text-white shadow
+                    text-center focus:z-10 focus:ring-2 focus:ring-blue-700 focus:bg-[#557AD9] focus:text-white
+                    rounded-lg text-sm focus:outline-none flex justify-center items-center"
+                disabled
+                (click)="onFormPayment(PaymentOpEnum.CHECK)">Offline card
+        </button>
+        -->
+        <!--
+        <button class="font-semibold text-[#557AD9] bg-[#F8F9FD] mx-2 w-[120px] h-[3.5rem] hover:bg-blue-800 hover:text-white shadow
+                    text-center focus:z-10 focus:ring-2 focus:ring-blue-700 focus:bg-[#557AD9] focus:text-white
+                    rounded-lg text-sm focus:outline-none flex justify-center items-center"
+                (click)="onFormPayment(PaymentOpEnum.DEBIT_CARD)">Debit Card
+        </button>
+        <button class="font-semibold text-[#557AD9] bg-[#F8F9FD] mx-2 w-[120px] h-[3.5rem] hover:bg-blue-800 hover:text-white shadow
+                    text-center focus:z-10 focus:ring-2 focus:ring-blue-700 focus:bg-[#557AD9] focus:text-white
+                    rounded-lg text-sm focus:outline-none flex justify-center items-center"
+                (click)="onFormPayment(PaymentOpEnum.CREDIT_CARD)">Credit Card
+        </button>
+        <button class="font-semibold text-[#557AD9] bg-[#F8F9FD] mx-2 w-[120px] h-[3.5rem] hover:bg-blue-800 hover:text-white shadow
+                    text-center focus:z-10 focus:ring-2 focus:ring-blue-700 focus:bg-[#557AD9] focus:text-white
+                    rounded-lg text-sm focus:outline-none flex justify-center items-center"
+                (click)="onFormPayment(PaymentOpEnum.ZELLE)">Zelle
+        </button>
+        -->
+      </div>
+
+    </div>
+    <div class="flex items-center justify-center">
+      <!--
+      <button
+        [disabled]="enableSplitOrder"
+        class="w-[105px] h-[64px] text-white bg-[#557AD9] hover:bg-green-700 shadow text-center mr-4
+                    font-semibold rounded-lg text-sm focus:outline-none flex items-center justify-center"
+        (click)="onSplitPay()">
+        <span>Split</span>
+      </button>
+      <button class="w-[105px] h-[64px] text-white bg-[#557AD9] hover:bg-green-700 shadow text-center mr-4
+                    font-semibold rounded-lg text-sm focus:outline-none flex items-center justify-center"
+      >
+        <span>Merge</span>
+      </button>
+      -->
+      <button (click)="onCancelOperation()"
+              class="w-[105px] h-[64px] text-white bg-[#FF7CA3] shadow text-center mr-4
+                    font-semibold rounded-lg text-sm focus:outline-none
+                    disabled:bg-gray-300
+                    flex items-center justify-center">
+        <span class="ml-1">Exit</span>
+      </button>
+      <!--
+      <button class="w-[105px] h-[64px] text-white bg-[#50D1AA] shadow text-center mr-4
+                    font-semibold rounded-lg text-sm focus:outline-none flex items-center justify-center
+                    disabled:bg-gray-300"
+              disabled>
+        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path opacity="0.2" d="M10.3335 18C14.4756 18 17.8335 14.6421 17.8335 10.5C17.8335 6.35786 14.4756 3 10.3335 3C6.19136 3 2.8335 6.35786 2.8335 10.5C2.8335 14.6421 6.19136 18 10.3335 18Z" fill="#F8F9FD"/>
+          <path d="M10.3335 6.125V7.375" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10.3335 13.625V14.875" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10.3335 18C14.4756 18 17.8335 14.6421 17.8335 10.5C17.8335 6.35786 14.4756 3 10.3335 3C6.19136 3 2.8335 6.35786 2.8335 10.5C2.8335 14.6421 6.19136 18 10.3335 18Z" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8.4585 13.625H11.271C11.6854 13.625 12.0828 13.4604 12.3759 13.1674C12.6689 12.8743 12.8335 12.4769 12.8335 12.0625C12.8335 11.6481 12.6689 11.2507 12.3759 10.9576C12.0828 10.6646 11.6854 10.5 11.271 10.5H9.396C8.9816 10.5 8.58417 10.3354 8.29114 10.0424C7.99812 9.74933 7.8335 9.3519 7.8335 8.9375C7.8335 8.5231 7.99812 8.12567 8.29114 7.83265C8.58417 7.53962 8.9816 7.375 9.396 7.375H12.2085" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="ml-1">Refund</span>
+      </button>
+      -->
+    </div>
+  </div>
+</div>

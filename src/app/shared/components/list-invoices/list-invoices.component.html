@@ -1,0 +1,52 @@
+@for (i of data.invoice; track i) {
+  <div [class]="theme">
+    <button mat-button (click)="select($event, i)" [ngClass]="setColor(i.type)"
+            [class.selected]="checkSelected(i) || i.selected">
+      @if (data.label && (!currencyProps.includes(data.label) && !dateProps.includes(data.label))) {
+        <span
+          [ngClass]="breakText">
+      {{ i[data.label].substring(0, lengthText) }}
+    </span>
+      }
+      @if (data.label && dateProps.includes(data.label)) {
+        <span>
+    {{ i[data.label] | date:'yyyy/MM/dd HH:mm:ss' }}
+  </span>
+      }
+      @if (data.label && currencyProps.includes(data.label)) {
+        <span
+          [ngClass]="breakText">
+    {{ i[data.label] | currency }}
+  </span>
+      }
+      @if (data.detail && (currencyProps.includes(data.detail))) {
+        <p>{{ i[data.detail] | currency }}</p>
+      }
+      @if (data.detail && (dateProps.includes(data.detail))) {
+        <p>{{ i[data.detail] | date:'yyyy/MM/dd HH:mm:ss' }}</p>
+      }
+      @if (data.detail && (!currencyProps.includes(data.detail) && !dateProps.includes(data.detail))) {
+        <p
+          [ngClass]="breakText">
+          {{ i[data.detail].substring(0, lengthText) }}
+        </p>
+      }
+
+      @if (data.extradetail) {
+        <p>{{ i[data.extradetail] }}</p>
+      }
+
+      @if (data.subdetail && (currencyProps.includes(data.subdetail))) {
+        <span>{{ i[data.subdetail] | currency }}</span>
+      }
+      @if (data.subdetail && (!currencyProps.includes(data.subdetail))) {
+        <span>{{ i[data.subdetail] }}</span>
+      }
+    </button>
+    <!--
+    <mat-slider aria-label="unit(s)" thumbLabel tickInterval="1" min="0" max="5" step="1"
+                [value]="i.count" (valueChange)="setCount($event, i)" *ngIf="amountSides"></mat-slider>
+    -->
+  </div>
+}
+

@@ -1,0 +1,43 @@
+<div class="container">
+  @if (tables?.length) {
+    <header>
+      <h2>Restaurant Layout</h2>
+    </header>
+  }
+  <div class="body-container">
+    @if (tables?.length) {
+      <div class="block">
+        @for (table of tables$ | async; track table; let i = $index) {
+          <app-table-button class="box" [ngClass]="tableSize"
+                            [text]="table" (click)="setTable(table)">
+          </app-table-button>
+        }
+      </div>
+    } @else {
+
+      <div class="block">
+        <div class="image">
+          <figure><img src="assets/logo-announce.png" class="img-fluid" alt="Logo"></figure>
+        </div>
+      </div>
+
+    }
+    <ng-template #logo>
+      <div class="block">
+        <div class="image">
+          <figure><img alt="Logo" class="img-fluid" src="assets/logo-announce.png"></figure>
+        </div>
+      </div>
+    </ng-template>
+
+    <div class="options">
+      <operation-group (evPressKeys)="operationKey($event)" [class]="theme" [colors]="restaurantColor"
+                       [operations]="restaurantOperations"
+                       fxFlex.lg="100" fxFlex.md="100">
+      </operation-group>
+    </div>
+  </div>
+</div>
+@if (tables?.length) {
+  <div class="background"></div>
+}

@@ -1,0 +1,22 @@
+<div oncontextmenu="return false">
+  <mat-toolbar color="primary">
+    {{ title }}
+    <span class="flex-spacer"></span>
+    <button color="primary" mat-dialog-close mat-raised-button>&times;</button>
+  </mat-toolbar>
+  <form #productGenericForm="ngForm" novalidate>
+    <mat-dialog-content>
+      <p>
+        <mat-form-field>
+          <input #price="ngModel" [(ngModel)]="cost" [max]="100" [min]="0" disabled matInput
+                 name="price" placeholder="Discount (percent)" required type="text"/>
+          <!-- <mat-error *ngIf="price.errors?.e required">Discount is required</mat-error> -->
+        </mat-form-field>
+        @if (!valid && tryValidation) {
+          <mat-error><span class="fa fa-warning fa-lg"></span> {{ errorMsg }}</mat-error>
+        }
+      </p>
+      <generic-keyboard (evKeys)="getKeys($event)"></generic-keyboard>
+    </mat-dialog-content>
+  </form>
+</div>

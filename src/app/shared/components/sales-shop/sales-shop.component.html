@@ -1,0 +1,14 @@
+<ag-grid-angular [columnDefs]="columnDefs"
+                 [gridOptions]="gridOptions"
+                 [ngClass]="(sales) ? 'show': 'hide'"
+                 class="ag-theme-material"
+>
+</ag-grid-angular>
+@if (sales) {
+  <button mat-raised-button [class]="theme"
+          (click)="onPrint()"><span>Print</span></button>
+}
+@if (!sales) {
+  <span>This shop haven't sales yet today</span>
+}
+

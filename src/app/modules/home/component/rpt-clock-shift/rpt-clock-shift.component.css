@@ -1,0 +1,3 @@
+.datepickerOne .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  border-color: darkgreen;
+}

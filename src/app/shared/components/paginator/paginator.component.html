@@ -1,0 +1,15 @@
+<ng-content select=".filter"></ng-content>
+<!--
+<pagination-template #p="paginationApi" *ngIf="countElements > sizePage" [id]="idPage" class="my-pagination"
+                     autoHide="false" (pageChange)="setPage($event)">
+  <div [class]="theme" style="display: flex; align-items: center;">
+    <button class="pagination-previous" mat-button (click)="previous(p)" [class.disabled]="p.isFirstPage() || disabled">
+      <span><< PREVIOUS</span>
+    </button>
+    <button class="pagination-next" mat-button (click)="next(p)" [class.disabled]="p.isLastPage() || disabled">
+      <span>NEXT >></span>
+    </button>
+  </div>
+</pagination-template>
+-->
+<ng-content id="left"></ng-content>

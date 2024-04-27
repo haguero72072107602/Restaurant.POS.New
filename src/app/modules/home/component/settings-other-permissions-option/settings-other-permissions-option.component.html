@@ -1,0 +1,272 @@
+<div class="flex w-full h-[calc(100vh-80px)] bg-[#F8F9FD]">
+  <div
+    class="mx-auto my-auto w-[736px] h-[90%] bg-white rounded-[16px] border border-l overflow-x-hidden overflow-y-auto"
+  >
+    <div
+      class="flex justify-between items-center w-full h-[60px] border-b-2 dark:bg-gray-600 mb-[18px]"
+    >
+      <div class="flex justify-between items-center mx-5 w-full">
+        <h1 class="text-[20px] font-bold my-4 ml-4">Other Permissions</h1>
+      </div>
+      <hr/>
+    </div>
+    <div
+      class="w-full flex flex-col min-h-[450px]  items-center justify-center space-x-4 mb-1 mx-6"
+    >
+      <div class="w-full flex justify-between">
+        <div class="flex flex-col w-full space-y-6">
+          <div class="flex flex-col h-[50px]">
+            <label
+              class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+            >
+              <input
+                (change)="change_allowAddProdGen()"
+                [checked]="newConfig.allowAddProdGen"
+                class="sr-only peer"
+                type="checkbox"
+                value="1"
+              />
+              <div
+                class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+              ></div>
+              <span
+                class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+              >Allow users add generic product</span
+              >
+            </label>
+          </div>
+          <div class="flex flex-col h-[50px]">
+            <label
+              class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+            >
+              <input
+                (change)="change_allowPromotion()"
+                [checked]="newConfig.allowPromotion"
+                class="sr-only peer"
+                type="checkbox"
+                value="1"
+              />
+              <div
+                class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+              ></div>
+              <span
+                class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+              >Allow Promotions</span
+              >
+            </label>
+          </div>
+          <div class="flex flex-col h-[50px]">
+            <label
+              class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+            >
+              <input
+                (change)="change_allowClock()"
+                [checked]="newConfig.allowClock"
+                class="sr-only peer"
+                type="checkbox"
+                value="1"
+              />
+              <div
+                class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+              ></div>
+              <span
+                class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+              >Allow ClockIn/ ClockOut</span
+              >
+            </label>
+          </div>
+          <div class="flex flex-col h-[50px]">
+            <label
+              class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+            >
+              <input
+                (change)="change_allowClientUpdate()"
+                [checked]="newConfig.allowClientUpdate"
+                class="sr-only peer"
+                type="checkbox"
+                value="1"
+              />
+              <div
+                class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+              ></div>
+              <span
+                class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+              >Allow Client Update App</span
+              >
+            </label>
+          </div>
+          <div class="flex flex-col h-[50px]">
+            <label
+              class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+            >
+              <input
+                (change)="change_closeAuth()"
+                [checked]="newConfig.closeAuth"
+                class="sr-only peer"
+                type="checkbox"
+                value="1"
+              />
+              <div
+                class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+              ></div>
+              <span
+                class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+              >Allow Close Authorization</span
+              >
+            </label>
+          </div>
+          <div class="flex flex-col h-[50px]">
+            <label
+              class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+            >
+              <input
+                [checked]=""
+                class="sr-only peer"
+                type="checkbox"
+                value="1"
+
+              />
+              <div
+                class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+              ></div>
+              <span
+                class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+              >Users Delete Products From Invoice</span
+              >
+            </label>
+          </div>
+        </div>
+        <div class="flex flex-col w-full">
+          <div class="flex flex-col w-full ml-3 space-y-6 ">
+            <div class="flex flex-col h-[50px]">
+              <label
+                class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+              >
+                <input
+                  (change)="change_allowEBT()"
+                  [checked]="newConfig.allowEBT"
+                  class="sr-only peer"
+                  type="checkbox"
+                  value="1"
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+                ></div>
+                <span
+                  class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+                >Allow EBT Options</span
+                >
+              </label>
+            </div>
+            <div class="flex flex-col h-[50px]">
+              <label
+                class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+              >
+                <input
+                  (change)="change_allowLastProdClear()"
+                  [checked]="newConfig.allowLastProdClear"
+                  class="sr-only peer"
+                  type="checkbox"
+                  value="1"
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+                ></div>
+                <span
+                  class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+                >Allow Clear Last Product</span
+                >
+              </label>
+            </div>
+            <div class="flex flex-col h-[50px]">
+              <label
+                class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+              >
+                <input
+                  [checked]=""
+                  class="sr-only peer"
+                  type="checkbox"
+                  value="1"
+
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+                ></div>
+                <span
+                  class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+                >Allow Mark For FoodStamp Product</span
+                >
+              </label>
+            </div>
+            <div class="flex flex-col h-[50px]">
+              <label
+                class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+              >
+                <input
+                  (change)="change_closeDayAutomatic()"
+                  [checked]="newConfig.closeDayAutomatic"
+                  class="sr-only peer"
+                  type="checkbox"
+                  value="1"
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+                ></div>
+                <span
+                  class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+                >Allow Close Day Automatic</span
+                >
+              </label>
+            </div>
+            <div class="flex flex-col h-[50px]">
+              <label
+                class="relative inline-flex items-center mt-auto mb-auto w-[300px] cursor-pointer"
+              >
+                <input
+                  (change)="change_restartDayAutomatic()"
+                  [checked]="newConfig.restartDayAutomatic"
+                  class="sr-only peer"
+                  type="checkbox"
+                  value="1"
+                />
+                <div
+                  class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-500 peer-checked:bg-[#3EC8AC]"
+                ></div>
+                <span
+                  class="ml-3 text-[14px] font-medium text-gray-900 dark:text-gray-300"
+                >Allow Restart Day Automatic</span
+                >
+              </label>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="ml-auto me-auto w-[600px] flex justify-between mb-5 mt-3">
+      <button
+        (click)="onSaveSetting()"
+        class="w-[224px] h-[48px] mx-[6px] text-[#557AD9] hover:bg-blue-800
+        hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300
+        font-medium rounded-[10px] text-sm bg-white border-2 border-blue-600 mt-2
+        dark:bg-blue-600
+        dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button"
+      >
+        Cancel
+      </button>
+      <button
+        (click)="onSaveSetting()"
+        class="w-[224px] h-[48px] mx-[6px] text-white hover:bg-blue-800
+         focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium
+          rounded-[10px] text-sm bg-[#557AD9] mt-2 dark:bg-blue-600
+          dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</div>

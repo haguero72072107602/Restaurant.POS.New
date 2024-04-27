@@ -1,0 +1,129 @@
+<section class="w-full h-[calc(100vh-80px)] bg-[#F8F9FD]">
+  <div class="h-full flex flex-col justify-between ">
+
+    <section class="w-full min-h-[calc(100vh-80px)] flex items-center mx-auto">
+      <div class="w-full min-h-[calc(100vh-80px)] flex mx-2  space-x-2">
+        <div class="w-1/2 bg-white border rounded-2xl items-center my-4 ">
+          <div class="h-[48px] flex justify-between items-center border-b pb-2 mx-4 mt-4 mb-4">
+            <p class="font-semibold text-[16px] text-gray-900  ">
+              Scheduler
+            </p>
+            <button
+              (click)="addScheduler()"
+              class="w-[152px] h-[36px] bg-[#557AD9] flex items-center justify-center border-[#557AD9]
+                         border-2 rounded-md text-white"
+              type="button">
+              Create
+            </button>
+          </div>
+
+          <div class="flex w-full h-[calc(100vh-200px)] mt-2">
+            <div class="w-full h-[calc(100vh-200px)] overscroll-y-auto overflow-x-hidden
+                        dark:scrollbar-thick dark:scrollbar-thumb dark:scrollbar-track">
+
+              <div class="gap-4 mx-2 xl:mx-4 mt-4 items-center">
+                @if (loadingScheduler) {
+                  <div class="w-full h-[calc(100vh-200px)]">
+                    <app-progress-circle/>
+                  </div>
+                } @else {
+                  @for (items of schedulerList; track items) {
+                    <app-scheduler-card
+                      [scheduler]="items"
+                      (evSelectedScheduler)="evSelectedSchedure($event)"
+                      (evDeletedScheduler)="evDeletedScheduler($event)"
+                      (evStateScheduler)="evStateScheduler($event)"
+                    />
+                  }
+                }
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="w-1/2 bg-white border rounded-2xl items-center my-4 flex flex-col justify-between">
+          <div class="w-full h-[48px] flex items-center justify-between border-b pb-2 mt-4 mb-4">
+            <button
+              (click)="selectOptionButton(0)"
+              [ngClass]="optionSelected === 0 ? 'text-blue-500 bg-[#E0E6E9] p-1 rounded-md' : 'text-black'"
+              class="ml-6 text-[20px] w-[140px] h-[40px] text-black font-semibold font-poppins cursor-pointer">
+              Generals
+            </button>
+            <button
+              (click)="selectOptionButton(1)"
+              [ngClass]="optionSelected === 1 ? 'text-blue-500 bg-[#E0E6E9] p-1 rounded-md' : 'text-black'"
+              class="mr-6 text-[20px] w-[140px] h-[40px] text-black font-semibold font-poppins cursor-pointer">
+              Products
+            </button>
+            <!--
+            <button
+              [ngClass]="optionSelected === 2 ? 'text-blue-500 bg-[#E0E6E9] p-1 rounded-md' : 'text-black'"
+              class="text-[20px] w-[240px] h-[40px] text-black font-semibold font-poppins cursor-pointer"
+              (click)="selectOptionButton(2)">
+              Departments
+            </button>
+            -->
+          </div>
+
+          <div class="flex w-full h-[calc(100vh-300px)]">
+            <div class="w-full h-[calc(100vh-300px)] overscroll-y-auto overflow-x-hidden
+                        dark:scrollbar-thick dark:scrollbar-thumb dark:scrollbar-track">
+
+              <div class="mx-4 items-center">
+
+                @switch (optionSelected) {
+                  @case (0) {
+                    @if (selectedSheduler) {
+                      <app-scheduler-header [scheduler]="selectedSheduler"/>
+
+                      @if (moduleActive === SchedulerType.Promotion) {
+                        <app-scheduler-set-promotions [scheduler]="selectedSheduler"/>
+                      } @else if (moduleActive === SchedulerType.HappyHour) {
+                        <app-scheduler-set-discount [scheduler]="selectedSheduler"/>
+                      }
+
+
+                      <app-scheduler-frecuency
+                        [scheduler]="selectedSheduler"
+                        (evAddSchedulerTime)="evAddSchedulerTime($event)"
+                        (evDeleteSchedulerTime)="evDeleteSchedulerTime($event)"
+                      />
+                    }
+                  }
+                  @case (1) {
+                    <app-scheduler-dropdown-products
+                      [scheduler]="selectedSheduler"
+                      (evSchedulerAddProduct)="evSchedulerAddProduct($event)"
+                      (evSchedulerDelProduct)="evSchedulerDelProduct($event)"
+                    />
+                  }
+                }
+
+              </div>
+            </div>
+          </div>
+          <div class="w-full min-h-[80px] flex justify-center items-center border-t">
+            <button
+              (click)="saveScheduler()"
+              [disabled]="selectedSheduler === undefined"
+              class="w-[244px] h-[48px] text-white bg-[#50D1AA] shadow text-center
+                    font-semibold rounded-lg text-sm focus:outline-none
+                    disabled:bg-gray-300 flex items-center justify-center">
+              <svg fill="none" height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.9375 3.9375V15.8125L5.1875 17.0625H17.0625V3.9375H3.9375Z" fill="#F8F9FD" opacity="0.2"/>
+                <path
+                  d="M3.9375 11.6932V4.5625C3.9375 4.39674 4.00335 4.23777 4.12056 4.12056C4.23777 4.00335 4.39674 3.9375 4.5625 3.9375H16.4375C16.6033 3.9375 16.7622 4.00335 16.8794 4.12056C16.9967 4.23777 17.0625 4.39674 17.0625 4.5625V16.4375C17.0625 16.6033 16.9967 16.7622 16.8794 16.8794C16.7622 16.9967 16.6033 17.0625 16.4375 17.0625H11.0966"
+                  stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                <path d="M10.5 12.375L5.5 17.375L3 14.875" stroke="white" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="1.5"/>
+              </svg>
+              <span class="ml-1">Update</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</section>

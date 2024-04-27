@@ -1,0 +1,11 @@
+<ag-grid-angular
+  (gridReady)="onGridReady($event)"
+  [columnDefs]="columnDefs"
+  [context]="context"
+  [frameworkComponents]="frameworkComponents"
+  [gridOptions]="gridOptions"
+  [rowMultiSelectWithClick]="selectableProd"
+  [suppressRowClickSelection]="!selectableProd"
+  class="ag-theme-material"
+  style="width: 100%; height: 100%;">
+</ag-grid-angular>

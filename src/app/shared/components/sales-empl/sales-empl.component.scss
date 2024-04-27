@@ -1,0 +1,88 @@
+:host {
+  font-size: 16px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  // width: 60%;
+  margin-bottom: 25px;
+
+  & > div {
+    margin: 10px 0;
+  }
+
+  & mat-radio-button {
+    margin: 0 10px;
+  }
+}
+
+.employee label, .payment label {
+  margin: 5px 0 15px 0;
+}
+
+.grid, .button {
+  display: flex;
+  // width: 95%;
+  height: 450px;
+}
+
+.button {
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 470px;
+
+  & > list-invoices {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+ag-grid-angular {
+  width: 850px;
+  height: 450px;
+  margin-bottom: 2px;
+  font: 400 18px "Roboto", sans-serif;
+
+  & ::ng-deep .ag-paging-row-summary-panel {
+    margin-left: 10px !important;
+  }
+
+  & ::ng-deep .ag-paging-page-summary-panel {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  & ::ng-deep button.ag-paging-button {
+    background-size: 32px !important;
+    margin: 0 8px !important;
+    cursor: none !important;
+    height: 100%;
+  }
+
+  & ::ng-deep .ag-header {
+    font-size: 15px !important;
+  }
+
+  & ::ng-deep .ag-font-style {
+    cursor: none !important;
+  }
+}
+
+.show {
+  display: initial;
+}
+
+.hide {
+  display: none;
+}

@@ -1,0 +1,113 @@
+<div
+  class=" grid gap-6 my-6
+    md:grid-cols-4
+    p-3 "
+>
+  @if (sales) {
+    <div class="p-6 bg-white shadow rounded-2xl h-[150px] border">
+      <dl class="space-y-2">
+        <dt class="text-sm font-medium text-gray-500">GROSS SALE</dt>
+
+        <dd class="text-2xl font-light xl:text-4xl ">${{ sales!.grossSale }}</dd>
+
+        <dd class="flex items-center space-x-1 text-sm font-medium text-green-500">
+          <span>10% more</span>
+
+          <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M17.25 15.25V6.75H8.75"></path>
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M17 7L6.75 17.25"></path>
+          </svg>
+        </dd>
+      </dl>
+    </div>
+    <div class="p-6 bg-white shadow rounded-2xl h-[150px] border">
+      <dl class="space-y-2">
+        <dt class="text-sm font-medium text-gray-500">NET SALE</dt>
+
+        <dd class="text-2xl font-light xl:text-4xl">${{ sales!.netSale }}</dd>
+
+        <dd class="flex items-center space-x-1 text-sm font-medium text-green-500">
+          <span>15% more</span>
+
+          <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M17.25 15.25V6.75H8.75"></path>
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M17 7L6.75 17.25"></path>
+          </svg>
+        </dd>
+      </dl>
+    </div>
+    <div class="p-6 bg-white shadow rounded-2xl h-[150px] border">
+      <dl class="space-y-2">
+        <dt class="text-sm font-medium text-gray-500">SALE TAX</dt>
+
+        <dd class="text-2xl font-light xl:text-4xl">${{ sales!.saleTax }}</dd>
+
+        <dd class="flex items-center space-x-1 text-sm font-medium text-green-500">
+          <span>2% more</span>
+
+          <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M17.25 15.25V6.75H8.75"></path>
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M17 7L6.75 17.25"></path>
+          </svg>
+        </dd>
+      </dl>
+    </div>
+    <div class="p-6 bg-white shadow rounded-2xl h-[150px] border">
+      <dl class="space-y-2">
+        <dt class="text-sm font-medium text-gray-500">TIP AMOUNT</dt>
+
+        <dd class="text-2xl font-light xl:text-4xl">${{ sales!.tipAmount }}</dd>
+
+        <dd class="flex items-center space-x-1 text-sm font-medium text-green-500">
+          <span>2% more</span>
+
+          <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M17.25 15.25V6.75H8.75"></path>
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M17 7L6.75 17.25"></path>
+          </svg>
+        </dd>
+      </dl>
+    </div>
+  }
+</div>
+
+
+<!--
+
+@for (payment of mediaPayments; track payment) {
+    <div class="p-6 bg-white shadow rounded-2xl h-[170px]">
+        <dl class="space-y-2">
+            <dt class="text-sm font-medium text-gray-500">{{payment.name}} PAYMENTS</dt>
+
+            <dd class="text-5xl font-light md:text-6xl">${{payment.total}}</dd>
+
+            <dd class="flex items-center space-x-1 text-sm font-medium text-green-500">
+                <span>Count: {{payment.count}} payments</span>
+
+                <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M17.25 15.25V6.75H8.75"></path>
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M17 7L6.75 17.25"></path>
+                </svg>
+            </dd>
+        </dl>
+    </div>
+}
+
+
+
+
+
+
+
+
+-->

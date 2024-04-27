@@ -1,0 +1,149 @@
+<div [class]="theme" oncontextmenu="return false">
+  <mat-toolbar>
+    <span style="color: white">{{ title }}</span>
+    <span class="flex-spacer"></span>
+    <button class="close" mat-dialog-close mat-raised-button>&times;</button>
+  </mat-toolbar>
+  <div class="flex-center" mat-dialog-content>
+    <p>{{ subtitle }}</p>
+    <div class="financial-layout" fxLayoutAlign="start start" fxLayoutGap="10px">
+      <div class="column" fxLayoutGap="10px">
+        <div class="financial-group sales">
+          <h3>Sales</h3>
+          <div class="financial-item">
+            <label>Sales</label>
+            <span>{{ sales?.saleTax| currency }}</span>
+          </div>
+          <div class="financial-item">
+            <label>Sales Tax</label>
+            <span>{{ sales?.saleWithTax| currency }}</span>
+          </div>
+          <div class="financial-item bold">
+            <label>Gross Sale</label>
+            <span>{{ sales?.grossSale| currency }}</span>
+          </div>
+          <div class="financial-item">
+            <label>Deduction</label>
+            <span>{{ sales?.deduction| currency }}</span>
+          </div>
+          <div class="financial-item">
+            <label>Deduction Tax</label>
+            <span>{{ sales?.deductiontax| currency }}</span>
+          </div>
+          <div class="financial-item">
+            <label>Charges to Accounts</label>
+            <span>{{ sales?.chargesAccount| currency }}</span>
+          </div>
+          <div class="financial-item">
+            <label>Accounts Payments</label>
+            <span>{{ sales?.paymentsAccounts| currency }}</span>
+          </div>
+          <div class="financial-item bold">
+            <label>Net Sale</label>
+            <span>{{ sales?.netSale| currency }}</span>
+          </div>
+        </div>
+
+        @if (lines!.length) {
+          <div class="financial-group lines">
+            <h3>Lines</h3>
+            @for (line of lines; track line) {
+              <div class="financial-item">
+                <label>{{ line.name }}</label>
+                <div class="amount-total">
+                  <span>{{ line.count }}</span>
+                  <span>{{ line.total | currency }}</span>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+      <div fxLayout="column" fxLayoutGap="10px">
+        <div class="financial-group cash-balance">
+          <h3>Cash balance</h3>
+          <div class="financial-item">
+            <label>Cash Sales</label>
+            <span>{{ cash?.cashSales| currency }}</span>
+          </div>
+          <div class="financial-item">
+            <label>Cash Account Payment</label>
+            <span>{{ cash?.cashAccountPayments| currency }}</span>
+          </div>
+          <div class="financial-item">
+            <label>Paid Out</label>
+            <span>{{ cash?.paidOut| currency }}</span>
+          </div>
+          <div class="financial-item bold">
+            <label>Cash Due</label>
+            <span>{{ cash?.cashDue| currency }}</span>
+          </div>
+          <div class="financial-item">
+            <label>Ticks/Avg Tck</label>
+            <div class="amount-total">
+              <span>{{ cash?.ticks }}</span>
+              <span>{{ cash?.avgTicks| currency }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="financial-group functions">
+          <h3>Functions</h3>
+          <div class="financial-item">
+            <label>Refund</label>
+            <span>{{ functions?.refund| currency }}</span>
+          </div>
+          <div class="financial-item">
+            <label>Open Check</label>
+            <span>{{ functions?.openCheck| currency }}</span>
+          </div>
+          <div class="financial-item">
+            <label>Void</label>
+            <span>{{ functions?.voids| currency }}</span>
+          </div>
+          <div class="financial-item bold">
+            <label>Paid Out</label>
+            <span>{{ functions?.paidOut| currency }}</span>
+          </div>
+          <div class="financial-item">
+            <label>Discount</label>
+            <span>{{ functions?.discount| currency }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="column">
+        @if (mediaPayments!.length || mediaSales!.length) {
+          <div class="financial-group lines">
+            <h3>Media</h3>
+            <div class="financial-item bold">TOTAL PAYMENTS</div>
+            @for (payment of mediaPayments; track payment) {
+              <div class="financial-item">
+                <label>{{ payment.name }}</label>
+                <div class="amount-total">
+                  <span>{{ payment.count }}</span>
+                  <span>{{ payment.total | currency }}</span>
+                </div>
+              </div>
+            }
+
+            <div class="financial-item bold">SALES</div>
+            @for (sale of mediaSales; track sale) {
+              <div class="financial-item">
+                <label>{{ sale.name }}</label>
+                <div class="amount-total">
+                  <span>{{ sale.count }}</span>
+                  <span>{{ sale.total | currency }}</span>
+                </div>
+              </div>
+            }
+          </div>
+        }
+
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button (click)="printCloseReport()" mat-raised-button>Print Close Report</button>
+  </div>
+</div>

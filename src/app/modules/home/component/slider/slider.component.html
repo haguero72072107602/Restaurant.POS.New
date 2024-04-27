@@ -1,0 +1,17 @@
+<!-- (swipeleft)="swipeleft($event)" (swiperight)="swiperight($event)" -->
+<div class="slider">
+  <div class="list">
+    @for (image of images; track image) {
+      <div class="item">
+        <img [src]="image.imgSrc" [alt]="image.imgAlt" class="slider-image" (swipeleft)="swiperLeft()">
+      </div>
+    }
+  </div>
+  <div class="circle">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, labore?
+  </div>
+  <div class="arrow">
+    <button (click)="prevClick()" id="prev"> <</button>
+    <button (click)="nextClick()" id="next"> ></button>
+  </div>
+</div>

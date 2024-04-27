@@ -1,0 +1,231 @@
+.original {
+  //login
+  --login-div: white;
+  --number-calculator: rgba(19, 34, 87, 0.71);
+  --number-border: rgba(13, 20, 40, 0.71);
+  --span-number: white;
+  --enter-color: #f34141;
+  --enter-border: #db2e2e;
+  --cancel-color: #fff05f;
+  --cancel-border: #f7e544;
+  --cancel-text: black;
+  --clock-in: #1fff9c;
+  --clock-in-border: #1be98c;
+  --clock-out: #ff9b3e;
+  --clock-out-border: #e88930;
+  --clock-out-text: white;
+
+  //config
+  --background: #5b4cab;
+  --tabs: #5b4cab;
+  --button-op: #a47cea;
+  --button-op-bord: #a376ef;
+
+  //mensajes
+  --backmsj: #5b4cab;
+  --closebtn: #793be3;
+
+  --info-text: black;
+
+  --invoice: lightyellow;
+  --invoice-border: rgb(251, 210, 108);
+
+  //colors
+  --color4: #f34141;
+  --color4-border: #db2e2e;
+  --color4-text: white;
+  --color5: rgb(14, 33, 96);
+  --color5-border: rgb(19, 32, 70);
+  --color5-text: white;
+  --color1: #fff05f;
+  --color1-border: #f7e544;
+  --color1-text: black;
+  --color2: #1fff9c;
+  --color2-border: #1be98c;
+  --color2-text: black;
+  --color3: #2ae1ff;
+  --color3-border: #22539f;
+  --color3-text: black;
+  --color6: #ff9b3e;
+  --color6-border: #e88930;
+  --color6-text: white;
+
+  //paginator
+  --pag: #9ACEF8;
+  --pag-border: #85bdeb;
+  --pag-disable: #5787ae;
+}
+
+.greenTheme {
+  //login
+  --login-div: #f7fff4;
+  --number-calculator: white;
+  --number-border: lightgray;
+  --span-number: black;
+  --enter-color: #07a309;
+  --enter-border: rgb(61, 188, 54);
+  --cancel-color: #6af13a;
+  --cancel-border: #71f242;
+  --cancel-text: black;
+  --clock-in: #b4f6a4;
+  --clock-in-border: rgb(173, 224, 159);
+  --clock-out: #b4f6a4;
+  --clock-out-border: rgb(173, 224, 159);
+  --clock-out-text: black;
+
+  //config
+  --background: #a5f89a;
+  --tabs: #00730a;
+  --button-op: #74ed64;
+  --button-op-bord: rgb(126, 218, 87);
+
+  //mensajes
+  --backmsj: #73ef67;
+  --closebtn: #79f56e;
+
+  --info-text: #069d10;
+
+  --invoice: #b5ffad;
+  --invoice-border: #bdffad;
+
+  //colors
+  --color1: #bcffaf;
+  --color1-border: #bbf08d;
+  --color1-text: black;
+  --color2: #88ff76;
+  --color2-border: #a6e673;
+  --color2-text: black;
+  --color3: #40df27;
+  --color3-border: #7fd84f;
+  --color3-text: black;
+  --color4: #01ca01;
+  --color4-border: rgb(78, 211, 69);
+  --color4-text: white;
+  --color5: #017f18;
+  --color5-border: #66bc0a;
+  --color5-text: white;
+  --color6: #88ff76; //igual al 2
+  --color6-border: #a6e673;
+  --color6-text: black;
+
+  //paginator
+  --pag: #9af8ae;
+  --pag-border: #85eb88;
+  --pag-disable: #57ae5d;
+}
+
+.blueTheme {
+  //login
+  --login-div: #f4faff;
+  --number-calculator: white;
+  --number-border: lightgray;
+  --span-number: black;
+  --enter-color: #0866b3;
+  --enter-border: rgb(54, 128, 188);
+  --cancel-color: #45a1ed;
+  --cancel-border: #42a3f2;
+  --cancel-text: white;
+  --clock-in: #C3E3FD;
+  --clock-in-border: rgb(198, 230, 255);
+  --clock-out: #C3E3FD;
+  --clock-out-border: rgb(198, 230, 255);
+  --clock-out-text: black;
+
+  //config
+  --background: #9ACEF8;
+  --tabs: #004173;
+  --button-op: #1285E1;
+  --button-op-bord: rgb(87, 159, 218);
+
+  //mensajes
+  --backmsj: #1285E1;
+  --closebtn: #6EB8F5;
+
+  --info-text: #06599d;
+
+  --invoice: #addbff;
+  --invoice-border: #addbff;
+
+  //colors
+  --color1: #E8F5FF;
+  --color1-border: #74b4e5;
+  --color1-text: black;
+  --color2: #C3E3FD;
+  --color2-border: rgb(169, 202, 228);
+  --color2-text: black;
+  --color3: #9ACEF8;
+  --color3-border: rgb(158, 197, 227);
+  --color3-text: black;
+  --color4: #6EB8F5;
+  --color4-border: #4593d3;
+  --color4-text: black;
+  --color5: #1285E1;
+  --color5-border: rgb(62, 132, 189);
+  --color5-text: white;
+  --color6: #C3E3FD;
+  --color6-border: rgb(169, 202, 228);
+  --color6-text: black;
+
+  //paginator
+  --pag: #9ACEF8;
+  --pag-border: #85bdeb;
+  --pag-disable: #5787ae;
+}
+
+.orangeTheme {
+  //login
+  --login-div: #fff4eb;
+  --number-calculator: white;
+  --number-border: lightgray;
+  --span-number: black;
+  --enter-color: #cb4c08;
+  --enter-border: #b94404;
+  --cancel-color: #f57535;
+  --cancel-border: #eb6a2a;
+  --cancel-text: white;
+  --clock-in: #ff9767;
+  --clock-in-border: #df6830;
+  --clock-out: #fc986a;
+  --clock-out-border: #e76b31;
+  --clock-out-text: black;
+
+  //config
+  --background: #fd8249;
+  --tabs: #cb4c08;
+  --button-op: #e76b31;
+  --button-op-bord: #d8612a;
+
+  //mensajes
+  --backmsj: #d85716;
+  --closebtn: #ef763d;
+
+  --info-text: #ab3c00;
+
+  --invoice: #ffae71;
+  --invoice-border: #fda562;
+
+  //colors
+  --color1: #ffc2a6;
+  --color1-border: #e38d66;
+  --color1-text: black;
+  --color2: #ffa073;
+  --color2-border: #e67541;
+  --color2-text: black;
+  --color3: #f77a3c;
+  --color3-border: #db6428;
+  --color3-text: black;
+  --color4: #ff6417;
+  --color4-border: #ff6f28;
+  --color4-text: white;
+  --color5: #c04000;
+  --color5-border: #d25000;
+  --color5-text: white;
+  --color6: #ffa073;
+  --color6-border: #e06e39;
+  --color6-text: black;
+
+  //paginator
+  --pag: #ff854c;
+  --pag-border: #ef6e32;
+  --pag-disable: #d87141;
+}

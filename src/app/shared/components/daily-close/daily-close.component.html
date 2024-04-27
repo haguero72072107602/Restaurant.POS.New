@@ -1,0 +1,16 @@
+<div oncontextmenu="return false">
+  <mat-toolbar color="primary">
+    {{ data.title }}
+    <span class="flex-spacer"></span>
+    <button color="primary" mat-dialog-close mat-raised-button>&times;</button>
+  </mat-toolbar>
+  <div class="content" mat-dialog-content>
+    @if (data.empl) {
+      <sales-empl [employes]="data.empl" (selectEmployed)="setEmployee($event)"></sales-empl>
+    }
+  </div>
+  <div [ngClass]="(employeeId) ? 'show': 'hide'" mat-dialog-actions>
+    <button (click)="print()" mat-raised-button>Print</button>
+    <button (click)="close()" mat-raised-button>Close</button>
+  </div>
+</div>

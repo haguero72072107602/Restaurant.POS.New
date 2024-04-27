@@ -1,0 +1,100 @@
+<section class="w-[465px] h-[410px] border rounded-[16px]
+                 bg-white relative">
+  <div class="flex justify-between items-center w-full h-[60px] bg-white dark:bg-gray-600 border-b">
+    <div class="flex justify-between items-center mx-5 w-full">
+      <span class="text-[16px] text-black font-semibold">{{ titleOperation }}</span>
+      <button (click)="onClose()"
+              class="px-5 py-3 text-white">
+        <svg aria-hidden="true" class="w-3 h-3 text-black font-semibold dark:text-white"
+             fill="none" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+          <path d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex flex-col justify-between mt-6">
+    <div class="flex flex-col mx-5 space-y-6">
+      <div class="w-full flex space-x-4">
+        <select (change)="changeOperation($event)"
+                [(ngModel)]="formOperation"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-[14px] rounded-lg text-center
+                      focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                      dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                      dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                id="countries">
+          <option class="text-16px" selected value="1">Purchase</option>
+          <option value="3">Negative adjust</option>
+          <option value="4">Positive adjust</option>
+          <option value="5">Unit cost adjust</option>
+        </select>
+      </div>
+      <div class="w-full flex space-x-4">
+        <div class="w-1/2">
+          <label class="block select-none dark:text-white text-[12px] text-[#828487] font-poppins">Quantity</label>
+          <input #touchKeyboardQuantity="ngxTouchKeyboard"
+                 (focus)="touchKeyboardQuantity.openPanel()"
+                 [(ngModel)]="formUnitInStock"
+                 [disabled]="quantityDisabled"
+                 class="block w-full p-1 border-2 border-gray-200 rounded-md outline-none focus:border-blue-300
+                          disabled:bg-gray-100 disabled:text-gray-200
+                          dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                          dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                 inputmode="decimal"
+                 ngxTouchKeyboard
+                 ngxTouchKeyboardFullScreen="true" type="number">
+        </div>
+        <div class="w-1/2">
+          <label class="block select-none dark:text-white text-[12px] text-[#828487] font-poppins">Price
+            cost</label>
+          <input #touchKeyboardPrice="ngxTouchKeyboard"
+                 (focus)="touchKeyboardPrice.openPanel()"
+                 [(ngModel)]="formUnitCost"
+                 [disabled]="priceDisabled"
+                 class="block w-full p-1 border-2 border-gray-200 rounded-md outline-none focus:border-blue-300
+                          disabled:bg-gray-100 disabled:text-gray-200
+                          dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                          dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                 inputmode="decimal"
+                 ngxTouchKeyboard
+                 ngxTouchKeyboardFullScreen="true" type="number">
+        </div>
+      </div>
+      <div class="w-full flex space-x-4">
+              <textarea #touchKeyboard1="ngxTouchKeyboard" (focus)="touchKeyboard1.openPanel()"
+                        [(ngModel)]="formNote"
+                        class="w-full h-[60px] text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300
+                       focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600
+                       dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                       dark:focus:border-blue-500"
+                        id="message"
+                        ngxTouchKeyboard
+                        ngxTouchKeyboardFullScreen="true"
+                        placeholder="Write description here..."
+                        rows="2" style="overflow:auto;resize:none"></textarea>
+      </div>
+    </div>
+    <div class="flex items-center space-x-[24px] justify-center mt-[48px]">
+      <button (click)="onClose()"
+              class="w-[169px] h-[48px] inline-flex items-center border border-blue-400
+                     text-blue-400 justify-center
+                     hover:border-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg
+                     text-sm text-center"
+              type="button">
+        Cancel
+      </button>
+      <button (click)="onSubmit()"
+              class="w-[169px] h-[48px] text-white inline-flex items-center hover:text-white border border-blue-400
+                     bg-blue-400 justify-center disabled:bg-blue-200
+                     hover:border-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg
+                     text-sm text-center">
+        Update
+      </button>
+    </div>
+  </div>
+</section>
+
+
+

@@ -1,0 +1,7 @@
+<div class="column">
+  @for (j of numbers; track j) {
+    <button mat-button fxLayoutGap="10px" (click)="pressKey($event, j)"
+            [disabled]="disableOp">{{ j }}
+    </button>
+  }
+</div>

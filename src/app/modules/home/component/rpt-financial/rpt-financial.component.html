@@ -1,0 +1,29 @@
+<div class="w-[calc(100vw-340px)] h-[calc(100vh-(80px))] bg-[#F8F9FD]">
+  <section
+    class="w-full h-[80px] flex border-b bg-white items-center justify-between shadow">
+    <div class="ml-4 font-poppins text-[20px] font-semibold">
+      Financial details
+    </div>
+    <div class="flex gap-4 mr-4">
+      @if (showDateRangeReport) {
+        <app-button-date-range (onChangeDate)="onDateUpdate($event)" [dateRange]="RangeDateOperation.Day"
+                               [emitInitialRange]="true"/>
+      }
+    </div>
+  </section>
+
+
+  <div class="w-[calc(100vw-340px)] h-[calc(100vh-170px)] overscroll-y-contain overflow-x-hidden
+              dark:scrollbar-thick dark:scrollbar-thumb dark:scrollbar-track">
+
+    <app-financials
+      #financials
+      [cashierId]="cashierId"
+      [reportEndDate]="getDateStart()"
+      [reportStartDate]="getDateEnd()"
+      [showPrint]="false"
+    />
+
+
+  </div>
+</div>

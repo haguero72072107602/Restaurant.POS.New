@@ -1,0 +1,32 @@
+<div [class]="theme" oncontextmenu="return false">
+  <mat-toolbar>
+    <span class="title">{{ data.title }}</span>
+    <span class="flex-spacer"></span>
+    <button class="close" mat-dialog-close mat-raised-button>&times;</button>
+  </mat-toolbar>
+  <div class="content" mat-dialog-content>
+    @if (data.content) {
+      <sales-shop [sales]="sales"></sales-shop>
+    }
+    @if (data.empl) {
+      <sales-empl [emplSel]="data.empl" [sales]="salesByUser" [listType]="'button'"
+                  (selectEmployed)="getSalesByDate($event)" (selectPayment)="getSalesByPayment($event)"
+                  (selectInvoice)="reviewCheck($event)">
+      </sales-empl>
+    }
+    @if (data.empl && data.date) {
+      <time-worked [emplSel]="data.empl" [records]="recordsByUser" [time]="timeWorkedByUser">
+
+      </time-worked>
+    }
+    @if (!data.content && !data.empl) {
+      <app-loading [message]="true"></app-loading>
+    }
+  </div>
+  @if (data.empl) {
+    <div mat-dialog-actions>
+      <button [ngClass]="(salesByUser && salesByUser.length > 0 && data.empl) ? 'show': 'hide'" mat-raised-button
+              class="background-primary text-floral-white" (click)="onPrint()"><span>Print</span></button>
+    </div>
+  }
+</div>

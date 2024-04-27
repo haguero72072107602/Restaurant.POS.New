@@ -1,0 +1,380 @@
+<div class="w-full h-[calc(100vh-80px)] font-poppins border-l-2">
+
+  @if (!isMoreOptions) {
+    <section class="flex flex-col w-full h-[180px] ">
+
+      <div class="w-full h-[46px] border-r bg-white dark:bg-[#374151] dark:border-gray-600
+                flex items-center justify-between pl-3 text-gray 00 py-4">
+        <div class="font-semibold text-[#9C9C9C]" style="font-size: 16px;">
+          <button class="mr-2">Order</button>
+          <span class="text-[#5856D6]">
+            {{ (numberInvoice && numberInvoice!.length > 0) ? '#' + numberInvoice!.slice(-6) : '' }}
+          </span>
+        </div>
+        <button [disabled]="enableButtons"
+                type="button" class="text-white bg-[#FF7CA3] hover:bg-red-600 mr-4 shadow
+               disabled:bg-gray-300
+               font-medium rounded-lg text-sm px-2.5 py-1 focus:outline-none
+               dark:disabled:bg-gray-400"
+                (click)="onClearOrder()">Clear
+        </button>
+      </div>
+
+      <div class="flex rounded-md shadow-sm justify-center items-center mt-[14px] mb-[14px]" role="group">
+
+        <button type="button"
+                [disabled]="disableDineIn"
+                [ngClass]="invoiceService!.txType === ETXType.DINEIN ? 'bg-[#5856D6] text-white' : 'text-[#5856D6] bg-[#F8F9FD]'"
+                class="w-[85px] h-[40px] text-[14px] font-normal border border-gray-200
+                       rounded-l-lg focus:bg-[#5856D6] hover:bg-[#5856D6] hover:text-white focus:text-white
+                       disabled:bg-gray-300 disabled:text-gray-600
+                       dark:bg-gray-700 dark:border-gray-600
+                       dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500
+                       dark:focus:text-white"
+                (click)="onETXType(ETXType.DINEIN)">
+          Dine in
+        </button>
+
+        <button type="button"
+                [disabled]="disablePickup"
+                [ngClass]="invoiceService!.txType === ETXType.PICKUP ? 'bg-[#5856D6] text-white' : 'text-[#5856D6] bg-[#F8F9FD]'"
+                class="w-[85px] h-[40px] text-[14px] font-normal border-t border-b border-gray-200
+                       hover:bg-[#5856D6] focus:bg-[#5856D6] hover:text-white
+                       disabled:bg-gray-300 disabled:text-gray-600
+                       focus:text-white dark:bg-gray-700 dark:border-gray-600 dark:text-white
+                       dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                (click)="onETXType(ETXType.PICKUP)">
+          Pick up
+        </button>
+
+        <button type="button"
+                [disabled]="disableDelivery"
+                [ngClass]="invoiceService!.txType === ETXType.DELIVERY ? 'bg-[#5856D6] text-white' : 'text-[#5856D6] bg-[#F8F9FD]'"
+                class="w-[85px] h-[40px] text-[14px] font-normal border-t border-b border-gray-200
+                       hover:bg-[#5856D6] focus:bg-[#5856D6] hover:text-white
+                       disabled:bg-gray-300 disabled:text-gray-600
+                       focus:text-white dark:bg-gray-700 dark:border-gray-600 dark:text-white
+                       dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                (click)="onETXType(ETXType.DELIVERY)">
+          Delivery
+        </button>
+
+        <button type="button"
+                [disabled]="disableToGo"
+                [ngClass]="invoiceService!.txType === ETXType.FAST_FOOD ? 'bg-[#5856D6] text-white' : 'text-[#5856D6] bg-[#F8F9FD]'"
+                class="w-[85px] h-[40px] text-[14px] font-normal border border-gray-200 rounded-r-md
+                       hover:bg-[#5856D6] focus:bg-[#5856D6] hover:text-white
+                       disabled:bg-gray-300 disabled:text-gray-600
+                       focus:text-white dark:bg-gray-700 dark:border-gray-600 dark:text-white
+                       dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                (click)="onETXType(ETXType.FAST_FOOD)">
+          To go
+        </button>
+      </div>
+      <!--
+      <button
+        class="inline-flex w-[340px] min-h-[40px] rounded-md bg-[#557AD9] items-center justify-center mx-[14px] mb-[14px]">
+        <svg width="20" height="20" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3.25V12.25M12 21.25V12.25M12 12.25H21M12 12.25H3" stroke="white" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="text-white text-[14px] ml-2">Customer</span>
+      </button>
+      -->
+
+      @if (table === undefined) {
+
+        <button
+          [disabled]="checkDinein"
+          class="inline-flex w-[340px] min-h-[40px] rounded-md bg-[#557AD9] items-center justify-center mx-[14px] mb-[14px]
+               disabled:bg-gray-300 disabled:text-gray-600 text-white "
+          (click)="onAssignTable()">
+          <svg class="mr-1" width="20" height="20" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3.25V12.25M12 21.25V12.25M12 12.25H21M12 12.25H3" stroke="white" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Table
+        </button>
+
+      } @else {
+
+        <div class="inline-flex w-[340px] min-h-[40px] rounded-md bg-[#557AD9] items-center
+                    justify-center mx-[14px] mb-[14px]">
+          <app-scroll-table [table]="invoiceService.getInvoiceTable"
+                            [numbers]="getArrayChairs"
+                            (evChangeTable)="onAssignTable()"
+                            (evSelectPosition)="onSelectedPostion($event)" class="w-full h-full"/>
+        </div>
+
+      }
+
+
+      <div class="flex flex-col w-full min-h-[calc(100vh-525px)] overscroll-y-contain overflow-x-hidden
+                dark:border-gray-600 " #scrollMe [scrollTop]="scrollMe!.scrollHeight">
+        @if (Invoice?.productOrders?.length! > 0) {
+          <div>
+
+            @for (item of onGroupByProducts(Invoice?.productOrders!); track item) {
+              <div>
+                <div class="flex">
+                  <div [style]="getColor(item - 1)"
+                       class="min-h-full min-w-[27px] flex justify-center items-center">
+                    {{ item }}
+                  </div>
+                  <!-- <div class="w-full px-1 flex flex-col" [@listAnimation]="animate"> -->
+                  <div class="w-full px-1 flex flex-col">
+
+                    @for (itemOrder of getFilterProducts(Invoice?.productOrders!, item); track last) {
+                      <!-- [@ultimoElemento]="itemOrder ? 'activo' : 'inactivo'" -->
+                      <div>
+                        <app-card-items-order
+                          [productOrder]="itemOrder"
+                          [editProductOrder]="paymentStatus"/>
+                      </div>
+                    }
+
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="flex flex-col justify-between h-[280px] w-full relative">
+        <div class="flex flex-col mx-2">
+          <div class="flex justify-between p-3 bg-gray-200 dark:bg-neutral-600 rounded-md">
+            <div class="font-semibold dark:text-white">Add</div>
+            <button
+              [disabled]="!invoiceService.invoice"
+              class="relative font-semibold text-blue-500 dark:text-blue-300 cursor-pointer" style="font-size: 16px;"
+              (click)="onAddNote()">
+              Note
+              @if (invoiceService.invoice?.note) {
+  <div class="absolute -top-2 -right-4 fill-current text-red-600 animate-pulse">
+    <svg aria-hidden="true" class="w-4 h-4 text-red dark:text-white shadow shadow-gray-500 rounded-full"
+         fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2"/>
+    </svg>
+  </div>
+  }
+            </button>
+            <button
+              [disabled]="!invoiceService.invoice"
+              class="relative font-semibold text-blue-500 dark:text-blue-300 cursor-pointer" style="font-size: 16px;"
+              (click)="onAddCustomer()"
+            >
+              Customers
+              @if (invoiceService.invoice?.order?.clientId) {
+  <div class="absolute -top-2 -right-4 fill-current text-red-600 animate-pulse">
+    <svg aria-hidden="true" class="w-4 h-4 text-red dark:text-white shadow shadow-gray-500 rounded-full"
+         fill="currentColor" height="24" viewBox="0 0 24 24" width="24"
+         xmlns="http://www.w3.org/2000/svg">
+      <path clip-rule="evenodd"
+            d="M12 20a7.966 7.966 0 0 1-5.002-1.756l.002.001v-.683c0-1.794 1.492-3.25 3.333-3.25h3.334c1.84 0 3.333 1.456 3.333 3.25v.683A7.966 7.966 0 0 1 12 20ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10c0 5.5-4.44 9.963-9.932 10h-.138C6.438 21.962 2 17.5 2 12Zm10-5c-1.84 0-3.333 1.455-3.333 3.25S10.159 13.5 12 13.5c1.84 0 3.333-1.455 3.333-3.25S13.841 7 12 7Z"
+            fill-rule="evenodd"/>
+    </svg>
+  </div>
+  }
+            </button>
+            <div class="relative font-semibold text-blue-500 dark:text-blue-300 cursor-pointer" style="font-size: 16px;"
+                 (click)="onAddDiscount()">
+              Discount
+              @if (invoiceService.invoice?.isDiscount) {
+  <div class="absolute -top-2 -right-4 fill-current text-red-600 animate-pulse">
+    <svg aria-hidden="true" class="w-4 h-4 text-red dark:text-white shadow shadow-gray-500 rounded-full"
+         fill="currentColor" height="24" viewBox="0 0 24 24" width="24"
+         xmlns="http://www.w3.org/2000/svg">
+      <path clip-rule="evenodd"
+            d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm5.757-1a1 1 0 1 0 0 2h8.486a1 1 0 1 0 0-2H7.757Z"
+            fill-rule="evenodd"/>
+    </svg>
+  </div>
+  }
+            </div>
+          </div>
+          <div class="flex flex-col gap-2 mt-2 ">
+            <div class="flex justify-between ">
+              <div class="font-semibold text-gray-400" style="font-size: 16px;">Sub total</div>
+              <div class="font-semibold dark:text-gray-300" style="font-size: 16px;">
+                $ {{ (Invoice?.subTotal) ? Invoice?.subTotal?.toFixed(2) : '0.00' }}
+              </div>
+            </div>
+            <div class="flex justify-between">
+              <div class="font-semibold text-[#EB5050]" style="font-size: 16px;">Discounts</div>
+              <div class="font-semibold text-[#EB5050] dark:text-gray-400" style="font-size: 16px;">
+                $ {{ (Invoice?.isDiscount) ? sumDiscount : '0.00' }}
+              </div>
+            </div>
+            <div class="flex justify-between">
+              <div class="font-semibold text-gray-400" style="font-size: 16px;">Tax</div>
+              <div class="font-semibold dark:text-gray-300" style="font-size: 16px;">
+                $ {{ (Invoice?.tax) ? Invoice?.tax?.toFixed(2) : '0.00' }}
+              </div>
+            </div>
+            <div class="mb-2">
+              <hr>
+            </div>
+            <div class="flex justify-between">
+              <div class="font-semibold text-gray-400" style="font-size: 16px;">Total</div>
+              <div class="font-semibold text-[#557AD9] dark:text-white" style="font-size: 16px;">
+                $ {{ (Invoice?.total) ? Invoice?.total?.toFixed(2) : '0.00' }}
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between w-full h-full mt-3 select-none gap-2">
+
+            <button [disabled]="disableVoid" class="text-white bg-[#F35C6E] h-[56px] hover:bg-red-600 w-[98px] shadow
+                      flex items-center justify-center disabled:bg-gray-300
+                      font-medium rounded-lg text-sm px-3 focus:outline-none cursor-pointer
+                      dark:disabled:bg-gray-400"
+                    (click)="cancelInvoice()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                <path opacity="0.2"
+                      d="M10.25 17.5C14.3921 17.5 17.75 14.1421 17.75 10C17.75 5.85786 14.3921 2.5 10.25 2.5C6.10786 2.5 2.75 5.85786 2.75 10C2.75 14.1421 6.10786 17.5 10.25 17.5Z"
+                      fill="white"/>
+                <path
+                  d="M10.25 17.5C14.3921 17.5 17.75 14.1421 17.75 10C17.75 5.85786 14.3921 2.5 10.25 2.5C6.10786 2.5 2.75 5.85786 2.75 10C2.75 14.1421 6.10786 17.5 10.25 17.5Z"
+                  stroke="white" stroke-width="1.5" stroke-miterlimit="10"/>
+                <path d="M12.75 7.5L7.75 12.5" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M12.75 12.5L7.75 7.5" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+              </svg>
+              <span class="ml-1">Void</span>
+            </button>
+
+
+            <button type="button"
+                    class="text-white bg-[#5856D6] w-[98px] h-[56px] hover:bg-blue-800 shadow
+                   flex items-center justify-center  cursor-pointer
+                   font-medium rounded-lg text-sm px-3 focus:outline-none"
+                    (click)="isMoreOptions = !isMoreOptions">
+              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                <path opacity="0.2"
+                      d="M10.25 17.5C14.3921 17.5 17.75 14.1421 17.75 10C17.75 5.85786 14.3921 2.5 10.25 2.5C6.10786 2.5 2.75 5.85786 2.75 10C2.75 14.1421 6.10786 17.5 10.25 17.5Z"
+                      fill="#F8F9FD"/>
+                <path
+                  d="M10.25 17.5C14.3921 17.5 17.75 14.1421 17.75 10C17.75 5.85786 14.3921 2.5 10.25 2.5C6.10786 2.5 2.75 5.85786 2.75 10C2.75 14.1421 6.10786 17.5 10.25 17.5Z"
+                  stroke="#F8F9FD" stroke-width="1.5" stroke-miterlimit="10"/>
+                <path
+                  d="M14.1875 10C14.1875 10.1036 14.1036 10.1875 14 10.1875C13.8964 10.1875 13.8125 10.1036 13.8125 10C13.8125 9.89645 13.8964 9.8125 14 9.8125C14.1036 9.8125 14.1875 9.89645 14.1875 10Z"
+                  fill="#F8F9FD" stroke="#F8F9FD" stroke-width="1.5"/>
+                <path
+                  d="M10.4375 10C10.4375 10.1036 10.3536 10.1875 10.25 10.1875C10.1464 10.1875 10.0625 10.1036 10.0625 10C10.0625 9.89645 10.1464 9.8125 10.25 9.8125C10.3536 9.8125 10.4375 9.89645 10.4375 10Z"
+                  fill="#F8F9FD" stroke="#F8F9FD" stroke-width="1.5"/>
+                <path
+                  d="M6.5 10.9375C7.01777 10.9375 7.4375 10.5178 7.4375 10C7.4375 9.48223 7.01777 9.0625 6.5 9.0625C5.98223 9.0625 5.5625 9.48223 5.5625 10C5.5625 10.5178 5.98223 10.9375 6.5 10.9375Z"
+                  fill="#F8F9FD"/>
+              </svg>
+              <span class="ml-1">More</span>
+            </button>
+
+            <button [disabled]="disableCheckout" class="text-white bg-[#50D1AA] h-[56px] hover:bg-green-600 w-[138px] shadow
+                      flex items-center justify-center disabled:bg-gray-300
+                      font-medium rounded-lg text-sm px-3  focus:outline-none cursor-pointer
+                      dark:disabled:bg-gray-400"
+                    (click)="checkoutOrder()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path opacity="0.2"
+                      d="M10 17.5C14.1421 17.5 17.5 14.1421 17.5 10C17.5 5.85786 14.1421 2.5 10 2.5C5.85786 2.5 2.5 5.85786 2.5 10C2.5 14.1421 5.85786 17.5 10 17.5Z"
+                      fill="#F8F9FD"/>
+                <path d="M10 5.625V6.875" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M10 13.125V14.375" stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path
+                  d="M10 17.5C14.1421 17.5 17.5 14.1421 17.5 10C17.5 5.85786 14.1421 2.5 10 2.5C5.85786 2.5 2.5 5.85786 2.5 10C2.5 14.1421 5.85786 17.5 10 17.5Z"
+                  stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path
+                  d="M8.125 13.125H10.9375C11.3519 13.125 11.7493 12.9604 12.0424 12.6674C12.3354 12.3743 12.5 11.9769 12.5 11.5625C12.5 11.1481 12.3354 10.7507 12.0424 10.4576C11.7493 10.1646 11.3519 10 10.9375 10H9.0625C8.6481 10 8.25067 9.83538 7.95765 9.54235C7.66462 9.24933 7.5 8.8519 7.5 8.4375C7.5 8.0231 7.66462 7.62567 7.95765 7.33265C8.25067 7.03962 8.6481 6.875 9.0625 6.875H11.875"
+                  stroke="#F8F9FD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="ml-1">Subtotal</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  }
+
+  <!-- <section *ngIf="isMoreOptions" class="h-[calc(100vh-400px)]"> -->
+  @if (isMoreOptions) {
+    <section class="h-full flex flex-col justify-end">
+      <div class="flex flex-col items-center justify-end">
+        <div class="flex w-full items-center my-[12px]">
+          <button #btnWwitchManager class="text-white bg-[#557AD9] h-[61px] hover:bg-blue-800 w-1/3 shadow mx-[12px]
+                      flex items-center justify-center disabled:bg-[#E0E6E9] disabled:text-[#3B5162]
+                      font-medium rounded-lg text-sm px-3  focus:outline-none cursor-pointer
+                      dark:disabled:bg-gray-400" disabled>SWITCH MANAGER
+          </button>
+
+          <button [disabled]="disableButtonHold"
+                  #btnCheckout class="text-white bg-[#557AD9] h-[61px] hover:bg-blue-800 w-1/3 shadow mr-[12px]
+                      flex items-center justify-center disabled:bg-[#E0E6E9] disabled:text-[#3B5162]
+                      font-medium rounded-lg text-sm px-3  focus:outline-none cursor-pointer
+                      dark:disabled:bg-gray-400"
+                  (click)="onPrintPreparedInvoice(1)">PRINT PREPARED ALL
+          </button>
+
+          <button [disabled]="disableButtonHold" class="text-white bg-[#557AD9] h-[61px] hover:bg-blue-800 w-1/3 shadow mr-[12px]
+                      flex items-center justify-center disabled:bg-[#E0E6E9] disabled:text-[#3B5162]
+                      font-medium rounded-lg text-sm px-3  focus:outline-none cursor-pointer
+                      dark:disabled:bg-gray-400"
+                  (click)="onPrintPreparedInvoice(0)">PRINT PREPARED
+          </button>
+
+        </div>
+        <div class="flex w-full items-center justify-between">
+          <button [disabled]="true" class="text-white bg-[#557AD9] h-[61px] hover:bg-blue-800 w-1/3 shadow mx-[12px]
+                      flex items-center justify-center disabled:bg-[#E0E6E9] disabled:text-[#3B5162]
+                      font-medium rounded-lg text-sm px-3  focus:outline-none cursor-pointer
+                      dark:disabled:bg-gray-400">RECALL CHECK
+          </button>
+          <button [disabled]="true" class="text-white bg-[#557AD9] h-[61px] hover:bg-blue-800 w-1/3 shadow mr-[12px]
+                      flex items-center justify-center disabled:bg-[#E0E6E9] disabled:text-[#3B5162]
+                      font-medium rounded-lg text-sm px-3  focus:outline-none cursor-pointer
+                      dark:disabled:bg-gray-400">TOP KITCHEN
+          </button>
+          <button [disabled]="enableButtons" class="text-white bg-[#557AD9] h-[61px] hover:bg-blue-800 w-1/3 shadow mr-[12px]
+                      flex items-center justify-center disabled:bg-[#E0E6E9] disabled:text-[#3B5162]
+                      font-medium rounded-lg text-sm px-3  focus:outline-none cursor-pointer
+                      dark:disabled:bg-gray-400"
+                  (click)="onPrintInvoice()">PRINT
+          </button>
+        </div>
+        <div class="flex w-full items-center justify-between my-[12px]">
+          <button [disabled]="disableButtonHold" class="text-white bg-[#557AD9] h-[61px] hover:bg-blue-800 w-1/3 shadow mx-[12px]
+                      flex items-center justify-center disabled:bg-[#E0E6E9] disabled:text-[#3B5162]
+                      font-medium rounded-lg text-sm px-3  focus:outline-none cursor-pointer
+                      dark:disabled:bg-gray-400"
+                  (click)="HoldInvoice()">HOLD
+          </button>
+          <button #btnCloseDay class="text-white bg-[#557AD9] h-[61px] hover:bg-blue-800 w-1/3 shadow mr-[12px]
+                      flex items-center justify-center disabled:bg-[#E0E6E9] disabled:text-[#3B5162]
+                      font-medium rounded-lg text-sm px-3  focus:outline-none cursor-pointer
+                      dark:disabled:bg-gray-400">CLOSE DAY
+          </button>
+          <button class="text-white bg-[#557AD9] h-[61px] hover:bg-blue-800 w-1/3 shadow mr-[12px]
+                      flex items-center justify-center disabled:bg-[#E0E6E9] disabled:text-[#3B5162]
+                      font-medium rounded-lg text-sm px-3  focus:outline-none cursor-pointer
+                      dark:disabled:bg-gray-400">CLOSE SHIFT
+          </button>
+        </div>
+        <div class="flex w-full items-center justify-between">
+          <button class="text-white bg-[#557AD9] w-full h-[61px] hover:bg-blue-800 shadow m-[12px]
+                      flex items-center justify-center disabled:bg-gray-300
+                      font-medium rounded-lg text-sm px-3  focus:outline-none cursor-pointer
+                      dark:disabled:bg-gray-400"
+                  (click)="onReturnMenu()">Return
+          </button>
+        </div>
+      </div>
+    </section>
+  }
+
+</div>
+
+
+

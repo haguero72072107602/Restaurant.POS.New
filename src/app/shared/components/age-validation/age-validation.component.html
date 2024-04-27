@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  Age verification
+  <span class="flex-spacer"></span>
+  <button mat-dialog-close mat-raised-button>&times;</button>
+</mat-toolbar>
+
+<form [formGroup]="ageForm">
+  <mat-dialog-content>
+    <p fxLayoutAlign="space-between">
+      <mat-form-field>
+        <input [(ngModel)]="data"
+               formControlName="dateInput"
+               id="dateInput"
+               matInput
+               type="text"
+        />
+        @if (!dateInput.valid) {
+          <mat-error>Date is invalid</mat-error>
+        }
+      </mat-form-field>
+      @if (!valid && tryValidation) {
+        <mat-error><span class="fa fa-warning fa-lg"></span>Date is invalid</mat-error>
+      }
+    </p>
+  </mat-dialog-content>
+  <generic-keyboard (evKeys)="getKeys($event)" [valid]="!valid"></generic-keyboard>
+</form>

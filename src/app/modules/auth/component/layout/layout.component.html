@@ -1,0 +1,94 @@
+<div
+  class="w-screen h-screen flex justify-between items-center"
+  style="
+    background: linear-gradient(
+      135deg,
+      rgba(221, 255, 224, 0.5) 0%,
+      rgba(216, 217, 255, 0.5) 53.65%,
+      rgba(234, 255, 241, 0.5) 100%
+    );
+  "
+>
+  <div class="flex flex-col justify-around h-screen pb-2 ps-2 pe-2 w-1/4">
+    <swiper-container
+      autoplay="true"
+      centeredSlidesBounds="true"
+      class="flex flex-col justify-center w-full"
+      loop="true"
+      speed="1000"
+    >
+      <swiper-slide>
+        <div class="flex flex-col justify-center w-full">
+          <img
+            class="ms-auto me-auto"
+            src="assets/promotions/Illustration.svg"
+          />
+          <span class="text-[24px] text-[#1C2537] text-center font-semibold"
+          >Selling made easy</span
+          >
+          <span class="text-[14px] text-[#55606D] text-center"
+          >Provides various payment methods, perfect for those of you who are
+            very cashless</span
+          >
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+
+        <div class="flex flex-col justify-center w-full">
+          <img
+            class="ms-auto me-auto"
+            src="assets/promotions/Illustration2.svg"
+          />
+          <span class="text-[24px] text-[#1C2537] text-center font-semibold"
+          >Time efficiency</span
+          >
+          <span class="text-[14px] text-[#55606D] text-center"
+          >Improve a lot of things apart from the easy payment, Kasa POS
+              facilitate things that can be accessed quickly</span
+          >
+        </div>
+
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="flex flex-col justify-center w-full">
+          <img
+            class="ms-auto me-auto"
+            src="assets/promotions/Illustration3.svg"
+          />
+          <span class="text-[24px] text-[#1C2537] text-center font-semibold"
+          >Grow your business</span
+          >
+          <span class="text-[14px] text-[#55606D] text-center"
+          >POS Improve your business by enhance your guest experience and
+              restaurant business operations</span
+          >
+        </div>
+
+      </swiper-slide>
+    </swiper-container>
+    <div class="flex flex-col justify-center w-full">
+      <img class="ms-auto me-auto" src="assets/promotions/logo.svg"/>
+      <span class="text-[24px] mt-2 text-[#193B5C] text-center font-bold">{{
+          dateInformation | date : "HH:mm"
+        }}</span>
+      <span class="text-[14px] text-[#193B5C] text-center">{{
+          dateInformation | date : "EEEE, MMMM d, y"
+        }}</span>
+    </div>
+  </div>
+
+
+  <div class="flex flex-col w-3/4 h-screen">
+    <div
+      class="flex items-center justify-center w-full h-full bg-cover "
+      style="background-image: url({{background}})"
+    >
+      <div class="backdrop-blur-sm w-full h-full">
+        <router-outlet></router-outlet>
+      </div>
+
+    </div>
+  </div>
+</div>

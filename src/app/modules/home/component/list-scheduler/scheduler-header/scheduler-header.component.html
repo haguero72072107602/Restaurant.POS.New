@@ -1,0 +1,53 @@
+<section class="w-full min-h-[180px] flex flex-col item-center bg-gray-50 rounded-2xl mb-6"
+         xmlns:autohide="http://www.w3.org/1999/xhtml">
+  <div class="max-h-[40px] flex flex-col mx-6 my-4">
+    <label class="block text-[12px] font-semibold text-gray-900 dark:text-white mb-1" for="productName">
+      Name
+    </label>
+    <input #touchKeyboardproductName="ngxTouchKeyboard" (focus)="touchKeyboardproductName.openPanel()"
+           [(ngModel)]="scheduler!.name"
+           aria-autocomplete="none"
+           class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                              focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                              dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                              dark:focus:border-blue-500"
+           id="productName"
+           ngxTouchKeyboard
+           ngxTouchKeyboardFullScreen
+           placeholder="Product name" required type="text">
+
+  </div>
+  <div class="flex mx-6 mt-6 space-x-4">
+    <div class="w-[50%] flex flex-col">
+      <label class="block mb-2 text-[12px] font-semibold text-gray-900 dark:text-white" for="beginDate">
+        Begin date
+      </label>
+      <input (change)="changeBeginDate($event)" [(ngModel)]="beginDate"
+             aria-autocomplete="none"
+             class="h-[40px] bg-white border border-gray-300 text-gray-900
+                              text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500
+                              dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                              dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             id="beginDate"
+             placeholder="Begin date"
+             required type="text">
+    </div>
+    <div class="w-[50%] flex flex-col">
+      <label class="block mb-2 text-[12px] font-semibold text-gray-900 dark:text-white" for="endDate">
+        End date
+      </label>
+      <input (change)="changeEndDate($event)" [(ngModel)]="endDate"
+             aria-autocomplete="none"
+             class="h-[40px] bg-white border border-gray-300 text-gray-900
+                              text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500
+                              dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                              dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             id="endDate"
+             placeholder="End date"
+             required type="text">
+    </div>
+
+
+  </div>
+</section>
+

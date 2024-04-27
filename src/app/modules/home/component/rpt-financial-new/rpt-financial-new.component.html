@@ -1,0 +1,73 @@
+<section class="w-[calc(100vw-(340px))] h-[calc(100vh-80px)] bg-white">
+  <section class="flex mx-4">
+    <div class="w-full h-[68px] bg-white border-b">
+      <div class="flex items-center mt-4 w-full justify-between">
+        <div class="flex-col">
+          <span class="text-black text-2xl font-semibold">
+            Financial dashboard</span
+          >
+        </div>
+        <div class="flex-col justify-between items-center">
+          <div class="flex justify-between items-center mr-4 text-[14px] font-normal gap-[16px]">
+            <app-button-date-range (onChangeDate)="onChangeDate($event)" [dateRange]="RangeDateOperation.ThisMonth"
+                                   [emitInitialRange]="true"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <div
+    class="w-full h-[calc(100vh-150px)] overscroll-y-contain overflow-x-hidden dark:scrollbar-thick dark:scrollbar-thumb dark:scrollbar-track"
+  >
+    <app-cards-financial-report
+      #financialscards
+      [reportEndDate]="reportEndDate!"
+      [reportStartDate]="reportStartDate!"
+    />
+
+
+    <app-block-rpt-sales-revenue
+      #salesrevenues
+      [reportEndDate]="reportEndDate!"
+      [reportStartDate]="reportStartDate!"
+    ></app-block-rpt-sales-revenue>
+
+    <div class="grid gap-6 my-6 md:grid-cols-2 p-2 mt-[30px]">
+      <div class="rounded-2xl border-2 h-[400px]">
+        @if (optionsPaymentsChart) {
+
+          <div class="text-center h-[20px] mt-2">
+            <span class="text-gray-500 text-md"> Payments types ($USD) </span>
+          </div>
+
+          <ag-charts-angular
+            class="relative w-[200px] h-[200px] mt-5"
+            [options]="optionsPaymentsChart"
+          />
+
+        }
+      </div>
+      <div class="rounded-2xl border-2 h-[400px]">
+        @if (optionsCardsChart) {
+          <div class="text-center h-[20px] mt-2">
+            <span class="text-gray-500 text-md"> Payments methods ($USD)</span>
+          </div>
+          <ag-charts-angular
+            class="relative w-[200px] h-[200px] mt-5"
+            [options]="optionsCardsChart"
+          />
+        }
+      </div>
+    </div>
+    <app-block-rpt-menu-items-bestseller
+      #menuitems
+      [reportEndDate]="reportEndDate!"
+      [reportStartDate]="reportStartDate!"
+    ></app-block-rpt-menu-items-bestseller>
+  </div>
+
+
+</section>
+

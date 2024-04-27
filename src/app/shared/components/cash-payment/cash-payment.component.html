@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  Return
+  <span class="flex-spacer"></span>
+  <!--<button mat-raised-button mat-dialog-close>&times;</button>-->
+</mat-toolbar>
+
+<form #loginForm="ngForm" novalidate>
+  <mat-dialog-content>
+    <h1 class="text-4xl font-bold">{{ data.value | currency }}</h1>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <!--<button mat-raised-button mat-dialog-close>Cancel</button>-->
+    <button (click)="onPrint()" class="background-primary text-floral-white" mat-raised-button>Done</button>
+  </mat-dialog-actions>
+</form>

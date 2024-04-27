@@ -1,0 +1,23 @@
+/*
+.mat-form-field-label,
+.mat-form-field-underline,
+.mat-form-field-placeholder {
+  color: white !important;
+}
+*/
+
+
+.mat-datepicker-input {
+  font-size: 16px; /* Reemplaza con el tamaño de fuente deseado */
+  color: red; /* Reemplaza con el color deseado */
+}
+
+.mat-form-field {
+  border: 1px solid blue; /* Reemplaza con el estilo de borde deseado */
+  background-color: #f0f0f0; /* Reemplaza con el color de fondo deseado */
+}
+
+::placeholder {
+  color: gray; /* Reemplaza con el color deseado */
+  font-style: italic; /* Reemplaza con el estilo de fuente deseado */
+}

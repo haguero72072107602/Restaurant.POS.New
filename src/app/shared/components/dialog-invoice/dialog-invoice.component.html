@@ -1,0 +1,28 @@
+<div oncontextmenu="return false">
+  <mat-toolbar color="primary">
+    {{ title }}
+    <span class="flex-spacer"></span>
+    <button color="primary" mat-dialog-close mat-raised-button>&times;</button>
+  </mat-toolbar>
+  <div mat-dialog-content>
+    <p>{{ subtitle }}</p>
+    <div class="page">
+      <!--<button mat-button fxFlex="170px" *ngFor="let i of data | paginate: { itemsPerPage: sizePage, currentPage: page }"
+              [mat-dialog-close]="i">
+        {{i.receiptNumber }}<p>{{i.total | currency }}</p>
+      </button>-->
+      <list-invoices [breakText]="breakText" [data]="data" [detail]="data.detail" [label]="data.label" [page]="page"
+                     [sizePage]="sizePage" [subdetail]="data.subdetail"></list-invoices>
+      <div class="paginator">
+        <pos-paginator (evSetPage)="setPage($event)" [countElements]="data.invoice.length" [sizePage]="sizePage">
+          <!--<button class="filter" mat-button *ngIf="data.invoice.length > sizePage && title !== 'Tables'" (click)="filter()">-->
+          @if (title !== 'Tables' && data.invoice.length && showFilter) {
+            <button class="filter" mat-button (click)="filter()">
+              <span class="fa fa-search fa-lg"></span> FILTER
+            </button>
+          }
+        </pos-paginator>
+      </div>
+    </div>
+  </div>
+</div>

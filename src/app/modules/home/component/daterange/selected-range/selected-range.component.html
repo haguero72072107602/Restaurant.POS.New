@@ -1,0 +1,19 @@
+<div #origin="cdkOverlayOrigin" cdkOverlayOrigin>
+
+
+</div>
+
+
+<ng-template
+  [cdkConnectedOverlayOrigin]="origin"
+  cdkConnectedOverlay
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayLockPosition
+>
+  <div class="select-panel-wrap">
+    <div #panel class="select-panel" role="listbox" tabindex="-1">
+
+    </div>
+  </div>
+</ng-template>

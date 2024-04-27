@@ -1,0 +1,6 @@
+@for (i of details; track i) {
+  <p [ngClass]="i.key.toLowerCase()">
+    <label>{{ i.key }}:</label>
+    <span>{{ i.label }}</span>
+  </p>
+}

@@ -1,0 +1,65 @@
+<div oncontextmenu="return false">
+  <mat-toolbar color="primary">
+    Debit Card
+    <span class="flex-spacer"></span>
+    <button color="primary" mat-dialog-close mat-raised-button>&times;</button>
+  </mat-toolbar>
+  <form #debitForm="ngForm" novalidate>
+    <mat-dialog-content>
+      @if (cardInvalid) {
+        <p>
+          <mat-form-field>
+            <input matInput placeholder="0000-0000-0000-0000" type="text" [(ngModel)]="input"
+                   name="card" #card="ngModel" required [minlength]="16" [maxlength]="16"/>
+            @if (card.errors?.required) {
+              <mat-error>Card is required</mat-error>
+            }
+            @if (card.errors?.minlength) {
+              <mat-error>Invalid card format</mat-error>
+            }
+            @if (card.errors?.maxlength) {
+              <mat-error>Invalid card format</mat-error>
+            }
+          </mat-form-field>
+        </p>
+      }
+      @if (!cardInvalid) {
+        <p>
+          <mat-form-field>
+            <input matInput placeholder="XXXX" type="password" [(ngModel)]="input"
+                   name="pin" #pin="ngModel" required [minlength]="4" [maxlength]="4"/>
+            @if (pin.errors?.required) {
+              <mat-error>Pin is required</mat-error>
+            }
+            @if (pin.errors?.minlength) {
+              <mat-error>Invalid pin format</mat-error>
+            }
+            @if (pin.errors?.maxlength) {
+              <mat-error>Invalid pin format</mat-error>
+            }
+          </mat-form-field>
+
+        </p>
+      }
+      <!--<app-input-price></app-input-price>-->
+      <generic-keyboard (evKeys)="getKeys($event)" [valid]="!debitForm.form.valid"></generic-keyboard>
+    </mat-dialog-content>
+  </form>
+</div>
+<!--<form [formGroup]="debitForm">
+  <mat-dialog-content>
+    <p fxLayoutAlign="space-between">
+      <mat-form-field>
+        <input matInput
+               type="text"
+               id="cardInput"
+               formControlName="cardInput"
+               [(ngModel)]="data"
+        />
+        <mat-error *ngIf="!dateInput.valid">Date is invalid</mat-error>
+      </mat-form-field>
+      <mat-error *ngIf="!valid && tryValidation"><span class="fa fa-warning fa-lg"></span>Date is invalid</mat-error>
+    </p>
+  </mat-dialog-content>
+  <generic-keyboard (evKeys)="getKeys($event)" [valid]="!valid"></generic-keyboard>
+</form>-->

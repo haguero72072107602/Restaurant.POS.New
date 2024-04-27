@@ -1,0 +1,60 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #6c757d;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #F7F7F8;
+}
+
+
+.flex-gap {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+
+/* Emulate Gap Support with Flexbox and Margins */
+.emulated-flex-gap {
+  --gap: 12px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
+  width: calc(100% + var(--gap));
+}
+
+.emulated-flex-gap > * {
+  margin: var(--gap) 0 0 var(--gap);
+}
+
+
+/*
+ * Demo Specific Code
+ */
+html {
+  box-sizing: border-box;
+  font-family: Lato;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+.flex-gap > div,
+.emulated-flex-gap > div {
+  background: hsl(0, 0%, 30%);
+  color: hsl(0, 0%, 100%);
+  width: 3.125rem;
+  height: 3.125rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

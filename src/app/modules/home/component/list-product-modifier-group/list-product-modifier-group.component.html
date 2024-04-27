@@ -1,0 +1,27 @@
+<div class="min-w-full h-[50px] bg-gray-10 ">
+  @if (productModifiersGroup != undefined) {
+    <div class="min-w-full h-full flex items-center mx-4 space-x-4">
+      <div class="w-[80%] h-[45px] border flex items-center px-2 rounded-xl">
+        {{ productModifiersGroup.description }}
+      </div>
+      <div class="w-[10%] h-[45px] border flex items-center justify-end px-2 rounded-xl ">
+        {{ productModifiersGroup.number }}
+      </div>
+      <div class="w-[10%]">
+        <button class="w-[45px] h-[45px] flex items-center justify-center"
+                (click)="DeleteComponent()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+            <path opacity="0.2"
+                  d="M10.9092 20.2347H7.25671L3.77967 16.7576C3.64038 16.6183 3.52989 16.453 3.45451 16.271C3.37913 16.089 3.34033 15.894 3.34033 15.697C3.34033 15.5 3.37913 15.3049 3.45451 15.1229C3.52989 14.941 3.64038 14.7756 3.77967 14.6363L9.08297 9.33301L15.4469 15.697L10.9092 20.2347Z"
+                  fill="#C03D4D"/>
+            <path d="M9.08301 9.33301L15.447 15.697" stroke="#C03D4D" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <path
+              d="M20.7502 20.2341H7.25671L3.77967 16.7571C3.64038 16.6178 3.52989 16.4525 3.45451 16.2705C3.37913 16.0885 3.34033 15.8934 3.34033 15.6964C3.34033 15.4995 3.37913 15.3044 3.45451 15.1224C3.52989 14.9404 3.64038 14.7751 3.77967 14.6358L14.3863 4.02918C14.6676 3.74788 15.0491 3.58984 15.4469 3.58984C15.8448 3.58984 16.2263 3.74788 16.5076 4.02918L20.7502 8.27182C20.8895 8.41111 21 8.57647 21.0754 8.75846C21.1508 8.94045 21.1896 9.1355 21.1896 9.33248C21.1896 9.52947 21.1508 9.72452 21.0754 9.90651C21 10.0885 20.8895 10.2539 20.7502 10.3931L10.9092 20.2341"
+              stroke="#C03D4D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  }
+</div>

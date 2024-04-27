@@ -1,0 +1,280 @@
+<div class="w-[90px] h-[calc(100vh)] overflow-hidden border-r-2 bg-[#344662] dark:border-r-1 dark:border-gray-600">
+
+  <div class="flex items-center h-[50px] justify-center">
+    <svg class="mt-6 " fill="none" height="46" viewBox="0 0 46 46" width="46" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="23" cy="23" fill="url(#paint0_linear_2519_18027)" r="23"/>
+      <g filter="url(#filter0_d_2519_18027)">
+        <path
+          d="M27.1477 34.0918C32.2766 33.7355 34.8516 30.5564 34.8516 25.5424V14H30.8867V25.2169C30.8867 28.3307 29.941 29.605 26.9485 29.7826C26.4185 29.814 20.2664 29.814 19.7369 29.7811C16.7794 29.5982 15.8159 28.3234 15.8159 25.2169V14H11.8516V25.5424C11.8516 30.5741 14.469 33.7579 19.6142 34.0954C20.2529 34.1372 26.509 34.1362 27.1477 34.0918Z"
+          fill="white"/>
+        <path d="M23.0021 33.3519V14H18.8203V33.3519H23.0021Z" fill="white"/>
+      </g>
+      <defs>
+        <filter color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="28.126"
+                id="filter0_d_2519_18027" width="31" x="7.85156"
+                y="14">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" result="hardAlpha" type="matrix"
+                         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+          <feOffset dy="4"/>
+          <feGaussianBlur stdDeviation="2"/>
+          <feComposite in2="hardAlpha" operator="out"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+          <feBlend in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_2519_18027"/>
+          <feBlend in="SourceGraphic" in2="effect1_dropShadow_2519_18027" mode="normal" result="shape"/>
+        </filter>
+        <linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_2519_18027" x1="-8.49231" x2="39.3162"
+                        y1="-1.88718"
+                        y2="50.9538">
+          <stop offset="0.237154" stop-color="#557AD9"/>
+          <stop offset="1" stop-color="#EB5050"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="w-[90px] h-[calc(100vh-50px)] flex flex-col justify-between">
+    <ul class="flex flex-col w-full items-center mt-8">
+
+      <li>
+        <button (click)="(!isDiableButton ? isActive = 0 : 1)" [class.active]="isActive === 0"
+                [ngClass]="isActive === 0 ? 'before:h-full' : ''"
+                class="relative transition-colors duration-500 h-[55px] w-[77px] flex flex-col items-center justify-center mb-2
+                       before:absolute before:left-0 before:top-0 before:h-0 before:w-0.5 before:bg-white
+                       before:transition-all before:duration-500 cursor-default"
+                routerLink='/home/layout/invoice/departaments'>
+          <svg [ngClass]="isActive != 0 ? 'text-gray-400' : 'text-white'" aria-hidden="true" class="w-[24px] h-[24px]"
+               fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M17.876.517A1 1 0 0 0 17 0H3a1 1 0 0 0-.871.508C1.63 1.393 0 5.385 0 6.75a3.236 3.236 0 0 0 1 2.336V19a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-6h4v6a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9.044a3.242 3.242 0 0 0 1-2.294c0-1.283-1.626-5.33-2.124-6.233ZM15.5 14.7a.8.8 0 0 1-.8.8h-2.4a.8.8 0 0 1-.8-.8v-2.4a.8.8 0 0 1 .8-.8h2.4a.8.8 0 0 1 .8.8v2.4ZM16.75 8a1.252 1.252 0 0 1-1.25-1.25 1 1 0 0 0-2 0 1.25 1.25 0 0 1-2.5 0 1 1 0 0 0-2 0 1.25 1.25 0 0 1-2.5 0 1 1 0 0 0-2 0A1.252 1.252 0 0 1 3.25 8 1.266 1.266 0 0 1 2 6.75C2.306 5.1 2.841 3.501 3.591 2H16.4A19.015 19.015 0 0 1 18 6.75 1.337 1.337 0 0 1 16.75 8Z"/>
+          </svg>
+          <span [ngClass]="isActive != 0 ? 'text-gray-400' : 'text-white'"
+                class="item-center select-none text-[11px] font-semibold ">Store</span>
+        </button>
+      </li>
+
+      <li>
+        <button (click)="(!isDiableButton ? isActive = 4 : 1)" [class.active]="isActive === 4"
+                [ngClass]="isActive === 4 ? 'before:h-full' : ''"
+                class="relative transition-colors duration-500 h-[55px] w-[77px] flex flex-col items-center justify-center mb-2
+                       before:absolute before:left-0 before:top-0 before:h-0 before:w-0.5 before:bg-white
+                        before:transition-all before:duration-500 cursor-default"
+                routerLink='/home/layout/customers/list'>
+          <svg [ngClass]="isActive != 4 ? 'text-gray-400' : 'text-white'" aria-hidden="true" class="w-[24px] h-[24px]"
+               fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M17.876.517A1 1 0 0 0 17 0H3a1 1 0 0 0-.871.508C1.63 1.393 0 5.385 0 6.75a3.236 3.236 0 0 0 1 2.336V19a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-6h4v6a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9.044a3.242 3.242 0 0 0 1-2.294c0-1.283-1.626-5.33-2.124-6.233ZM15.5 14.7a.8.8 0 0 1-.8.8h-2.4a.8.8 0 0 1-.8-.8v-2.4a.8.8 0 0 1 .8-.8h2.4a.8.8 0 0 1 .8.8v2.4ZM16.75 8a1.252 1.252 0 0 1-1.25-1.25 1 1 0 0 0-2 0 1.25 1.25 0 0 1-2.5 0 1 1 0 0 0-2 0 1.25 1.25 0 0 1-2.5 0 1 1 0 0 0-2 0A1.252 1.252 0 0 1 3.25 8 1.266 1.266 0 0 1 2 6.75C2.306 5.1 2.841 3.501 3.591 2H16.4A19.015 19.015 0 0 1 18 6.75 1.337 1.337 0 0 1 16.75 8Z"/>
+          </svg>
+          <span [ngClass]="isActive != 4 ? 'text-gray-400' : 'text-white'"
+                class="item-center select-none text-[11px] font-semibold ">Customer</span>
+        </button>
+      </li>
+
+      <li>
+        <button (click)="(!isDiableButton ? isActive = 5 : 1)" [class.active]="isActive === 5"
+                [disabled]="isDiableButton"
+                [ngClass]="isActive === 5 ? 'before:h-full' : ''"
+                class="relative transition-colors duration-500 h-[55px] w-[77px] flex flex-col items-center justify-center mb-2
+                       before:absolute before:left-0 before:top-0 before:h-0 before:w-0.5 before:bg-white
+                       before:transition-all before:duration-500 cursor-default"
+                routerLink='/home/layout/tables'>
+          <svg [ngClass]="isActive != 5 ? 'text-gray-400' : 'text-white'" aria-hidden="true"
+               class="w-[24px] h-[24px] dark:text-white" fill="none"
+               viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M6.143 1H1.857A.857.857 0 0 0 1 1.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 7 6.143V1.857A.857.857 0 0 0 6.143 1Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 17 6.143V1.857A.857.857 0 0 0 16.143 1Zm-10 10H1.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 7 16.143v-4.286A.857.857 0 0 0 6.143 11Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z"
+              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2"/>
+          </svg>
+          <span [ngClass]="isActive != 5 ? 'text-gray-400' : 'text-white'"
+                class="item-center lg:select-none text-[11px] font-semibold">Tables</span>
+        </button>
+      </li>
+
+      <!--
+      <li>
+        <button (click)="(!isDiableButton ? isActive = 7 : 1)"
+                routerLink="/home/layout/test"
+                [ngClass]="isActive === 7 ? 'before:h-full' : ''"
+                [class.active]="isActive === 7"
+                class="relative transition-colors duration-500 h-[65px] w-[77px] flex flex-col items-center justify-center mb-2
+                       before:absolute before:left-0 before:top-0 before:h-0 before:w-0.5 before:bg-white
+                       before:rounded-full before:transition-all before:duration-500">
+
+          <svg [ngClass]="isActive != 7 ? 'text-gray-400' : 'text-white'" class="w-[24px] h-[24px] dark:text-white"
+               aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               fill="none" viewBox="0 0 18 18">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M6.143 1H1.857A.857.857 0 0 0 1 1.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 7 6.143V1.857A.857.857 0 0 0 6.143 1Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 17 6.143V1.857A.857.857 0 0 0 16.143 1Zm-10 10H1.857a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286A.857.857 0 0 0 7 16.143v-4.286A.857.857 0 0 0 6.143 11Zm10 0h-4.286a.857.857 0 0 0-.857.857v4.286c0 .473.384.857.857.857h4.286a.857.857 0 0 0 .857-.857v-4.286a.857.857 0 0 0-.857-.857Z"/>
+          </svg>
+          <span [ngClass]="isActive != 7 ? 'text-gray-400' : 'text-white'"
+                class="item-center lg:select-none text-[11px] font-semibold">Test</span>
+        </button>
+      </li>
+      -->
+
+
+      <li>
+        <button (click)="(!isDiableButton ? isActive = 1 : 1)" [class.active]="isActive === 1"
+                [disabled]="isDiableButton"
+                [ngClass]="isActive === 1 ? 'before:h-full' : ''"
+                class="relative transition-colors duration-500 h-[55px] w-[77px] flex flex-col items-center justify-center mb-2
+                       before:absolute before:left-0 before:top-0 before:h-0 before:w-0.5 before:bg-white
+                       before:transition-all before:duration-500 cursor-default"
+                routerLink='/home/layout/orders'>
+          <svg [ngClass]="isActive != 1 ? 'text-gray-400' : 'text-white'" aria-hidden="true"
+               class="w-[24px] h-[24px] dark:text-white" fill="none" viewBox="0 0 18 20"
+               xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"
+              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2"/>
+          </svg>
+          <span [ngClass]="isActive != 1 ? 'text-gray-400' : 'text-white'"
+                class="item-center lg:select-none text-[11px] font-semibold">Orders</span>
+        </button>
+      </li>
+
+      @if (isAdministrator) {
+        <li>
+          <button (click)="(!isDiableButton ? isActive = 6 : 1)"
+                  routerLink='/home/layout/inventory'
+                  [disabled]="isDiableButton"
+                  [ngClass]="isActive === 6 ? 'before:h-full' : ''"
+                  [class.active]="isActive === 6"
+                  class="relative transition-colors duration-500 h-[55px] w-[77px] flex flex-col items-center justify-center mb-2
+                       before:absolute before:left-0 before:top-0 before:h-0 before:w-0.5 before:bg-white
+                       before:transition-all before:duration-500 cursor-default">
+            <svg [ngClass]="isActive != 6 ? 'text-gray-400' : 'text-white'" class="w-[24px] h-[24px] dark:text-white"
+                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 2h4a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4m6 0a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1m6 0v3H6V2M5 5h8m-8 5h8m-8 4h8"/>
+            </svg>
+            <span [ngClass]="isActive != 6 ? 'text-gray-400' : 'text-white'"
+                  class="item-center lg:select-none text-[11px] font-semibold">Inventory</span>
+          </button>
+        </li>
+      }
+
+
+      <li>
+        <button (click)="(!isDiableButton ?  isActive = 2 : 1)" [class.active]="isActive === 2"
+                [disabled]="isDiableButton"
+                [ngClass]="isActive === 2 ? 'before:h-full' : ''"
+                class="relative transition-colors duration-500 h-[55px] w-[77px] flex flex-col items-center justify-center mb-2
+                       before:absolute before:left-0 before:top-0 before:h-0 before:w-0.5 before:bg-white
+                       before:transition-all before:duration-500 cursor-default"
+                routerLink='/home/layout/reports'>
+          <svg [ngClass]="isActive != 2 ? 'text-gray-400' : 'text-white'" aria-hidden="true"
+               class="w-[24px] h-[24px] dark:text-white" fill="none" viewBox="0 0 21 21"
+               xmlns="http://www.w3.org/2000/svg">
+            <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+              <path d="M9 4.025A7.5 7.5 0 1 0 16.975 12H9V4.025Z"/>
+              <path d="M12.5 1c-.169 0-.334.014-.5.025V9h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 12.5 1Z"/>
+            </g>
+          </svg>
+          <span [ngClass]="isActive != 2 ? 'text-gray-400' : 'text-white'"
+                class="item-center lg:select-none text-[11px] font-semibold">Report</span>
+        </button>
+      </li>
+
+      @if (isAdministrator) {
+        <li>
+          <button (click)="( !isDiableButton ? isActive = 3 : 1)" routerLink='/home/layout/settings'
+                  [disabled]="isDiableButton"
+                  [ngClass]="isActive === 3 ? 'before:h-full' : ''"
+                  [class.active]="isActive === 3"
+                  class="relative transition-colors duration-500 h-[55px] w-[77px] flex flex-col items-center justify-center mb-2
+                       before:absolute before:left-0 before:top-0 before:h-0 before:w-0.5 before:bg-white
+                       before:transition-all before:duration-500 cursor-default">
+            <svg [ngClass]="isActive != 3 ? 'text-gray-400' : 'text-white'" class="w-[24px] h-[24px] dark:text-white"
+                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+              <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                <path
+                  d="M19 11V9a1 1 0 0 0-1-1h-.757l-.707-1.707.535-.536a1 1 0 0 0 0-1.414l-1.414-1.414a1 1 0 0 0-1.414 0l-.536.535L12 2.757V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v.757l-1.707.707-.536-.535a1 1 0 0 0-1.414 0L2.929 4.343a1 1 0 0 0 0 1.414l.536.536L2.757 8H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h.757l.707 1.707-.535.536a1 1 0 0 0 0 1.414l1.414 1.414a1 1 0 0 0 1.414 0l.536-.535L8 17.243V18a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-.757l1.707-.708.536.536a1 1 0 0 0 1.414 0l1.414-1.414a1 1 0 0 0 0-1.414l-.535-.536.707-1.707H18a1 1 0 0 0 1-1Z"/>
+                <path d="M10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+              </g>
+            </svg>
+            <span [ngClass]="isActive != 3 ? 'text-gray-400' : 'text-white'"
+                  class="item-center lg:select-none text-[11px] font-semibold">Settings</span>
+          </button>
+        </li>
+      }
+    </ul>
+
+    <div>
+      <div class="flex flex-col justify-center items-center gap-2">
+
+        <button (click)="newOrder()"
+                class="h-[69px] w-[74px] flex flex-col items-center justify-center hover:border
+               rounded-2xl hover:shadow-md bg-[#3EC8AC] text-white mt-2 cursor-default">
+          <svg fill="none" height="31" viewBox="0 0 32 31" width="32" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M16 27.125C22.4203 27.125 27.625 21.9203 27.625 15.5C27.625 9.07969 22.4203 3.875 16 3.875C9.57969 3.875 4.375 9.07969 4.375 15.5C4.375 21.9203 9.57969 27.125 16 27.125Z"
+              fill="#F8F9FD"
+              opacity="0.2"/>
+            <path
+              d="M16 27.125C22.4203 27.125 27.625 21.9203 27.625 15.5C27.625 9.07969 22.4203 3.875 16 3.875C9.57969 3.875 4.375 9.07969 4.375 15.5C4.375 21.9203 9.57969 27.125 16 27.125Z"
+              stroke="#F8F9FD" stroke-miterlimit="10" stroke-width="2"/>
+            <path d="M11.1562 15.5H20.8438" stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"/>
+            <path d="M16 10.6562V20.3438" stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"/>
+          </svg>
+          <span class=" text-white item-center lg:select-none text-[12px] font-semibold">New order</span>
+        </button>
+
+        <button (click)="CashOutIn()"
+                class="h-[69px] w-[74px] flex flex-col items-center justify-center hover:border-2
+               rounded-2xl hover:shadow-md bg-[#4484BF] text-white mt-2 cursor-default">
+          <svg fill="none" height="24" viewBox="0 0 25 24" width="25" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12.5 14.25C17.8848 14.25 22.25 12.2353 22.25 9.75C22.25 7.26472 17.8848 5.25 12.5 5.25C7.11522 5.25 2.75 7.26472 2.75 9.75C2.75 12.2353 7.11522 14.25 12.5 14.25Z"
+              fill="#F8F9FD"
+              opacity="0.2"/>
+            <path
+              d="M12.5 14.25C17.8848 14.25 22.25 12.2353 22.25 9.75C22.25 7.26472 17.8848 5.25 12.5 5.25C7.11522 5.25 2.75 7.26472 2.75 9.75C2.75 12.2353 7.11522 14.25 12.5 14.25Z"
+              stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <path d="M12.5 14.25V18.75" stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="1.5"/>
+            <path d="M2.75 9.75V14.25C2.75 16.5 6.5 18.75 12.5 18.75C18.5 18.75 22.25 16.5 22.25 14.25V9.75"
+                  stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <path d="M18.5 13.3223V17.8223" stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="1.5"/>
+            <path d="M6.5 13.3223V17.8223" stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="1.5"/>
+          </svg>
+          <span class=" text-white item-center lg:select-none text-[12px] font-semibold">Cash</span>
+          <span class=" text-white item-center lg:select-none text-[12px] font-semibold">In/Out</span>
+        </button>
+
+        <button class="h-[69px] w-[74px] flex flex-col items-center justify-center hover:border-2
+               rounded-2xl hover:shadow-md bg-[#4484BF] text-white mt-2 cursor-default">
+          <svg fill="none" height="25" viewBox="0 0 25 25" width="25" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M21.5 12.5H3.5C3.08579 12.5 2.75 12.8358 2.75 13.25V19.25C2.75 19.6642 3.08579 20 3.5 20H21.5C21.9142 20 22.25 19.6642 22.25 19.25V13.25C22.25 12.8358 21.9142 12.5 21.5 12.5Z"
+              fill="#F8F9FD"
+              opacity="0.2"/>
+            <path
+              d="M17 12.5H21.5C21.6989 12.5 21.8897 12.579 22.0303 12.7197C22.171 12.8603 22.25 13.0511 22.25 13.25V19.25C22.25 19.4489 22.171 19.6397 22.0303 19.7803C21.8897 19.921 21.6989 20 21.5 20H3.5C3.30109 20 3.11032 19.921 2.96967 19.7803C2.82902 19.6397 2.75 19.4489 2.75 19.25V13.25C2.75 13.0511 2.82902 12.8603 2.96967 12.7197C3.11032 12.579 3.30109 12.5 3.5 12.5H8"
+              stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <path d="M12.5 12.5V2.75" stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="1.5"/>
+            <path d="M8 7.25L12.5 2.75L17 7.25" stroke="#F8F9FD" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="1.5"/>
+            <path
+              d="M18.125 17.375C18.7463 17.375 19.25 16.8713 19.25 16.25C19.25 15.6287 18.7463 15.125 18.125 15.125C17.5037 15.125 17 15.6287 17 16.25C17 16.8713 17.5037 17.375 18.125 17.375Z"
+              fill="#F8F9FD"/>
+          </svg>
+          <span class=" text-white item-center lg:select-none text-[12px] font-semibold">No sell</span>
+        </button>
+        <button class="font-bold text-gray-250 text-[10px]"
+                routerLink="/home/layout/customers">{{ version }}
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+

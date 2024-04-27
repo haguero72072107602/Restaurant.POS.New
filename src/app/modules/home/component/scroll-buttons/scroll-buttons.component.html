@@ -1,0 +1,33 @@
+<div class="wrapper">
+  <div class="icon">
+    <i id="left">
+      <svg aria-hidden="true" class="w-4 h-4 text-black absolute top-5 left-6 " fill="currentColor"
+           viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M8.766.566A2 2 0 0 0 6.586 1L1 6.586a2 2 0 0 0 0 2.828L6.586 15A2 2 0 0 0 10 13.586V2.414A2 2 0 0 0 8.766.566Z"/>
+      </svg>
+    </i>
+  </div>
+  <ul class="tabs-box">
+    <!--  [ngClass]="{'active': numberSelect == 'All' }" -->
+
+    <li (click)="onDepartament($event, 'All')" [ngClass]="{'active': numberSelect == 'All' }"
+        class="tab active">
+      <a (click)="onDepartament($event,'All')">All categories</a>
+    </li>
+
+    @for (departament of departments; track departament) {
+      <li class="tab" [ngClass]="{'active': numberSelect == departament.id }"
+          (click)="onDepartament($event, departament.id)">
+        <a (click)="onDepartament($event,departament.id)">{{ departament.name }}</a>
+      </li>
+    }
+  </ul>
+  <div class="icon"><i id="right">
+    <svg aria-hidden="true" class="w-4 h-4 text-black absolute top-5 right-6" fill="currentColor"
+         viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3.414 1A2 2 0 0 0 0 2.414v11.172A2 2 0 0 0 3.414 15L9 9.414a2 2 0 0 0 0-2.828L3.414 1Z"/>
+    </svg>
+  </i>
+  </div>
+</div>

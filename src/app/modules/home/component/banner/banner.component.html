@@ -1,0 +1,15 @@
+<
+<swiper-container centered-slides="true" class="mySwiper mx-40" coverflow-effect-depth="50"
+                  coverflow-effect-modifier="1" coverflow-effect-rotate="50"
+                  coverflow-effect-slide-shadows="false" coverflow-effect-stretch="0" effect="coverflow"
+                  grab-cursor="true"
+                  loop="true"
+                  pagination="true" slides-per-view="5">
+  @for (item of slides; track item) {
+
+    <swiper-slide>
+      <img [src]="item.image" alt="item.banner" class="object-cover bg-amber-300 rounded-full">
+    </swiper-slide>
+
+  }
+</swiper-container>

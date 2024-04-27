@@ -1,0 +1,85 @@
+<div [class]="theme" oncontextmenu="return false">
+  <mat-toolbar>
+    <span class="title">{{ title.substring(0, 50) }}</span>
+    <span class="flex-spacer"></span>
+    <button class="close" mat-dialog-close mat-raised-button>&times;</button>
+  </mat-toolbar>
+  <mat-dialog-content>
+    <mat-tab-group animationDuration="0ms">
+      @if (showSides()) {
+        <mat-tab label="Sides">
+          <p>Select desired sides:</p>
+          <div class="page">
+            <list-invoices #side [data]="sides" [idPage]="idPaginatorSides" [sizePage]="sizePage" [page]="pageSides"
+                           [label]="data.label" [breakText]="breakText" (evCloseDialog)="dialogRef.close($event)"
+                           [multiselection]="true" [closeAfterSelect]="false" [itemsSelected]="selectedSides"
+                           [limitSides]="limitSides"></list-invoices>
+            <div class="paginator">
+              <pos-paginator [idPage]="idPaginatorSides" [countElements]="sides.invoice.length" [sizePage]="sizePage"
+                             (evSetPage)="setPageSide($event)">
+              </pos-paginator>
+            </div>
+          </div>
+        </mat-tab>
+      }
+      @if (showExtraSides()) {
+        <mat-tab label="Extra Sides">
+          <p>Select desired extra sides:</p>
+          <div class="page">
+            <list-invoices #extra [data]="extraSides" [idPage]="idPaginatorExtraSides" [sizePage]="sizePageExtras"
+                           [page]="pageExtraSides"
+                           [label]="data.label" [breakText]="breakText" (evCloseDialog)="dialogRef.close($event)"
+                           [multiselection]="true" [closeAfterSelect]="false"
+                           [itemsSelected]="selectedExtraSides">
+            </list-invoices>
+            <div class="paginator">
+              <pos-paginator [idPage]="idPaginatorExtraSides" [countElements]="extraSides.invoice.length"
+                             [sizePage]="sizePageExtras"
+                             (evSetPage)="setPageExtra($event)">
+              </pos-paginator>
+            </div>
+          </div>
+        </mat-tab>
+      }
+      @if (showOpenSides()) {
+        <mat-tab label="Other Extra Sides">
+          <p>Select desired other extra sides:</p>
+          <div class="page">
+            <list-invoices #open [data]="openSides" [idPage]="idPaginatorOpenSides" [sizePage]="sizePage"
+                           [page]="pageOpenSides" [label]="data.label" [breakText]="breakText"
+                           (evCloseDialog)="dialogRef.close($event)"
+                           [multiselection]="true" [closeAfterSelect]="false"
+                           [itemsSelected]="selectedOpenSides"></list-invoices>
+            <div class="paginator">
+              <pos-paginator [idPage]="idPaginatorOpenSides" [countElements]="openSides.invoice.length"
+                             [sizePage]="sizePage" (evSetPage)="setPageOpenSide($event)">
+              </pos-paginator>
+            </div>
+          </div>
+        </mat-tab>
+      }
+      @if (showModes()) {
+        <mat-tab label="Preparation Mode">
+          <p>Select desired modes:</p>
+          <div class="page">
+            <list-invoices #mode [data]="modes" [idPage]="idPaginatorModes" [sizePage]="sizePage" [page]="pageModes"
+                           [label]="data.label" [breakText]="breakText"
+                           (evCloseDialog)="dialogRef.close($event)" [multiselection]="false"
+                           [closeAfterSelect]="false" [itemsSelected]="selectedMode"
+                           [limitSides]="limitSides"></list-invoices>
+            <div class="paginator">
+              <pos-paginator [idPage]="idPaginatorModes" [countElements]="modes.invoice.length" [sizePage]="sizePage"
+                             (evSetPage)="setPageMode($event)">
+              </pos-paginator>
+            </div>
+          </div>
+        </mat-tab>
+      }
+    </mat-tab-group>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-dialog-close mat-raised-button><span>Cancel</span></button>
+    <button (click)="addProdOptions()" class="background-primary text-floral-white"
+            mat-raised-button><span>Add options</span></button>
+  </mat-dialog-actions>
+</div>

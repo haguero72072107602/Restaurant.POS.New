@@ -1,0 +1,14 @@
+<div class="container" fxLayout="column">
+  <div class="border" fxFlex="100" fxLayout="row" id="invoice-stock">
+    <!--<app-shopping-car #shoppingcar [product]="product" fxFlex="100" style="margin: 5px 0 5px 5px;">
+    </app-shopping-car>-->
+    <invoice class="border container" fxFlex="58" fxLayout="column" style="padding: 5px;"></invoice>
+    <div class="border" fxFlex="42" id="stock">
+      <div fxFlex="100" fxLayoutAlign="start start" style="margin: 5px 0; overflow: auto;">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+
+  <operations class="border" fxFlex="380px" fxLayout="row"></operations>
+</div>

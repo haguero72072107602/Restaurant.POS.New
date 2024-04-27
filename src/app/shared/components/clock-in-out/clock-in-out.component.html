@@ -1,0 +1,7 @@
+@if (clock) {
+  <div class="options-container" fxFlex="110px">
+    @for (val of clockValue; track val) {
+      <button mat-button class="left" (click)="clockAction($event, val)">Clock {{ clockLabel[val - 1] }}</button>
+    }
+  </div>
+}

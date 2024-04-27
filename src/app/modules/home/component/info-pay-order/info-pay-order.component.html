@@ -1,0 +1,113 @@
+<div class="w-[44rem] h-[40rem] px-5 pt-2 overflow-hidden">
+  <div class="flex flex-col justify-between">
+    <div class="flex flex-col items-center justify-center">
+      <div class="mb-2 font-bold text-black" style="font-size: 1.25rem;">Order confirmation</div>
+      <div class="text-[#828487]" style="font-size: 0.875rem;">Please confirme the order to completed payment</div>
+    </div>
+    <div class="flex flex-col h-[310px] mb-4 pt-5">
+      <ag-grid-angular
+        (firstDataRendered)="onFirstDataRendered($event)"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [paginationAutoPageSize]="true "
+        [pagination]="false"
+        [rowData]="rowData"
+        [rowHeight]="35"
+        class="ag-theme-material"
+        style="width: 100%; height: 100%; padding: 4px"
+      ></ag-grid-angular>
+    </div>
+
+    <div class="flex flex-col justify-center w-full h-[full] ">
+      <div class="flex justify-between gap-4 mb-2">
+        <div class="flex w-1/2">
+          <div class="bg-[#F8F9FD] w-full font-bold">Notes</div>
+        </div>
+        <div class="flex-col items-center justify-between w-1/2">
+          <div class="flex items-center justify-between mb-2">
+            <div style="font-size: 0.875rem;">SUB TOTAL</div>
+            <div style="font-size: 0.875rem;">$ {{ invoiceOrder?.subTotal?.toFixed(2) }}</div>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <div style="font-size: 0.875rem;">TIPS</div>
+            <div style="font-size: 0.875rem;">$ {{ invoiceOrder?.tipAmount?.toFixed(2) }}</div>
+          </div>
+          @if (invoiceOrder!.isDiscount) {
+
+            <div class="flex items-center justify-between mb-2">
+              <div class="align_horizontal_right" style="font-size: 0.875rem;">ORDEN DISCOUNT</div>
+              <div style="font-size: 0.875rem;">$ 00.00</div>
+            </div>
+
+          }
+          <div class="flex items-center justify-between mb-2">
+            <div style="font-size: 0.875rem;">TAX</div>
+            <div style="font-size: 0.875rem;">$ {{ getTax() }}</div>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <div class="font-semibold" style="font-size: 0.875rem;">BILL AMOUNT</div>
+            <div class="text-[#557AD9] font-semibold" style="font-size: 1.375rem;">$ {{ getTotal() }}</div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="flex items-center justify-between w-full mt-2">
+
+        <div class="flex flex-col items-center justify-between">
+          <div style="font-size: 12px">Payment method</div>
+          <div class="flex items-center justify-start">
+            <svg fill="none" height="28" viewBox="0 0 28 28" width="28" xmlns="http://www.w3.org/2000/svg">
+              <g id="money-dollar">
+                <path
+                  d="M16.3346 10.5H13.418C12.9538 10.5 12.5087 10.6844 12.1805 11.0126C11.8523 11.3408 11.668 11.7859 11.668 12.25C11.668 12.7141 11.8523 13.1592 12.1805 13.4874C12.5087 13.8156 12.9538 14 13.418 14H14.5846C15.0488 14 15.4939 14.1844 15.8221 14.5126C16.1503 14.8408 16.3346 15.2859 16.3346 15.75C16.3346 16.2141 16.1503 16.6592 15.8221 16.9874C15.4939 17.3156 15.0488 17.5 14.5846 17.5H11.668"
+                  id="primary"
+                  stroke="#557AD9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                <path
+                  d="M24.5 22.1673H3.5M24.5 22.1673V5.83398M24.5 22.1673H19.8333C19.8333 20.9296 20.325 19.7427 21.2002 18.8675C22.0753 17.9923 23.2623 17.5007 24.5 17.5007V22.1673ZM3.5 22.1673V5.83398M3.5 22.1673H8.16667C8.16667 20.9296 7.675 19.7427 6.79983 18.8675C5.92466 17.9923 4.73768 17.5007 3.5 17.5007V22.1673ZM3.5 5.83398H24.5M3.5 5.83398H8.16667C8.16667 7.07166 7.675 8.25865 6.79983 9.13382C5.92466 10.009 4.73768 10.5007 3.5 10.5007V5.83398ZM24.5 5.83398H19.8333C19.8333 7.07166 20.325 8.25865 21.2002 9.13382C22.0753 10.009 23.2623 10.5007 24.5 10.5007V5.83398ZM14 10.5007V9.33398M14 18.6673V17.5007"
+                  id="primary_2"
+                  stroke="#557AD9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+              </g>
+            </svg>
+            <div style="font-size: 14px">{{ typePaid }}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between mt-2">
+          <!--
+          <button class="text-blue-400 bg-white w-[78px] h-[48px] hover:bg-[#557AD9] hover:text-white shadow text-center
+                    border-blue-300 border-2
+                    font-medium rounded-lg text-sm mr-2 focus:outline-none"
+                    (click)="onCancelOrder(false)">Cancel</button>
+          -->
+
+          <button (click)="onEmailOrder(true)"
+                  class="text-blue-400 bg-white w-[113px] h-[48px] hover:bg-[#557AD9] hover:text-white shadow text-center
+                    border-blue-300 border-2
+                    font-medium rounded-lg text-sm mr-2 focus:outline-none">Send Email
+          </button>
+
+          <button (click)="onSmsOrder()"
+                  class="text-blue-400 bg-white w-[68px] h-[48px] hover:bg-[#557AD9] hover:text-white shadow text-center
+                    border-blue-300 border-2
+                    font-medium rounded-lg text-sm mr-2 focus:outline-none">SMS
+          </button>
+
+          <button (click)="onPrintOrder()"
+                  class="text-blue-400 bg-white w-[68px] h-[48px] hover:bg-[#557AD9] hover:text-white shadow text-center
+                    border-blue-300 border-2
+                    font-medium rounded-lg text-sm mr-2 focus:outline-none">Print
+          </button>
+
+          <button (click)="onPayOrder(true)"
+                  class="text-white bg-[#557AD9] w-[115px] h-[48px] hover:bg-[#557AD9] hover:text-white shadow text-center
+                    focus:ring-2 focus:ring-blue-700
+                    font-medium rounded-lg text-sm focus:outline-none">Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

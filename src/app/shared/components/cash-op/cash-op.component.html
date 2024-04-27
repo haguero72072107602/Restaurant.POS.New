@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <p><label>Enter sale price. Total: {{ data | currency }}</label></p>
+  <span class="flex-spacer"></span>
+  <button mat-dialog-close mat-raised-button>&times;</button>
+</mat-toolbar>
+
+<form #cashForm="ngForm" novalidate>
+  <mat-dialog-content>
+    <div>
+      <mat-form-field>
+        <input #price="ngModel" [(ngModel)]="cost" [maxlength]="maxlength" [size]="maxlength" appCashValidator="data"
+               disabled
+               matInput name="price" placeholder="Price" required type="text"/>
+        <!-- <mat-error *ngIf="price.errors?.required">Price is required</mat-error> -->
+      </mat-form-field>
+    </div>
+    <!--<app-input-price></app-input-price>-->
+    <generic-keyboard (evKeys)="getKeys($event)" [valid]="!valid"></generic-keyboard>
+  </mat-dialog-content>
+</form>

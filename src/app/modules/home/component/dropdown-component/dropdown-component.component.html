@@ -1,0 +1,73 @@
+<button class="text-black bg-white focus:ring-2 focus:outline-none focus:ring-blue-300
+               border-2 w-full justify-between
+               font-medium rounded-lg text-[14px] px-2 py-2.5 text-center inline-flex items-center
+               dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-dropdown-placement="bottom"
+        data-dropdown-toggle="dropdownSearch"
+        id="dropdownSearchButton"
+        type="button">
+  <span> {{ titleSearch }} </span>
+  <svg fill="none" height="18" viewBox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M9 15.75C12.7279 15.75 15.75 12.7279 15.75 9C15.75 5.27208 12.7279 2.25 9 2.25C5.27208 2.25 2.25 5.27208 2.25 9C2.25 12.7279 5.27208 15.75 9 15.75Z"
+      fill="#ABBBC2"
+      opacity="0.2"/>
+    <path
+      d="M9 15.75C12.7279 15.75 15.75 12.7279 15.75 9C15.75 5.27208 12.7279 2.25 9 2.25C5.27208 2.25 2.25 5.27208 2.25 9C2.25 12.7279 5.27208 15.75 9 15.75Z"
+      stroke="#ABBBC2" stroke-miterlimit="10" stroke-width="1.5"/>
+    <path d="M11.5312 8.15625L9 10.9688L6.46875 8.15625" stroke="#ABBBC2" stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="1.5"/>
+  </svg>
+
+  <!--
+    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+    </svg>
+    -->
+</button>
+
+<!-- Dropdown menu -->
+<div class="z-10 hidden bg-white rounded-lg shadow-2xl shadow-neutral-500 w-[620px] dark:bg-gray-700"
+     id="dropdownSearch">
+  <div class="p-3 text-[14px]">
+    <label class="sr-only" for="input-group-search">Search</label>
+    <div class="relative">
+      <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+        <svg aria-hidden="true" class="w-4 h-4 text-gray-500 dark:text-gray-400" fill="none"
+             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"/>
+        </svg>
+      </div>
+      <input
+        class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        id="input-group-search"
+        placeholder="Search component"
+        type="text">
+    </div>
+  </div>
+  <ul aria-labelledby="dropdownSearchButton"
+      class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200">
+    @for (item of invoices; track item) {
+      <li class="h-[30px]">
+        <button
+          class="flex w-full h-full
+                 focus:bg-gray-200 focus:border focus:rounded-md
+                 hover:bg-gray-200 hover:border hover:rounded-md items-center"
+          (click)="selectItem(item)">
+          <div class="w-1/3 block text-left">{{ item.upc }}</div>
+          <div class="w-2/3 block text-left">{{ item.name }}</div>
+        </button>
+      </li>
+    }
+  </ul>
+
+  <!--
+  <a href="#" class="flex items-center p-3 text-sm font-medium text-red-600 border-t border-gray-200 rounded-b-lg bg-gray-50 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-red-500 hover:underline">
+    <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+      <path d="M6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Zm11-3h-6a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2Z"/>
+    </svg>
+    Delete user
+  </a>
+  -->
+</div>

@@ -1,0 +1,60 @@
+.content {
+  font-size: 18px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin-left: -10px;
+  align-items: center;
+}
+
+mat-toolbar {
+  background-color: var(--backmsj) !important;
+}
+
+.close {
+  background-color: var(--closebtn);
+  color: white;
+  font-weight: bold;
+}
+
+.title {
+  font-weight: bold;
+  color: white;
+}
+
+sales-shop, sales-empl {
+  width: 95%;
+}
+
+.price {
+  font-size: 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[mat-dialog-content] {
+  flex-direction: column;
+}
+
+button [mat-raised-button] {
+  cursor: none !important;
+}
+
+.show {
+  display: initial;
+}
+
+.hide {
+  display: none;
+}
+
+[mat-dialog-actions] {
+  justify-content: center;
+}
+
+span {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

@@ -1,0 +1,120 @@
+<div class="flex w-full h-[calc(100vh-80px)]">
+  <div class="flex flex-col w-[180px] h-full border border-l bg-white">
+
+    <button (click)="selectOption = 0"
+            [ngClass]="selectOption == 0 ? 'z-10 border-[#557AD9] border-r-4 text-blue-700 bg-[#E5EDFE]' : ''"
+            class=" mt-[26px] [mb-16] relative inline-flex items-center w-full px-4 py-[14px] text-sm font-medium
+                    hover:border-[#557AD9] hover:border-r-4 hover:text-blue-700 hover:bg-[#E5EDFE] "
+            routerLink='/home/layout/settings/settinggenerals'
+            style="font-size: 14px"
+            type="button">
+      <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M3.92308 6.4H20.0769V14.9333H20.3077C20.69 14.9333 21 15.2467 21 15.6333C21 16.0199 20.69 16.3333 20.3077 16.3333H12.6923V17.4024C13.3689 17.6793 13.8462 18.3499 13.8462 19.1333C13.8462 20.1643 13.0196 21 12 21C10.9804 21 10.1538 20.1643 10.1538 19.1333C10.1538 18.3499 10.6311 17.6793 11.3077 17.4024V16.3333H3.69231C3.30996 16.3333 3 16.0199 3 15.6333C3 15.2467 3.30996 14.9333 3.69231 14.9333H3.92308L3.92308 6.4ZM15.9231 8.86667C15.9231 8.48007 15.6131 8.16667 15.2308 8.16667C14.8484 8.16667 14.5385 8.48007 14.5385 8.86667V12.8C14.5385 13.1866 14.8484 13.5 15.2308 13.5C15.6131 13.5 15.9231 13.1866 15.9231 12.8V8.86667ZM12.6923 10.1111C12.6923 9.72451 12.3824 9.41111 12 9.41111C11.6176 9.41111 11.3077 9.72451 11.3077 10.1111V12.8C11.3077 13.1866 11.6176 13.5 12 13.5C12.3824 13.5 12.6923 13.1866 12.6923 12.8V10.1111ZM9.46154 11.3556C9.46154 10.969 9.15158 10.6556 8.76923 10.6556C8.38688 10.6556 8.07692 10.969 8.07692 11.3556V12.8C8.07692 13.1866 8.38688 13.5 8.76923 13.5C9.15158 13.5 9.46154 13.1866 9.46154 12.8V11.3556Z"
+          fill="#557AD9"/>
+        <path
+          d="M20 3H4C3.44772 3 3 3.3731 3 3.83333V4.66667C3 5.1269 3.44772 5.5 4 5.5H20C20.5523 5.5 21 5.1269 21 4.66667V3.83333C21 3.3731 20.5523 3 20 3Z"
+          fill="#557AD9"/>
+      </svg>
+      Generals
+    </button>
+
+    <button (click)="selectOption = 2"
+            [ngClass]="selectOption == 2 ? 'z-10 border-[#557AD9] border-r-4 text-blue-700 bg-[#E5EDFE]' : ''"
+            class="mt-[26px] [mb-16] relative inline-flex items-center w-full px-4 py-[14px] text-sm font-medium
+              hover:border-[#557AD9] hover:border-r-4 hover:text-blue-700 hover:bg-[#E5EDFE] whitespace-nowrap "
+            routerLink='/home/layout/settings/userslist'
+            style="font-size: 14px"
+            type="button">
+      <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M18.9864 14C19.0213 11.9198 18.9895 9.96312 18.8851 7.60325C18.835 6.47099 18.81 5.90485 18.5597 5.47099C18.3845 5.16724 18.1269 4.91057 17.8279 4.74202C17.4185 4.51117 16.8943 4.50166 15.8789 4.50127M8.13281 4.50127C7.11647 4.50165 6.59215 4.51093 6.18267 4.7415C5.88383 4.90977 5.62645 5.16572 5.45104 5.46906C5.20061 5.90214 5.17467 6.46809 5.12278 7.59999C4.95209 11.3236 4.96088 14.0326 5.13973 17.7612C5.18868 18.7815 5.21315 19.2916 5.43791 19.7048C5.59239 19.9888 5.83297 20.2492 6.09939 20.4206C6.48703 20.6701 6.96461 20.7134 7.91978 20.7999C9.25773 20.9212 10.4709 20.9875 11.6721 20.9984M9.60724 6.00251H14.4045C15.1994 6.00251 15.8437 5.33037 15.8437 4.50125C15.8437 3.67213 15.1994 3 14.4045 3H9.60724C8.8124 3 8.16805 3.67213 8.16805 4.50125C8.16805 5.33037 8.8124 6.00251 9.60724 6.00251Z"
+          stroke="#9C9C9C" stroke-linecap="round" stroke-width="1.5"/>
+        <path d="M14 18.9752L15.8818 20.9499C15.9449 21.016 16.0561 21.0168 16.1202 20.9515L20 17" stroke="#9C9C9C"
+              stroke-linecap="round" stroke-width="1.5"/>
+        <path d="M8.5 10.75H15.5" stroke="#9C9C9C" stroke-linecap="round" stroke-width="1.5"/>
+        <path d="M8.5 14.25H13.5" stroke="#9C9C9C" stroke-linecap="round" stroke-width="1.5"/>
+      </svg>
+      Users
+    </button>
+
+    <button (click)="selectOption = 7;"
+            [ngClass]="selectOption == 7 ? 'z-10 border-[#557AD9] border-r-4 text-blue-700 bg-[#E5EDFE]' : ''"
+            class="mt-[26px] [mb-16] relative inline-flex items-center w-full px-4 py-[14px] text-sm font-medium
+                hover:border-[#557AD9] hover:border-r-4 hover:text-blue-700 hover:bg-[#E5EDFE]"
+            routerLink='/home/layout/settings/schedulerlist/2'
+            style="font-size: 14px"
+            type="button">
+      <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M18.9864 14C19.0213 11.9198 18.9895 9.96312 18.8851 7.60325C18.835 6.47099 18.81 5.90485 18.5597 5.47099C18.3845 5.16724 18.1269 4.91057 17.8279 4.74202C17.4185 4.51117 16.8943 4.50166 15.8789 4.50127M8.13281 4.50127C7.11647 4.50165 6.59215 4.51093 6.18267 4.7415C5.88383 4.90977 5.62645 5.16572 5.45104 5.46906C5.20061 5.90214 5.17467 6.46809 5.12278 7.59999C4.95209 11.3236 4.96088 14.0326 5.13973 17.7612C5.18868 18.7815 5.21315 19.2916 5.43791 19.7048C5.59239 19.9888 5.83297 20.2492 6.09939 20.4206C6.48703 20.6701 6.96461 20.7134 7.91978 20.7999C9.25773 20.9212 10.4709 20.9875 11.6721 20.9984M9.60724 6.00251H14.4045C15.1994 6.00251 15.8437 5.33037 15.8437 4.50125C15.8437 3.67213 15.1994 3 14.4045 3H9.60724C8.8124 3 8.16805 3.67213 8.16805 4.50125C8.16805 5.33037 8.8124 6.00251 9.60724 6.00251Z"
+          stroke="#9C9C9C" stroke-linecap="round" stroke-width="1.5"/>
+        <path d="M14 18.9752L15.8818 20.9499C15.9449 21.016 16.0561 21.0168 16.1202 20.9515L20 17" stroke="#9C9C9C"
+              stroke-linecap="round" stroke-width="1.5"/>
+        <path d="M8.5 10.75H15.5" stroke="#9C9C9C" stroke-linecap="round" stroke-width="1.5"/>
+        <path d="M8.5 14.25H13.5" stroke="#9C9C9C" stroke-linecap="round" stroke-width="1.5"/>
+      </svg>
+      Promotions
+    </button>
+
+    <button (click)="selectOption = 8;"
+            [ngClass]="selectOption == 8 ? 'z-10 border-[#557AD9] border-r-4 text-blue-700 bg-[#E5EDFE]' : ''"
+            class="mt-[26px] [mb-16] relative inline-flex items-center w-full px-4 py-[14px] text-sm font-medium
+                hover:border-[#557AD9] hover:border-r-4 hover:text-blue-700 hover:bg-[#E5EDFE]"
+            routerLink='/home/layout/settings/schedulerlist/1'
+            style="font-size: 14px"
+            type="button">
+      <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M18.9864 14C19.0213 11.9198 18.9895 9.96312 18.8851 7.60325C18.835 6.47099 18.81 5.90485 18.5597 5.47099C18.3845 5.16724 18.1269 4.91057 17.8279 4.74202C17.4185 4.51117 16.8943 4.50166 15.8789 4.50127M8.13281 4.50127C7.11647 4.50165 6.59215 4.51093 6.18267 4.7415C5.88383 4.90977 5.62645 5.16572 5.45104 5.46906C5.20061 5.90214 5.17467 6.46809 5.12278 7.59999C4.95209 11.3236 4.96088 14.0326 5.13973 17.7612C5.18868 18.7815 5.21315 19.2916 5.43791 19.7048C5.59239 19.9888 5.83297 20.2492 6.09939 20.4206C6.48703 20.6701 6.96461 20.7134 7.91978 20.7999C9.25773 20.9212 10.4709 20.9875 11.6721 20.9984M9.60724 6.00251H14.4045C15.1994 6.00251 15.8437 5.33037 15.8437 4.50125C15.8437 3.67213 15.1994 3 14.4045 3H9.60724C8.8124 3 8.16805 3.67213 8.16805 4.50125C8.16805 5.33037 8.8124 6.00251 9.60724 6.00251Z"
+          stroke="#9C9C9C" stroke-linecap="round" stroke-width="1.5"/>
+        <path d="M14 18.9752L15.8818 20.9499C15.9449 21.016 16.0561 21.0168 16.1202 20.9515L20 17" stroke="#9C9C9C"
+              stroke-linecap="round" stroke-width="1.5"/>
+        <path d="M8.5 10.75H15.5" stroke="#9C9C9C" stroke-linecap="round" stroke-width="1.5"/>
+        <path d="M8.5 14.25H13.5" stroke="#9C9C9C" stroke-linecap="round" stroke-width="1.5"/>
+      </svg>
+      Happy hours
+    </button>
+
+    <button (click)="selectOption = 9;"
+            [ngClass]="selectOption == 9 ? 'z-10 border-[#557AD9] border-r-4 text-blue-700 bg-[#E5EDFE]' : ''"
+            class="mt-[26px] [mb-16] relative inline-flex items-center w-full px-4 py-[14px] text-sm font-medium
+                hover:border-[#557AD9] hover:border-r-4 hover:text-blue-700 hover:bg-[#E5EDFE]"
+            routerLink='/home/layout/settings/schedulerlist/3'
+            style="font-size: 14px"
+            type="button">
+      <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M18.9864 14C19.0213 11.9198 18.9895 9.96312 18.8851 7.60325C18.835 6.47099 18.81 5.90485 18.5597 5.47099C18.3845 5.16724 18.1269 4.91057 17.8279 4.74202C17.4185 4.51117 16.8943 4.50166 15.8789 4.50127M8.13281 4.50127C7.11647 4.50165 6.59215 4.51093 6.18267 4.7415C5.88383 4.90977 5.62645 5.16572 5.45104 5.46906C5.20061 5.90214 5.17467 6.46809 5.12278 7.59999C4.95209 11.3236 4.96088 14.0326 5.13973 17.7612C5.18868 18.7815 5.21315 19.2916 5.43791 19.7048C5.59239 19.9888 5.83297 20.2492 6.09939 20.4206C6.48703 20.6701 6.96461 20.7134 7.91978 20.7999C9.25773 20.9212 10.4709 20.9875 11.6721 20.9984M9.60724 6.00251H14.4045C15.1994 6.00251 15.8437 5.33037 15.8437 4.50125C15.8437 3.67213 15.1994 3 14.4045 3H9.60724C8.8124 3 8.16805 3.67213 8.16805 4.50125C8.16805 5.33037 8.8124 6.00251 9.60724 6.00251Z"
+          stroke="#9C9C9C" stroke-linecap="round" stroke-width="1.5"/>
+        <path d="M14 18.9752L15.8818 20.9499C15.9449 21.016 16.0561 21.0168 16.1202 20.9515L20 17" stroke="#9C9C9C"
+              stroke-linecap="round" stroke-width="1.5"/>
+        <path d="M8.5 10.75H15.5" stroke="#9C9C9C" stroke-linecap="round" stroke-width="1.5"/>
+        <path d="M8.5 14.25H13.5" stroke="#9C9C9C" stroke-linecap="round" stroke-width="1.5"/>
+      </svg>
+      By time
+    </button>
+
+    <button (click)="selectOption = 6; closeBatch()"
+            [ngClass]="selectOption == 6 ? 'z-10 border-[#557AD9] border-r-4 text-blue-700 bg-[#E5EDFE]' : ''"
+            class="mt-[26px] [mb-16] relative inline-flex items-center w-full px-4 py-[14px] text-sm font-medium
+                hover:border-[#557AD9] hover:border-r-4 hover:text-blue-700 hover:bg-[#E5EDFE]"
+            style="font-size: 14px"
+            type="button">
+      <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M18.9864 14C19.0213 11.9198 18.9895 9.96312 18.8851 7.60325C18.835 6.47099 18.81 5.90485 18.5597 5.47099C18.3845 5.16724 18.1269 4.91057 17.8279 4.74202C17.4185 4.51117 16.8943 4.50166 15.8789 4.50127M8.13281 4.50127C7.11647 4.50165 6.59215 4.51093 6.18267 4.7415C5.88383 4.90977 5.62645 5.16572 5.45104 5.46906C5.20061 5.90214 5.17467 6.46809 5.12278 7.59999C4.95209 11.3236 4.96088 14.0326 5.13973 17.7612C5.18868 18.7815 5.21315 19.2916 5.43791 19.7048C5.59239 19.9888 5.83297 20.2492 6.09939 20.4206C6.48703 20.6701 6.96461 20.7134 7.91978 20.7999C9.25773 20.9212 10.4709 20.9875 11.6721 20.9984M9.60724 6.00251H14.4045C15.1994 6.00251 15.8437 5.33037 15.8437 4.50125C15.8437 3.67213 15.1994 3 14.4045 3H9.60724C8.8124 3 8.16805 3.67213 8.16805 4.50125C8.16805 5.33037 8.8124 6.00251 9.60724 6.00251Z"
+          stroke="#9C9C9C" stroke-linecap="round" stroke-width="1.5"/>
+        <path d="M14 18.9752L15.8818 20.9499C15.9449 21.016 16.0561 21.0168 16.1202 20.9515L20 17" stroke="#9C9C9C"
+              stroke-linecap="round" stroke-width="1.5"/>
+        <path d="M8.5 10.75H15.5" stroke="#9C9C9C" stroke-linecap="round" stroke-width="1.5"/>
+        <path d="M8.5 14.25H13.5" stroke="#9C9C9C" stroke-linecap="round" stroke-width="1.5"/>
+      </svg>
+      Close batch
+    </button>
+
+  </div>
+  <div class="w-full h-full bg-[#F8F9FD]">
+    <router-outlet></router-outlet>
+  </div>
+</div>

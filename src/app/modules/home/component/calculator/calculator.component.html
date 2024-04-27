@@ -1,0 +1,115 @@
+<div class="w-[511px] h-[650px] px-5 py-5">
+
+  <div class="flex justify-between items-center w-full border-b-2 h-[60px] bg-white dark:bg-gray-600 mb-4">
+    <div class="flex justify-between items-center mx-5 w-full">
+      <span class="text-[16px] text-black font-semibold">{{ titleCalculator }}</span>
+      <button (click)="onCancelDialog()"
+              class="bg-white px-5 py-3 text-black">
+        <svg aria-hidden="true" class="w-3 h-3 text-black font-semibold dark:text-white"
+             fill="none" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+          <path d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex w-full">
+    <input [(ngModel)]="amountPayment" [disabled]="true"
+           aria-autocomplete="none"
+           class="w-full select-none text-center text-[#50D1AA]
+                     border-[#50D1AA] rounded-xl border-2 focus:outline-none"
+           style="font-size: 2.4375rem;" type="text">
+  </div>
+  <div class="flex flex-col min-w-full select-none">
+    <div class="flex w-full items-center justify-between my-[14px]">
+      <div (click)="getKeys('1', TypeKey.NUMBER )" class="w-[135px] h-[69px] bg-[#F8F9FD] font-bold flex justify-center items-center
+                  rounded-2xl hover:scale-80 transition-all delay-500"
+           style="font-size: 1.75rem;">1
+      </div>
+      <div (click)="getKeys('2', TypeKey.NUMBER )" class="w-[135px] h-[69px] bg-[#F8F9FD] font-bold flex justify-center items-center
+                  cursor-pointer
+                  rounded-2xl hover:scale-80 transition-all delay-500"
+           style="font-size: 1.75rem;">2
+      </div>
+      <div (click)="getKeys('3', TypeKey.NUMBER )" class="w-[135px] h-[69px] bg-[#F8F9FD] font-bold flex justify-center items-center
+                  cursor-pointer
+                  rounded-2xl hover:scale-80 transition-all delay-500"
+           style="font-size: 1.75rem;">3
+      </div>
+    </div>
+    <div class="flex w-full items-center justify-between my-[14px]">
+      <div (click)="getKeys('4', TypeKey.NUMBER )" class="w-[135px] h-[69px] bg-[#F8F9FD] font-bold flex justify-center items-center
+                  cursor-pointer
+                  rounded-2xl hover:scale-80 transition-all delay-500"
+           style="font-size: 1.75rem;">4
+      </div>
+      <div (click)="getKeys('5', TypeKey.NUMBER )" class="w-[135px] h-[69px] bg-[#F8F9FD] font-bold flex justify-center items-center
+                  cursor-pointer
+                  rounded-2xl hover:scale-80 transition-all delay-500"
+           style="font-size: 1.75rem;">5
+      </div>
+      <div (click)="getKeys('6', TypeKey.NUMBER )" class="w-[135px] h-[69px] bg-[#F8F9FD] font-bold flex justify-center items-center
+                  cursor-pointer
+                  rounded-2xl hover:scale-80 transition-all delay-500"
+           style="font-size: 1.75rem;">6
+      </div>
+    </div>
+    <div class="flex w-full items-center justify-between my-[14px]">
+      <div (click)="getKeys('7', TypeKey.NUMBER )" class="w-[135px] h-[69px] bg-[#F8F9FD] font-bold flex justify-center items-center
+                  cursor-pointer
+                  rounded-2xl hover:scale-80 transition-all delay-500"
+           style="font-size: 1.75rem;">7
+      </div>
+      <div (click)="getKeys('8', TypeKey.NUMBER )" class="w-[135px] h-[69px] bg-[#F8F9FD] font-bold flex justify-center items-center
+                  cursor-pointer
+                  rounded-2xl hover:scale-80 transition-all delay-500"
+           style="font-size: 1.75rem;">8
+      </div>
+      <div (click)="getKeys('9', TypeKey.NUMBER )" class="w-[135px] h-[69px] bg-[#F8F9FD] font-bold flex justify-center items-center
+                  cursor-pointer
+                  rounded-2xl hover:scale-80 transition-all delay-500"
+           style="font-size: 1.75rem;">9
+      </div>
+    </div>
+    <div class="flex w-full items-center justify-between my-[14px]">
+      <div (click)="getKeys('Clear', TypeKey.LEFT )" class="w-[135px] h-[69px] bg-[#FF7CA3] font-bold flex justify-center items-center
+                  cursor-pointer text-white
+                  rounded-2xl hover:scale-80 transition-all delay-500"
+           style="font-size: 1.75rem;">C
+      </div>
+      <div (click)="getKeys('0', TypeKey.NUMBER )" class="w-[135px] h-[69px] bg-[#F8F9FD] font-bold flex justify-center items-center
+                  cursor-pointer
+                  rounded-2xl hover:scale-80 transition-all delay-500"
+           style="font-size: 1.75rem;">0
+      </div>
+      <div (click)="getKeys('Back', TypeKey.LEFT )" class="w-[135px] h-[69px] bg-[#FF7CA3] font-bold flex justify-center items-center
+                  cursor-pointer
+                  rounded-2xl hover:scale-80 transition-all delay-500"
+           style="font-size: 1.75rem;">
+        <span class="text-black">
+          <svg class="text-black" fill="none" height="40" viewBox="0 0 41 40" width="41"
+               xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M31.9943 10H16.9716C15.0697 10 12.7142 11.1657 11.6085 12.6534L7.68756 17.93L5.88633 20.3552C5.70456 20.608 5.70306 21.0659 5.89084 21.3143L7.67554 23.7179L11.61 29.0147C12.7142 30.501 15.0682 31.6667 16.9716 31.6667H31.9943C34.066 31.6667 35.75 30.046 35.75 28.0556V13.6111C35.75 11.6207 34.066 10 31.9943 10ZM28.5496 24.1454C28.6891 24.2796 28.7997 24.4388 28.8752 24.614C28.9507 24.7892 28.9895 24.977 28.9895 25.1667C28.9895 25.3563 28.9507 25.5441 28.8752 25.7193C28.7997 25.8946 28.6891 26.0538 28.5496 26.1879C28.4101 26.322 28.2445 26.4284 28.0623 26.501C27.8801 26.5735 27.6848 26.6109 27.4875 26.6109C27.2903 26.6109 27.0949 26.5735 26.9127 26.501C26.7305 26.4284 26.5649 26.322 26.4254 26.1879L22.9807 22.8758L19.536 26.1879C19.3968 26.3225 19.2313 26.4293 19.049 26.5022C18.8667 26.5751 18.6713 26.6126 18.4739 26.6126C18.2765 26.6126 18.081 26.5751 17.8987 26.5022C17.7164 26.4293 17.551 26.3225 17.4118 26.1879C17.2721 26.0539 17.1614 25.8947 17.0858 25.7194C17.0102 25.5442 16.9713 25.3564 16.9713 25.1667C16.9713 24.977 17.0102 24.7891 17.0858 24.6139C17.1614 24.4387 17.2721 24.2795 17.4118 24.1454L20.8565 20.8333L17.4118 17.5212C17.2723 17.3871 17.1616 17.2279 17.0862 17.0527C17.0107 16.8775 16.9718 16.6897 16.9718 16.5C16.9718 16.3103 17.0107 16.1225 17.0862 15.9473C17.1616 15.7721 17.2723 15.6129 17.4118 15.4788C17.5512 15.3447 17.7168 15.2383 17.8991 15.1657C18.0813 15.0931 18.2766 15.0558 18.4739 15.0558C18.6711 15.0558 18.8664 15.0931 19.0487 15.1657C19.2309 15.2383 19.3965 15.3447 19.536 15.4788L22.9807 18.7909L26.4254 15.4788C26.5649 15.3447 26.7305 15.2383 26.9127 15.1657C27.0949 15.0931 27.2903 15.0558 27.4875 15.0558C27.6848 15.0558 27.8801 15.0931 28.0623 15.1657C28.2445 15.2383 28.4101 15.3447 28.5496 15.4788C28.6891 15.6129 28.7997 15.7721 28.8752 15.9473C28.9507 16.1225 28.9895 16.3103 28.9895 16.5C28.9895 16.6897 28.9507 16.8775 28.8752 17.0527C28.7997 17.2279 28.6891 17.3871 28.5496 17.5212L25.1049 20.8333L28.5496 24.1454Z"
+              fill="#FEFEFF"/>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center justify-center w-full mt-2 gap-4">
+    <button (click)="onCancelDialog()"
+            class="text-white bg-[#FF7CA3] h-[66px] hover:bg-red-500 shadow text-center
+                    focus:ring-2 focus:ring-red-500 w-[28.87rem] cursor-pointer
+                    font-medium rounded-lg text-sm px-24 focus:outline-none select-none">Cancel
+    </button>
+    <button (click)="onCloseDialog()"
+            class="text-white bg-[#50D1AA] h-[66px] hover:bg-green-300 shadow text-center
+                    focus:z-10 focus:ring-2 focus:ring-green-500 w-[28.87rem] cursor-pointer
+                    font-medium rounded-lg text-sm px-24 focus:outline-none select-none">Done
+    </button>
+  </div>
+</div>
+

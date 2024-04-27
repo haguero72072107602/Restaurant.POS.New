@@ -1,0 +1,9 @@
+<button (click)="onSelected() "
+        [ngClass]="isSelected()  ? 'text-white bg-blue-500' : 'text-[#557AD9] bg-[#E5EDFE]'"
+        class="h-[80px] w-[80px] bg-[#E5EDFE] font-bold flex flex-col justify-center items-center
+                  cursor-pointer border-2 border-[#557AD9] text-[#557AD9]
+
+                  rounded-2xl hover:scale-80 text-[20px]">
+  <span class="text-[16px] font-semibold mb-4 overflow-hidden truncate line-clamp-1">{{ getTextCard }}</span>
+  <span class="text-[12px] truncate overflow-hidden">$ {{ getCardAmount }}</span>
+</button>

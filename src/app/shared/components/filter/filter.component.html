@@ -1,0 +1,20 @@
+<form #loginForm="ngForm" fxFlex="100" fxLayout="column" fxLayoutAlign="space-between" novalidate>
+  <div class="form-field" fxFlex="60" fxLayoutAlign="start center">
+    <mat-form-field fxFlex="60">
+      <textarea #filter="ngModel" (input)="tryValidation = false" [(ngModel)]="input" [maxlength]="max" [minlength]="2"
+                matInput
+                matTextareaAutosize="true"
+                name="filter" placeholder="Input text" required type="text"></textarea>
+      <!-- <mat-error *ngIf="filter.errors?.required">Text to search is required</mat-error> -->
+    </mat-form-field>
+    @if (!valid && tryValidation) {
+      <mat-error><span class="fa fa-warning fa-lg"></span> {{ errorMsg }}</mat-error>
+    }
+  </div>
+  <!--<generic-keyboard (evKeys)="getKeys($event)" [valid]="loginForm.form.invalid"></generic-keyboard>-->
+  <div style="display: flex">
+    <numpad (evPressKeys)="getKeys($event)" [numbers]="numbers" lastKey="Space" widthKey="80px"></numpad>
+    <operation-group (evPressKeys)="getKeys($event)" [colors]="opColor" [operations]="operations" layout="three-layout">
+    </operation-group>
+  </div>
+</form>

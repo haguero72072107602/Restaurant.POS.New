@@ -1,0 +1,35 @@
+<button
+  [disabled]="disabled"
+  #originOverlay="cdkOverlayOrigin"
+  (click)="openDialog()"
+  cdkOverlayOrigin
+  class="w-full h-[42px] relative flex items-center bg-gray-50">
+  <!--
+  <div class="absolute left-4 flex items-center pointer-events-none">
+    <svg aria-hidden="true" class="w-4 h-4 text-gray-500 dark:text-gray-400" fill="currentColor"
+         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+    </svg>
+  </div>
+  -->
+  <input
+    #inputDate
+    [disabled]="disabled" class="w-full h-[42px] focus:outline-none
+                border border-gray-300 bg-gray-50 px-3 py-2 text-black text-sm
+                focus:ring-blue-300 font-medium rounded-lg"
+         name="start" placeholder="Select date"
+         readonly type="text"/>
+</button>
+
+
+<div class="w-48">
+  <ng-template
+    (overlayOutsideClick)="openDialog()"
+    [cdkConnectedOverlayOpen]="isOpenDetail"
+    [cdkConnectedOverlayOrigin]="originOverlay"
+    cdkConnectedOverlay>
+    <app-calendar (evChangeDate)="setValue($event)" [dateValue]="value"/>
+  </ng-template>
+</div>
+

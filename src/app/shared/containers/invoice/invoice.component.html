@@ -1,0 +1,48 @@
+<div class="header" fxLayout="row">
+  <info-pos [value]="invoiceService.cashier" class="title-header" fxFlex="25" title="Cashier"></info-pos>
+  <!--<info-pos *ngIf="invoiceService.order?.type.table" title="Table" fxFlex="10" class="title-header" [value]="invoiceService.order?.type.table.label"></info-pos>-->
+  <info-pos [value]="invoiceService.receiptNumber" class="title-header" fxFlex="25" title="Receipt Number"></info-pos>
+  @if (invoiceService.invoice?.productOrders.length) {
+    <info-pos title="Products"
+              [value]="invoiceService.invoice?.productOrders.length" fxFlex="10" class="title-header"></info-pos>
+  }
+  <input-calculator [data]="invoiceService.digits" class="title-header" fxFlex="50"></input-calculator>
+  <app-station-status [status]="invoiceService.cashService.station?.status" class="title-header"
+                      fxFlex="5"></app-station-status>
+</div>
+
+<ag-grid #productstable class="container" fxFlex="100"></ag-grid>
+
+<div class="total" fxLayout="row">
+  <info-pos [value]="subtotal" format="currency" fxFlex="28" title="Subtotal"></info-pos>
+  <info-pos [value]="tax" format="currency" fxFlex="19" title="Tax"></info-pos>
+  <info-pos [value]="total" format="currency" fxFlex="28" title="Total"></info-pos>
+
+  @if (invoiceService.invoice?.balance !== 0 &&
+  (total - (invoiceService.invoice?.balance > 0 ? invoiceService.invoice?.balance : invoiceService.invoice?.balance * -1) > 0)) {
+    <info-pos
+      title="Paid"
+      [value]="total - (invoiceService.invoice?.balance > 0 ? invoiceService.invoice?.balance : invoiceService.invoice?.balance * -1)"
+      format="currency" fxFlex="25" class="info-pos-button green"></info-pos>
+  }
+
+  @if (fsTotal > 0) {
+    <info-pos title="EBT Total" [value]="fsTotal" align="end" format="currency" fxFlex="25"></info-pos>
+  }
+
+  @if (invoiceService.invoice?.balance > 0) {
+    <info-pos title="Balance"
+              [value]="invoiceService.invoice?.balance"
+              align="end" format="currency" fxFlex="25"></info-pos>
+  }
+  @if (invoiceService.invoice?.balance < 0) {
+    <info-pos title="Refund"
+              [value]="invoiceService.invoice?.balance"
+              align="end" format="currency" fxFlex="25"></info-pos>
+  }
+  @if (invoiceService.invoice?.isPromotion && invoiceService.invoice?.totalPromo > 0) {
+    <info-pos title="Saved"
+              [value]="invoiceService.invoice?.totalPromo"
+              align="end" format="currency" fxFlex="25"></info-pos>
+  }
+</div>

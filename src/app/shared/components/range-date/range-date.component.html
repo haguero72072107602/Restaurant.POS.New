@@ -1,0 +1,60 @@
+<div [class]="theme" oncontextmenu="return false">
+  <mat-toolbar>
+    <span class="title">{{ title }}</span>
+    <span class="flex-spacer"></span>
+    <button class="close" mat-dialog-close mat-raised-button>&times;</button>
+  </mat-toolbar>
+  <div class="flex-center" mat-dialog-content>
+    <p>{{ subtitle }}</p>
+    <div class="date-range flex-center">
+      <mat-form-field>
+        <input (dateChange)="addEvent('start', $event)" [matDatepicker]="startpicker" [max]="maxStartDate"
+               [min]="minDate" [value]="startdate" disabled matInput
+               placeholder="Choose a start date">
+        <mat-datepicker-toggle [for]="startpicker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #startpicker (closed)="closeDatePickerEvent(true)" disabled="false" touchUi>
+        </mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input (dateChange)="addEvent('end', $event)" [matDatepicker]="endpicker" [max]="maxDate"
+               [min]="minEndDate" [value]="enddate" disabled matInput placeholder="Choose a end date">
+        <mat-datepicker-toggle [disabled]="enddisabled" [for]="endpicker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #endpicker (closed)="closeDatePickerEvent(false)" disabled="false" touchUi></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    @if (rangeReportType === 'close') {
+      <div class="date-range flex-center">
+        @if (startClose) {
+          <button mat-button fxFlex="170px" class="red">
+            <span>{{ startClose.date | date:'yyyy/MM/dd HH:mm:ss' }}</span>
+            <p>{{ startClose.total | currency }}</p>
+          </button>
+        }
+
+        @if (endClose) {
+          <button mat-button fxFlex="170px" class="red">
+            <span>{{ endClose.date | date:'yyyy/MM/dd HH:mm:ss' }}</span>
+            <p>{{ endClose.total | currency }}</p>
+          </button>
+        }
+      </div>
+    }
+
+    @if (rangeReportType === 'date') {
+      <div class="date-range flex-center">
+        @if (startdate) {
+          <input atp-time-picker [(ngModel)]="startTime"/>
+        }
+
+        @if (enddate) {
+          <input atp-time-picker [(ngModel)]="endTime"/>
+        }
+      </div>
+    }
+  </div>
+  <div mat-dialog-actions>
+    <button (click)="getCloseReport()" [disabled]="btnDisabled" mat-raised-button>Get Close Report</button>
+  </div>
+</div>
