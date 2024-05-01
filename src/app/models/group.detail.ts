@@ -6,4 +6,5 @@ export interface GroupDetail {
   number?: number;
   description?: string;
   aggregates?: Aggregate[];
+  isDefault: boolean;
 }

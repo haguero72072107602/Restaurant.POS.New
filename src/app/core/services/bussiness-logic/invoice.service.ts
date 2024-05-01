@@ -102,7 +102,7 @@ export class InvoiceService {
   }
 
   get getInvoiceTable() {
-    return this.order && this.order!.table!
+    return this.order?.table!
   }
 
   get getInvoiceCustomer() {
@@ -115,6 +115,9 @@ export class InvoiceService {
 
     const paymentStatus = [PaymentStatus.REFUND]
 
+    return !this.invoice;
+
+    /*
     return this.invoice ?
       (
         this.invoice?.isRefund! ||
@@ -123,6 +126,7 @@ export class InvoiceService {
         (this.invoice?.productOrders && this.invoice?.productOrders.length === 0)
       ) :
       true;
+     */
   }
 
   get disableCheckout() {
@@ -196,6 +200,7 @@ export class InvoiceService {
       }
     }, 1000);
     const $creating = this.dataStorage.createInvoice(orderType, table).subscribe(next => {
+      debugger;
       console.log('createCheck successfull', next);
       this.isCreating = false;
       if (!orderType) this.txType = orderType!;

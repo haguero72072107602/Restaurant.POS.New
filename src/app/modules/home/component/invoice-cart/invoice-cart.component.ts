@@ -40,7 +40,7 @@ export class InvoiceCartComponent extends AbstractInstanceClass implements OnIni
 
   public Invoice?: Invoice;
   public isMoreOptions: boolean = false;
-  public table: Table | undefined = undefined;
+  public table!: Table;
   public numberInvoice!: string;
   protected readonly ETXType = ETXType;
   protected readonly animate = animate;
@@ -131,8 +131,8 @@ export class InvoiceCartComponent extends AbstractInstanceClass implements OnIni
   ngAfterViewInit(): void {
     this.cd.detectChanges();
     this.sub$.push(this.invoiceService.getOrderObservable$().subscribe((order: Order | undefined) => {
-      this.table = this.invoiceService.getInvoiceTable === undefined ? undefined :
-        {...this.invoiceService.getInvoiceTable};
+      debugger;
+      this.table = this.invoiceService.getInvoiceTable;
     }));
   }
 

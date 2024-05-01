@@ -1,4 +1,4 @@
-<div [@dialog1] class="w-[745px] h-[700px] font-poppins">
+<div class="w-[745px] h-[700px] font-poppins">
   <!--
   <mat-toolbar color="primary" class="flex justify-between">
     <span>{{productOrder!.productName}}</span>
@@ -83,10 +83,12 @@
 
           @for (groupDetail of productOrder!.groupDetails; track groupDetail) {
             @if (groupDetail.id != '-99') {
-              <div class="m-4">
-                <span class="font-semibold text-[#557AD9] "
-                      style="font-size: 14px"> {{ groupDetail.description }} </span>
-                <div class="grid grid-cols-4 gap-8 mx-4 mt-2">
+              <div class="m-4 w-[96%]">
+                <div class="h-[32px] bg-blue-400 my-4 flex flex-col justify-center rounded-sm">
+                  <span class="font-semibold text-white bg-blue-400 ml-4 tracking-wide"
+                        style="font-size: 14px"> {{ groupDetail.description }} </span>
+                </div>
+                <div class="grid grid-cols-4 gap-4 mt-6">
                   @for (aggregate of groupDetail!.aggregates; track aggregate) {
 
                     <!-- bg-[#F8F9FD] -->
@@ -95,7 +97,7 @@
                             [ngClass]="(aggregate.count! > 0) ?
                               'bg-[#557AD9] text-white ring-4 outline-none ring-blue-300':
                               'text-[#557AD9] bg-blue-50' "
-                            class="w-[165px] h-[70px] relative flex flex-col justify-center items-center px-5 py-2.5 text-sm
+                            class="w-[155px] h-[70px] relative flex flex-col justify-center items-center px-5 py-2.5 text-sm
                              font-medium rounded-lg hover:bg-[#557AD9] hover:text-white
                              dark:bg-blue-600 dark:hover:bg-blue-700 z-0 text-pretty"
                             (click)="onAggregate(groupDetail, aggregate)">

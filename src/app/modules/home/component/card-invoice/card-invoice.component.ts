@@ -25,7 +25,7 @@ export class CardInvoiceComponent implements OnInit {
   }
 
   get getTableUse() {
-    return this.invoiceService.order!.table!.label
+    return this.invoiceService?.order?.table?.label!
   }
 
   ngOnInit(): void {

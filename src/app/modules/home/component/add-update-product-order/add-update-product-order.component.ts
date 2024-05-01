@@ -176,18 +176,26 @@ export class AddUpdateProductOrderComponent implements AfterViewInit {
 
   onAggregate(groupDetail: GroupDetail, aggregate: Aggregate) {
     console.log(groupDetail)
-    if (groupDetail.number != 0) {
-      const count = groupDetail.aggregates!.reduce((a: number, b: Aggregate) => {
-        return a + b.count
-      }, 0);
 
-      if (groupDetail.number! > count) {
-        aggregate.count += 1;
+    if (groupDetail.isDefault)
+    {
+      aggregate.count = aggregate.count === 1 ? 0 : 1
+    }
+    else
+    {
+      if (groupDetail.number != 0) {
+        const count = groupDetail.aggregates!.reduce((a: number, b: Aggregate) => {
+          return a + b.count
+        }, 0);
+
+        if (groupDetail.number! > count) {
+          aggregate.count += 1;
+        } else {
+          aggregate.count = 0;
+        }
       } else {
-        aggregate.count = 0;
+        aggregate.count += 1;
       }
-    } else {
-      aggregate.count += 1;
     }
     this.amountCostSides();
   }

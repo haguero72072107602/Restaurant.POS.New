@@ -19,6 +19,8 @@ import {SafeUrlPipe} from "@core/pipe/safeUrl.pipe";
 import {trigger, transition, useAnimation} from '@angular/animations';
 import {zoomIn} from 'ng-animate';
 import {AuthService} from "@core/services/api/auth.service";
+import {GroupDetail} from "@models/group.detail";
+import {Aggregate} from "@models/aggregate";
 
 @Component({
   standalone: true,
@@ -107,7 +109,6 @@ export class CardProductComponent implements OnInit {
               }, error => {
                 this.dialogService.openGenericInfo("Error", error)
               });
-
           });
         }
       });
@@ -155,6 +156,15 @@ export class CardProductComponent implements OnInit {
        */
         productOrder.groupDetails = prodDetails.groupDetails;
         //productOrder.productDetailsDto?.groupDetails = prodDetails.groupDetails;
+
+        productOrder.groupDetails?.forEach( (g: GroupDetail)=> {
+          if (g.isDefault)
+          {
+            g.aggregates?.forEach( (a:Aggregate) =>{
+              a.count = 1;
+            })
+          }
+        });
 
         /* Check first Free product */
 

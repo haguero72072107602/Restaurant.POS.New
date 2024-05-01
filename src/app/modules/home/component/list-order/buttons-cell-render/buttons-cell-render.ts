@@ -123,18 +123,18 @@ export class ButtonsCellRender extends AbstractInstanceClass implements ICellRen
   }
 
   refundSale() {
-    if (this.invoiceService.invoice?.productOrders?.length! > 0 &&
-      !this.invoiceService.disableHold) {
-      this.invoiceService.InProgressOrder().subscribe(
-        next => {
+    //if (this.invoiceService.invoice?.productOrders?.length! > 0 &&
+    //  !this.invoiceService.disableHold) {
+      //this.invoiceService.InProgressOrder().subscribe(
+      //  next => {
           this.processRefund(this.receiptNumber!);
-        },
-        err => {
-          this.dialogService.openGenericInfo('Error', 'Can\'t complete hold order operation')
-        });
-    } else {
-      this.processRefund(this.receiptNumber!);
-    }
+      //  },
+      //  err => {
+      //    this.dialogService.openGenericInfo('Error', 'Can\'t complete hold order operation')
+      //  });
+    //} else {
+    //  this.processRefund(this.receiptNumber!);
+    //}
   }
 
   onPrintInvoice() {

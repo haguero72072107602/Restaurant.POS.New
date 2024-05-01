@@ -1,9 +1,11 @@
 <section class="w-[calc(100vw-(340px))] h-[calc(100vh-80px)] bg-[#F8F9FD] ">
   <div class="flex flex-col w-[calc(100vw-(340px))] h-[calc(100vh-80px)]">
     <div class="h-[60px] w-[60%] flex items-center justify-center bg-[white] mx-auto mt-4">
+
       <select #selectStatus (change)="onChangeGroup($event)"
               class="w-[173px] h-[42px] bg-gray-10 border border-gray-300 text-gray-900 text-sm rounded-lg
-              focus:border-gray-10 focus:border-gray-300 block p-2.5 mr-6">
+		     appearance-none row-start-1 col-start-1 
+                     focus:border-gray-10 focus:border-gray-300 block p-2.5 mr-6">
         <option value="1">Daily</option>
         <option value="2">Month</option>
       </select>

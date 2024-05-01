@@ -80,9 +80,10 @@
         </svg>
         <span class="text-white text-[14px] ml-2">Customer</span>
       </button>
+
       -->
 
-      @if (table === undefined) {
+      @if (!table) {
 
         <button
           [disabled]="checkDinein"
