@@ -62,7 +62,6 @@ export class ListOrderComponent extends AbstractInstanceClass implements OnInit,
 
   ordersStore = inject(OrdersStore);
 
-
   gridOptions: GridOptions<any> | undefined = {
     columnDefs: [
       {
@@ -184,12 +183,13 @@ export class ListOrderComponent extends AbstractInstanceClass implements OnInit,
   }
 
   selectedAll($event: Event) {
-
-    console.log("input", $event)
-    console.log(this.selectMovement);
+    /*
     (this.selectMovement) ?
       this.invoiceService.selectionModel.select(...this.invoiceService.items) :
       this.invoiceService.selectionModel.clear();
+    */
+    (this.selectMovement) ?
+      this.ordersStore.allInvoiceStatus() : this.ordersStore.clearInvoiceStatus();
 
     this.onDateUpdate();
   }
@@ -211,21 +211,20 @@ export class ListOrderComponent extends AbstractInstanceClass implements OnInit,
       }))
       .pipe(map((items: Invoice[]) => {
         let invoiceFilter: Invoice[] = [];
-        this.invoiceService?.selectionModel!.selected.forEach(m => {
-          switch (m.id) {
+        this.ordersStore.status().forEach(m => {
+          switch (m) {
             case 4:
-              invoiceFilter.push(...items.filter(f => f.status === m.id && !f.isRefund))
+              invoiceFilter.push(...items.filter(f => f.status === m && !f.isRefund))
               break;
             case 9:
               invoiceFilter.push(...items.filter(f => f.isRefund))
               break;
             default:
-              invoiceFilter.push(...items.filter(f => f.status === m.id))
+              invoiceFilter.push(...items.filter(f => f.status === m))
               break;
           }
         });
 
-        debugger;
         if (!!this.ordersStore.table()) {
           invoiceFilter = invoiceFilter.filter(p => p.order!.tableId! === this.ordersStore.table()!.id)
         }
@@ -290,5 +289,9 @@ export class ListOrderComponent extends AbstractInstanceClass implements OnInit,
     this.onDateUpdate(null);
   }
 
+  changeStatusInvoice(id: number) {
+    this.ordersStore.updateInvoiceStatus(id)
+    this.onDateUpdate();
+  }
 }
 

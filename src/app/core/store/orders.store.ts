@@ -44,7 +44,7 @@ export const OrdersStore = signalStore(
       return store.status().includes(value)
     },
 
-    allInvoiceStatus(value: InvoiceStatus)
+    allInvoiceStatus()
     {
       patchState(store, (state) => ({ status: [
           InvoiceStatus.IN_PROGRESS,

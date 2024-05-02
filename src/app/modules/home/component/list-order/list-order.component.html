@@ -80,8 +80,8 @@
                     <label class="relative inline-flex items-center w-full cursor-pointer">
                       <input
                         type="checkbox" value="1" class="sr-only peer"
-                        [checked]="invoiceService!.selectionModel!.isSelected(item)"
-                        (change)="changeSelected(item)">
+                        [checked]="ordersStore.selectedInvoiceStatus(item.id)"
+                        (change)="changeStatusInvoice(item.id)">
                       <div
                         class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4
                                     peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer
