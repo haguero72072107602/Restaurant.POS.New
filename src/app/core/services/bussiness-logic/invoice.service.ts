@@ -63,7 +63,6 @@ export class InvoiceService {
   order$: Subject<Order | undefined> = new BehaviorSubject<Order | undefined>(this.order!);
   deleteProdRefund: boolean = true;
 
-
   items: OperationType[] = [
     {title: "Create", id: InvoiceStatus.CREATED},
     {title: "Progress", id: InvoiceStatus.IN_PROGRESS},

@@ -144,7 +144,6 @@ import {ScrollEarringComponent} from "@modules/home/component/scroll-earring/scr
     CategoryComponent,
     InvoiceCartComponent,
     PayOrderComponent,
-    ListOrderComponent,
     CalculatorComponent,
     InfoPayOrderComponent,
     AddUpdateProductOrderComponent,

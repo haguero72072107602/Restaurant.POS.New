@@ -104,7 +104,8 @@
           <app-button-date-range
             (onChangeDate)="evChangeDateRange($event)"
             [dateRange]="RangeDateOperation.LastDay"
-            [emitInitialRange]="true"/>
+            [dateRangeReference]="ordersStore.dateRange()"
+            [emitInitialRange]="false"/>
         </div>
       </div>
     </div>
@@ -140,7 +141,6 @@
           [defaultColDef]="varGlobalService.defaultColDef"
           [rowData]="rowData"
           (firstDataRendered)="onFirstDataRendered($event)"
-          (gridReady)="onGridReady($event)"
         ></ag-grid-angular>
 
       }

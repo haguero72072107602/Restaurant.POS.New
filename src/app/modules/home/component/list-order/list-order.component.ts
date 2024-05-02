@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, SecurityContext, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, inject, OnInit, ViewChild} from '@angular/core';
 import {map} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -8,7 +8,6 @@ import {Invoice} from "@models/invoice.model";
 import {InvoiceStatus} from "@core/utils/invoice-status.enum";
 import type {DropdownInterface, DropdownOptions} from "flowbite";
 import {Dropdown, initFlowbite} from 'flowbite'
-import {dateRangeISO, removeTFromISODate} from '@core/utils/functions/transformers';
 import {SearchService} from "@core/services/bussiness-logic/search.service";
 import dayjs from 'dayjs/esm';
 import {ColDef, FirstDataRenderedEvent, GridOptions, GridReadyEvent, ValueFormatterParams} from "ag-grid-community";
@@ -26,17 +25,28 @@ import {OperationsService} from "@core/services/bussiness-logic/operations.servi
 import {VariableGlobalService} from "@core/services/bussiness-logic/variable-global.service";
 import {RangeDateOperation} from "@core/utils/operations/rangeDateOperation";
 import {CellRenderPaid} from "@modules/home/component/list-order/cell-render-paid/cell-render-paid";
-import {ITable, Table} from "@models/table.model";
+import {Table} from "@models/table.model";
 import {DateRange} from "@angular/material/datepicker";
-import {UserList} from "@models/userList";
 import {User} from "@models/user.model";
 import {DataStorageService} from "@core/services/api/data-storage.service";
+import {OrdersStore} from "@core/store/orders.store";
+import {AgGridAngular} from "ag-grid-angular";
+import {ButtonDateRangeComponent} from "@modules/home/component/button-date-range/button-date-range.component";
+import {FormsModule} from "@angular/forms";
+import {SelectTableComponent} from "@modules/home/component/list-order/select-table/select-table.component";
 
 declare var DateRangePicker: any;
 
 @Component({
   selector: 'app-list-order',
+  standalone: true,
   templateUrl: './list-order.component.html',
+  imports: [
+    AgGridAngular,
+    ButtonDateRangeComponent,
+    FormsModule,
+    SelectTableComponent
+  ],
   styleUrls: ['./list-order.component.css']
 })
 export class ListOrderComponent extends AbstractInstanceClass implements OnInit, AfterViewInit {
@@ -46,13 +56,12 @@ export class ListOrderComponent extends AbstractInstanceClass implements OnInit,
 
   public rowData: undefined | Invoice[] = [];
   public columnDefs: undefined | ColDef[] = [];
-  selected: any;
-  maxDate?: dayjs.Dayjs;
-  minDate?: dayjs.Dayjs;
   $targetEl?: HTMLElement;
   $triggerEl?: HTMLElement;
   selectMovement: number = 0;
-  filterTable: Table | null = null;
+
+  ordersStore = inject(OrdersStore);
+
 
   gridOptions: GridOptions<any> | undefined = {
     columnDefs: [
@@ -146,25 +155,28 @@ export class ListOrderComponent extends AbstractInstanceClass implements OnInit,
   }
 
   override ngOnInit(): void {
+
     this.route.params.subscribe((param: any) => {
       this.invoiceStatus = param['id']
     });
-
-    this.selected = {
-      start: dayjs(),
-      end: dayjs()
-    };
-
-    this.maxDate = dayjs();
 
     /* Gel list user */
 
     this.dataStore.getApplicationUsers()
       .subscribe((next: User[]) => {
         this.userList = next;
+        this.onDateUpdate();
       }, error => {
         this.dialogService.openGenericInfo("Error", error)
       })
+  }
+
+  private DateFormat(params: ValueFormatterParams) {
+    return moment(params.value).format("MM/DD/YYYY")
+  }
+
+  private UserFormat(params: ValueFormatterParams) {
+    return params.value ? params.value : "Admin"
   }
 
   onBackOrder() {
@@ -212,8 +224,10 @@ export class ListOrderComponent extends AbstractInstanceClass implements OnInit,
               break;
           }
         });
-        if (this.filterTable) {
-          invoiceFilter = invoiceFilter.filter(p => p.order!.tableId! === this.filterTable!.id)
+
+        debugger;
+        if (!!this.ordersStore.table()) {
+          invoiceFilter = invoiceFilter.filter(p => p.order!.tableId! === this.ordersStore.table()!.id)
         }
 
         invoiceFilter.forEach( (inv : Invoice) => {
@@ -259,49 +273,22 @@ export class ListOrderComponent extends AbstractInstanceClass implements OnInit,
   }
 
   evChangeDateRange($event: DateRange<Date>) {
-    this.selected.start = $event.start;
-    this.selected.end = $event.end;
-    this.onDateUpdate(null);
+    debugger;
+    this.ordersStore.updateDateRange($event);
+    console.log("Interval to date ->  ",this.ordersStore.dateRange())
+    this.onDateUpdate();
   }
 
   onDateUpdate($event?: any) {
     this.onRefreshData(
-      moment(this.selected.start).format("MM-DD-yyyy HH:mm"),
-      moment(this.selected.end).format("MM-DD-yyyy HH:mm"));
+      moment(this.ordersStore.dateRange().start).format("MM-DD-yyyy HH:mm"),
+      moment(this.ordersStore.dateRange().end).format("MM-DD-yyyy HH:mm"));
   }
-
-  /*
-  private onGetData() {
-    if (this.invoiceStatus == undefined) {
-      this.invoiceStatus = InvoiceStatus.IN_HOLD;
-    }
-    this.onDateUpdate(null);
-  }
-
-   */
 
   evChangeSelectedTable($event: Table | null) {
-    this.filterTable = $event;
+    this.ordersStore.updateTable($event);
     this.onDateUpdate(null);
   }
 
-  onGridReady($event: GridReadyEvent<any>): void {
-    /*
-    this.gridApi = $event.api;
-    //this.gridColumnApi = $event.columnApi;
-    const sortModel = [
-      {colId: 'recordStartTime', sort: 'desc'}
-    ];
-    $event.api.setSortModel(sortModel);
-    */
-  }
-
-  private DateFormat(params: ValueFormatterParams) {
-    return moment(params.value).format("MM/DD/YYYY")
-  }
-
-  private UserFormat(params: ValueFormatterParams) {
-    return params.value ? params.value : "Admin"
-  }
 }
 
