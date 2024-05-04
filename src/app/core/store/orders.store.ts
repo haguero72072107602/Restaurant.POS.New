@@ -46,17 +46,19 @@ export const OrdersStore = signalStore(
 
     allInvoiceStatus()
     {
-      patchState(store, (state) => ({ status: [
-          InvoiceStatus.IN_PROGRESS,
-          InvoiceStatus.PENDENT_FOR_AUTHORIZATION,
-          InvoiceStatus.IN_HOLD,
-          InvoiceStatus.PAID,
-          InvoiceStatus.CANCEL,
-          InvoiceStatus.CREATED,
-          InvoiceStatus.PENDENT_FOR_PAYMENT,
-          InvoiceStatus.REMOVE_ON_HOLD,
-          InvoiceStatus.REFUND,
-        ]}));
+      const setAll = [
+        InvoiceStatus.IN_PROGRESS,
+        InvoiceStatus.PENDENT_FOR_AUTHORIZATION,
+        InvoiceStatus.IN_HOLD,
+        InvoiceStatus.PAID,
+        InvoiceStatus.CANCEL,
+        InvoiceStatus.CREATED,
+        InvoiceStatus.PENDENT_FOR_PAYMENT,
+        InvoiceStatus.REMOVE_ON_HOLD,
+        InvoiceStatus.REFUND,
+      ]
+
+      patchState(store, (state) => ({ status: setAll}));
     },
 
     clearInvoiceStatus(){

@@ -204,7 +204,8 @@ export class ListOrderComponent extends AbstractInstanceClass implements OnInit,
 
         if (!roles.includes(this.authService.token.rol!)) {
           items = items.filter((item: Invoice) => {
-            return item.applicationUserId === this.authService.token.user_id
+            return item.applicationUserId === this.authService.token.user_id ||
+                   item.order!.table!.posUserId === this.authService.token.user_id
           })
         }
         return items;
