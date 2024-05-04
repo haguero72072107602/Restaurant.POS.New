@@ -212,7 +212,7 @@ export class ListOrderComponent extends AbstractInstanceClass implements OnInit,
       }))
       .pipe(map((items: Invoice[]) => {
         let invoiceFilter: Invoice[] = [];
-        this.ordersStore.status().forEach(m => {
+        this.ordersStore.invoiceStatus().forEach(m => {
           switch (m) {
             case 4:
               invoiceFilter.push(...items.filter(f => f.status === m && !f.isRefund))
@@ -240,7 +240,7 @@ export class ListOrderComponent extends AbstractInstanceClass implements OnInit,
           }
         });
 
-        return invoiceFilter;
+       return invoiceFilter;
       }))
       .subscribe((items: Invoice[]) => {
         console.log("list of orders : ", items);

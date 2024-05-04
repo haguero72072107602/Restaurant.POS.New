@@ -4,9 +4,9 @@ import {map} from "rxjs/operators";
 import {NgClass} from "@angular/common";
 
 @Component({
-  standalone: true,
   selector: 'app-scroll-buttons',
   templateUrl: './scroll-buttons.component.html',
+  standalone: true,
   imports: [
     NgClass
   ],
@@ -43,16 +43,16 @@ export class ScrollButtonsComponent implements AfterViewInit {
       }
 
     this.arrowIcons.forEach(
-      (icon: Element) => {
-        icon
-          .addEventListener("click", () => {
-              // if clicked icon is left, reduce 350 from tabsBox scrollLeft else add
-            let scrollWidth = this.tabsBox!.scrollLeft += icon.id === "left" ? -100 : 100;
-              handleIcons(scrollWidth);
-            }
-          )
-        ;
-      });
+        (icon: Element) => {
+          icon
+            .addEventListener( "click", () => {
+                // if clicked icon is left, reduce 350 from tabsBox scrollLeft else add
+                let scrollWidth = this.tabsBox!.scrollLeft += icon.id === "left" ? -340 : 340;
+                handleIcons(scrollWidth);
+              }
+            )
+          ;
+        });
 
 
     /*
@@ -82,8 +82,7 @@ export class ScrollButtonsComponent implements AfterViewInit {
     document.addEventListener("mouseup", dragStop);
   }
 
-  onDepartament($even: Event, id: string) {
-    //$even.stopPropagation();
+  onDepartament(id: string ) {
     this.evSelectDepartment.emit(id);
   }
 

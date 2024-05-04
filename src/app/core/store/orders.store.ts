@@ -3,9 +3,8 @@ import {InvoiceStatus} from "@core/utils/invoice-status.enum";
 import {DateRange} from "@angular/material/datepicker";
 import {RangeDateOperation} from "@core/utils/operations/rangeDateOperation";
 import {fnSetRangeDate} from "@core/utils/functions/functions";
-import {SelectionModel} from "@angular/cdk/collections";
-import {computed} from "@angular/core";
 import {Table} from "@models/table.model";
+import {computed} from "@angular/core";
 
 type OrdersState = {
   status: InvoiceStatus[];
@@ -23,18 +22,9 @@ export const OrdersStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
 
-  /*
   withComputed(({ status }) => ({
-    isSelected: computed(() => books().length),
-    sortedBooks: computed(() => {
-      const direction = filter.order() === 'asc' ? 1 : -1;
-
-      return books().toSorted((a, b) =>
-        direction * a.title.localeCompare(b.title)
-      );
-    }),
+    invoiceStatus: computed(() => status()),
   })),
-  */
 
 
   withMethods((store) => ({
@@ -46,6 +36,16 @@ export const OrdersStore = signalStore(
 
     allInvoiceStatus()
     {
+      //console.log("status", invoiceStatus)
+      /*
+      var result = Object. values(InvoiceStatus).filter( p=> {
+        return isNaN(Number(p));
+      })
+
+      console.log(result);
+      */
+
+
       const setAll = [
         InvoiceStatus.IN_PROGRESS,
         InvoiceStatus.PENDENT_FOR_AUTHORIZATION,

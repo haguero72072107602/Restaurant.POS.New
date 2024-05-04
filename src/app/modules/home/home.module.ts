@@ -129,6 +129,7 @@ import {SelectTableComponent} from "@modules/home/component/list-order/select-ta
 import {ButtonDateRangeComponent} from "@modules/home/component/button-date-range/button-date-range.component";
 import {PortalModule} from "@angular/cdk/portal";
 import {ScrollEarringComponent} from "@modules/home/component/scroll-earring/scroll-earring.component";
+import {ScrollButtonsComponent} from "@modules/home/component/list-products/scroll-buttons/scroll-buttons.component";
 
 @NgModule({
   declarations: [
@@ -241,7 +242,6 @@ import {ScrollEarringComponent} from "@modules/home/component/scroll-earring/scr
     ButtonDateRangeComponent,
     PortalModule,
     ScrollEarringComponent,
-
   ],
   exports: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

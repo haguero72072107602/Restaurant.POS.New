@@ -1,6 +1,6 @@
 <div class="w-full h-[calc(100vh-80px)] flex flex-col justify-between overflow-hidden bg-[EBF0F7] mx-auto">
 
-  <div class="w-full h-[68px] border-b bg-[#EBF0F7] dark:bg-[#374151] dark:border-gray-600 overflow-hidden">
+  <div class="w-full min-h-[68px] border-b bg-[#EBF0F7] dark:bg-[#374151] dark:border-gray-600 overflow-hidden">
     <app-scroll-buttons (evSelectDepartment)="evDepartament($event)"
                         [departments]="departamentOrderBy"
                         [numberSelect]="selectDepartament"/>
