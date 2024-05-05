@@ -70,6 +70,7 @@
 }
 .tabs-box.dragging .tab {
   user-select: none;
+  cursor: pointer;
   /*pointer-events: none;*/
 }
 .tabs-box .tab.active{
