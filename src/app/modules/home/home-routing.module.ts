@@ -41,6 +41,7 @@ import {MenuEditComponent} from "@modules/home/component/list-menu/menu-edit/men
 import {ComponentEditComponent} from "@modules/home/component/list-components/component-edit/component-edit.component";
 import {ListSchedulerComponent} from "@modules/home/component/list-scheduler/list-scheduler.component";
 import {EditCustomerComponent} from "@modules/home/component/list-customers/edit-customer/edit-customer.component";
+import {RptSalesHistoryComponent} from "@modules/home/component/rpt-sales-history/rpt-sales-history.component";
 
 const routes: Routes = [
   {
@@ -186,6 +187,9 @@ const routes: Routes = [
             },
             {
               path: 'rptbestselledproducts', component: RptMenuItemsSalesComponent,
+            },
+            {
+              path: 'rptsaleshistory', component: RptSalesHistoryComponent,
             },
             {
               path: '', redirectTo: 'black', pathMatch: "full"

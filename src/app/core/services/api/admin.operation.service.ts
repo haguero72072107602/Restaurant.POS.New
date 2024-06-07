@@ -119,7 +119,7 @@ export class AdminOperationService {
       .pipe(catchError(this.processHttpMsgService.handleError));
   }
 
-  getCloseDay(url: string, from: string, to: string): Observable<Report> {
+  getCloseDay(url: string, from: string, to: string, print : boolean = false): Observable<Report> {
     let params = new HttpParams();
     if (from) {
       params = params.append('fromDate', from);
@@ -128,7 +128,7 @@ export class AdminOperationService {
       params = params.append('toDate', to);
     }
     params = params.append('close', 'false');
-    params = params.append('print', 'false');
+    params = params.append('print', print);
     return this._http.get<any>(url + this.path + '/op/report', {params})
       .pipe(catchError(this.processHttpMsgService.handleError));
   }

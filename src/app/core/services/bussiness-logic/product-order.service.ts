@@ -88,7 +88,7 @@ export class ProductOrderService implements OnDestroy {
   }
 
   checkGenericProduct(product: Product) {
-    if (!this.authService.adminLogged() && !this.configService.sysConfig.AllowUserOpenPrice) {
+    if (!this.authService.adminLogged() && !this.configService.sysConfig.allowUserOpenPrice) {
       this.authService.storeInitialLogin();
       this.operationService.adminLogin()
         .subscribe((loginValid: any) => {

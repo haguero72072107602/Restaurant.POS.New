@@ -23,6 +23,7 @@ import {DialogService} from "@core/services/bussiness-logic/dialog.service";
 import {AbstractInstanceClass} from "@core/utils/abstract-instance-class.service";
 import {OperationsService} from "@core/services/bussiness-logic/operations.service";
 import {DataStorageService} from "@core/services/api/data-storage.service";
+import {ConfigurationService} from "@core/services/bussiness-logic/configuration.service";
 
 @Component({
   selector: 'app-list-tables',
@@ -64,6 +65,7 @@ export class ListTablesComponent extends AbstractInstanceClass implements AfterV
     private sanitizer: DomSanitizer,
     private dialogService: DialogService,
     private operationService: OperationsService,
+    private configService: ConfigurationService
   ) {
     super();
 
@@ -132,13 +134,13 @@ export class ListTablesComponent extends AbstractInstanceClass implements AfterV
 
     this.tablesService.updateStateTable().subscribe((nextUpdate: any) => {
 
-      let readLayout = !this.isUserAdmin ?
+      let readLayout = !this.isUserAdmin && this.configService.sysConfig.checkCashierInTable?
         this.layoutService.getLocalLayoutByUser(this.authService.token!.user_id) :
         this.layoutService.getLocalLayout();
 
       readLayout
         .pipe(map((next: LocalLayout[]) => {
-          if (!this.isUserAdmin) {
+          if (!this.isUserAdmin ) {
             next.forEach(l => {
               l.tables = l.tables.filter(t => t.status != 0)
             })

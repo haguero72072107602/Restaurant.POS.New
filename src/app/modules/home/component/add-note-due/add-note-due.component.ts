@@ -51,5 +51,10 @@ export class AddNoteDueComponent implements OnInit {
   onchangeRadio(selectPrint: number) {
     console.log(selectPrint);
     this.selectPrint = selectPrint;
+
+
+
+
+
   }
 }

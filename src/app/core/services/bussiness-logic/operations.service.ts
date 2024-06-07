@@ -945,6 +945,8 @@ export class OperationsService {
   }
 
   getTotalToPaid(opType?: PaymentOpEnum) {
+    debugger;
+
     console.log('getTotalToPaid', opType, this.invoiceService.invoice);
     const total = this.invoiceService.invoice!.total;
     const balance = this.invoiceService.invoice!.balance;

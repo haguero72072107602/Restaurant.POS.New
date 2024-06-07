@@ -77,13 +77,16 @@
           dateInformation | date : "EEEE, MMMM d, y"
         }}</span>
     </div>
+    <div class="flex justify-center w-full">
+        <span class="text-[11px] text-[#193B5C] text-center font-bold">Version {{environment.version}}</span>
+    </div>
   </div>
 
 
   <div class="flex flex-col w-3/4 h-screen">
     <div
       class="flex items-center justify-center w-full h-full bg-cover "
-      style="background-image: url({{background}})"
+      style="background-image: url( {{ background }} )"
     >
       <div class="backdrop-blur-sm w-full h-full">
         <router-outlet></router-outlet>

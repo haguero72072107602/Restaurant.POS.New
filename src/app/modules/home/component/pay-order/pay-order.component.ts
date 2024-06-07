@@ -25,6 +25,7 @@ import {Invoice} from "@models/invoice.model";
 import {DialogType} from "@core/utils/dialog-type.enum";
 import {DepartProductService} from "@core/services/bussiness-logic/depart-product.service";
 import {ConfirmPaymentComponent} from "@modules/home/component/confirm-payment/confirm-payment.component";
+import {ConfigurationService} from "@core/services/bussiness-logic/configuration.service";
 
 @Component({
   selector: 'app-pay-order',
@@ -47,6 +48,7 @@ export class PayOrderComponent extends AbstractInstanceClass implements CanCompo
     public dialog: MatDialog,
     private departProduct: DepartProductService,
     private operationService: OperationsService,
+    private configService: ConfigurationService,
     private searchService: SearchService) {
     super();
   }
@@ -214,19 +216,13 @@ export class PayOrderComponent extends AbstractInstanceClass implements CanCompo
   }
 
   onCashPay() {
-
-    /* Check product star in invoice */
-    /*
-    if (this.operationService.existsProductOrderStar()) {
-      this.onChangeProductStar(next.cashTip);
-    }
-    */
-
     this.operationService.calculatorTips(
       {
         amountPaid: this.operationService.getTotalToPaid(PaymentOpEnum.CASH),
         amountSubTotal: this.invoiceService.invoice?.subTotal!,
-        amountBalance: this.invoiceService.invoice?.balance,
+        amountBalance: !this.configService.sysConfig.removeTax
+          ? this.invoiceService.invoice?.balance
+          : this.invoiceService.invoice?.balance! - this.invoiceService.invoice?.tax!,
         checkBalance: false,
         isRefund: this.invoiceService.invoice?.isRefund
       }).subscribe((next: any) => {

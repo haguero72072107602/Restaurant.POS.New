@@ -175,4 +175,8 @@ export class SidebarComponent extends AbstractInstanceClass implements OnInit {
   private changeStateButtons(enable: boolean) {
     this.isDiableButton = enable;
   }
+
+  onNotSale() {
+    this.operationService.notSale()
+  }
 }

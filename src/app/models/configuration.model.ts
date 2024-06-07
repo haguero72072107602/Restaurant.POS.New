@@ -62,6 +62,7 @@ export interface Configuration {
   sidesFree?: number;
   allowHappyHour?: number;
   allowSubCharge?: boolean;
-  AllowUserOpenPrice?: boolean;
-  companyId: string;
+  allowUserOpenPrice?: boolean;
+  companyId?: string;
+  checkCashierInTable?: boolean;
 }

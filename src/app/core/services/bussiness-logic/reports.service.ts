@@ -97,8 +97,8 @@ export class ReportsService {
     return this.adminOpeService.getCashierCloseShiftReportsAll(this.url, fromDate, toDate);
   }
 
-  getCloseDay(fromDate?: string, toDate?: string): Observable<Report> {
-    return this.adminOpeService.getCloseDay(this.url, fromDate!, toDate!)
+  getCloseDay(fromDate?: string, toDate?: string, print : boolean = false): Observable<Report> {
+    return this.adminOpeService.getCloseDay(this.url, fromDate!, toDate!, print)
   }
 
   cashierCloseShiftPrint(close: boolean, print: boolean, idCashier: string, fromDate?: string, toDate?: string): Observable<Report> {

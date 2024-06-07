@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ClockService} from '@core/utils/clock.service';
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'app-layout',
@@ -23,4 +24,6 @@ export class LayoutComponent implements OnInit {
 
 
   }
+
+  protected readonly environment = environment;
 }

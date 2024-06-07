@@ -57,6 +57,7 @@ export class ButtonsCloseDay implements ICellRendererAngularComp {
   }
 
   printClose() {
+    debugger;
     const dialog =
       this.dialogService.openDialog(ProgressSpinnerComponent, "", "289px", "316px");
 
