@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {initFlowbite} from 'flowbite';
 import {InitViewService} from "@core/services/bussiness-logic/init-view.service";
 import {TranslateService} from "@ngx-translate/core";
+import {ConfigurationService} from "@core/services/bussiness-logic/configuration.service";
+import {DataStorageService} from "@core/services/api/data-storage.service";
+import {Configuration} from "@models/configuration.model";
 
 @Component({
   selector: 'app-root',
@@ -14,11 +17,15 @@ export class AppComponent implements OnInit {
 
   constructor(
     public translate: TranslateService,
+    private dataStore: DataStorageService,
+    public configurService: ConfigurationService,
     private initViewService: InitViewService) {
 
     translate.addLangs(['en', 'es']);
-    translate.setDefaultLang('en');
 
+    this.dataStore.getConfiguration().subscribe( (next: Configuration) => {
+      translate.setDefaultLang( next.language!.toLowerCase() );
+    })
     this.initViewService.getStationStatus();
   }
 

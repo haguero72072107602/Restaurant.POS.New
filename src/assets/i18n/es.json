@@ -1,0 +1,14 @@
+{
+  "Menubar": {
+    "Store": "Store",
+    "Customer": "Clientes",
+    "Tables": "Mesas",
+    "Orders": "Ordenes",
+    "Inventory": "Inventario",
+    "Report": "Reportes",
+    "Settings": "Configuración",
+    "NewOrder": "Nueva orden",
+    "CashInOut": "Chash In/Out",
+    "NoSell": "No sell"
+  }
+}

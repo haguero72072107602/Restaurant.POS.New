@@ -121,6 +121,7 @@ export class OperationsService {
 
   counterInactivity() {
     this.timer = setTimeout(() => {
+      /*
       if (this.letLogout(this.invoiceService.invoice?.status!) && this.currentOperation !== AdminOpEnum.CLOSE_BATCH) {
         console.log('counterInactivity if');
         this.logout(true);
@@ -128,6 +129,8 @@ export class OperationsService {
         console.log('counterInactivity else');
         this.resetInactivity(true);
       }
+      */
+      this.resetInactivity(true);
     }, this.getInactivityTime() * 60000);
   }
 
