@@ -34,9 +34,10 @@ export class CalculatorComponent {
   }
 
   onCloseDialog() {
+    debugger;
     if (!this.isPassword) {
       if (Number(this.amountPayment) > 0) {
-        this.dialogRef.close({cashInvoice: this.amountPayment});
+        this.dialogRef.close({cashInvoice: this.amountPayment, valid: true});
       }
     } else {
       //this.dialogRef.close({password: this.amountPayment});
@@ -45,7 +46,7 @@ export class CalculatorComponent {
   }
 
   onCancelDialog() {
-    this.dialogRef.close({cashInvoice: -1});
+    this.dialogRef.close({cashInvoice: -1, valid: false});
   }
 
   getKeys(value: string, type: TypeKey, clearValue?: boolean) {
@@ -116,7 +117,7 @@ export class CalculatorComponent {
       } else {
         this.dialogService.openGenericInfo("Error", "This user does not have permission to perform this operation");
       }
-      this.dialogRef.close({valid: true, token: t.token!});
+      //this.dialogRef.close({valid: true, token: t.token!});
     }, error1 => {
       this.dialogService.openGenericInfo("Error", error1);
     });

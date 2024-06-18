@@ -18,6 +18,7 @@ import {fadeInLeftAnimation} from "@core/lib";
   selector: 'app-card-items-order',
   templateUrl: './card-items-order.component.html',
   styleUrls: ['./card-items-order.component.css'],
+  /*
   animations: [
     trigger('enterState', [
       transition(':enter', [
@@ -54,6 +55,7 @@ import {fadeInLeftAnimation} from "@core/lib";
       ])
     ])
   ]
+  */
 })
 export class CardItemsOrderComponent implements OnInit {
 

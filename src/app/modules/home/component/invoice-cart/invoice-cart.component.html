@@ -128,7 +128,7 @@
                     @for (itemOrder of getFilterProducts(Invoice?.productOrders!, item); track last) {
                       <!-- [@ultimoElemento]="itemOrder ? 'activo' : 'inactivo'" -->
                       <div>
-                        <app-card-items-order
+                        <app-card-items-order #cardItemsOrder
                           [productOrder]="itemOrder"
                           [editProductOrder]="paymentStatus"/>
                       </div>

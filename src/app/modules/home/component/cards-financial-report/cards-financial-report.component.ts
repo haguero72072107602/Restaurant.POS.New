@@ -88,7 +88,7 @@ export class CardsFinancialReportComponent implements OnInit, OnDestroy {
 
       this.cash = new CashSales(
         data.cashSale, data.cashAccountPayment,
-        data.paidOut, data.cashDue,
+        data.paidOut, data.paidIn, data.cashDue,
         data.ticketsCount, data.avgTickets);
 
       this.functions = new Functions(

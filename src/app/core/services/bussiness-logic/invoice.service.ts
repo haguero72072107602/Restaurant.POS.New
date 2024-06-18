@@ -199,7 +199,7 @@ export class InvoiceService {
       }
     }, 1000);
     const $creating = this.dataStorage.createInvoice(orderType, table).subscribe(next => {
-      debugger;
+      //debugger;
       console.log('createCheck successfull', next);
       this.isCreating = false;
       if (!orderType) this.txType = orderType!;
@@ -462,7 +462,6 @@ export class InvoiceService {
   }
 
   setInvoice(inv: Invoice) {
-    debugger;
     console.log('setting invoice', inv);
     this.invoice = inv;
     this.receiptNumber = this.invoice!.receiptNumber;

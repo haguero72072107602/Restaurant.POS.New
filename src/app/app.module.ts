@@ -9,7 +9,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from "@shared/shared.module";
 import {InitModule} from "@modules/init/init.module";
 import {AuthInterceptor} from "@core/interceptors/auth.interceptor";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient} from "@angular/common/http";
 import {baseURL} from "@core/utils/url.path.enum";
 
 import {Theme} from "@models/theme";
@@ -23,6 +23,8 @@ import {
   HammerModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG
 }
   from '@angular/platform-browser';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 // register Swiper custom elements
 register();
@@ -53,6 +55,12 @@ export class MyHammerConfig extends HammerGestureConfig {
   };
 }
 
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  //return new TranslateHttpLoader(http, 'assets/resources/');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +75,13 @@ export class MyHammerConfig extends HammerGestureConfig {
     SharedModule,
     InitModule,
     HammerModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      }
+    })
   ],
   providers: [
     Theme,

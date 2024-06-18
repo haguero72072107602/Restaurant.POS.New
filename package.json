@@ -37,6 +37,8 @@
     "@microsoft/signalr": "^8.0.0",
     "@ng-select/ng-select": "^12.0.4",
     "@ngrx/signals": "^17.2.0",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
     "@ngxs/logger-plugin": "^3.8.1-dev.master-84a340f",
     "@ngxs/store": "^3.8.1-dev.master-c9c7f9e",
     "@protacon/ng-virtual-keyboard": "^0.12.0",

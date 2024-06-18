@@ -58,7 +58,7 @@ export class CardCategoryComponent implements OnInit {
       if (this.invoiceService.txType === ETXType.DINEIN && this.invoiceService.order === undefined) {
         this.operationService.openAssignTable().subscribe((next: any) => {
           if (next) {
-            debugger;
+            //debugger;
             this.invoiceService.createInvoice(ETXType.DINEIN, next.table!.id, i => {
               this.invoiceService.setDineIn(next.table)
                 .subscribe((next: Order) => {

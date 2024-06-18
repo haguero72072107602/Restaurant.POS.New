@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {InvoiceService} from "@core/services/bussiness-logic/invoice.service";
 import {Invoice} from '@models/invoice.model';
 import {Router} from '@angular/router';
@@ -26,14 +26,19 @@ import {
   SearchCustomerComponent
 } from "@modules/home/component/list-customers/search-customer/search-customer.component";
 import {Customer} from "@models/customer.model";
+import {
+  CardItemsOrderComponent
+} from "@modules/home/component/invoice-cart/card-items-order/card-items-order.component";
 
 @Component({
   selector: 'app-invoice-cart',
   templateUrl: './invoice-cart.component.html',
   styleUrls: ['./invoice-cart.component.css'],
+  /*
   animations: [
     fadeInLeftAnimation(),
   ]
+  */
 })
 
 export class InvoiceCartComponent extends AbstractInstanceClass implements OnInit, AfterViewInit, OnDestroy {
@@ -46,6 +51,8 @@ export class InvoiceCartComponent extends AbstractInstanceClass implements OnIni
   protected readonly animate = animate;
   protected readonly last = last;
 
+  @ViewChild('cardItemsOrder', {static: true}) cardItemsOrder : CardItemsOrderComponent | undefined;
+
   constructor(private dialog: MatDialog,
               public invoiceService: InvoiceService,
               private colorsService: ColorsService,
@@ -53,7 +60,7 @@ export class InvoiceCartComponent extends AbstractInstanceClass implements OnIni
               private configService: ConfigurationService,
               private tableService: TablesService,
               private operationService: OperationsService,
-              private cd: ChangeDetectorRef,
+              //private cd: ChangeDetectorRef,
               private router: Router) {
     super();
   }
@@ -129,9 +136,9 @@ export class InvoiceCartComponent extends AbstractInstanceClass implements OnIni
   protected readonly InvoiceService = InvoiceService;
 
   ngAfterViewInit(): void {
-    this.cd.detectChanges();
+    //this.cd.detectChanges();
     this.sub$.push(this.invoiceService.getOrderObservable$().subscribe((order: Order | undefined) => {
-      debugger;
+      //debugger;
       this.table = this.invoiceService.getInvoiceTable;
     }));
   }
@@ -148,6 +155,12 @@ export class InvoiceCartComponent extends AbstractInstanceClass implements OnIni
     this.sub$.push(this.invoiceService.getInvoice$().subscribe((invoice: Invoice) => {
       this.Invoice = invoice;
     }));
+
+    this.sub$.push(this.invoiceService.evUpdateProds.subscribe((invoice: Invoice) => {
+       //debugger;
+       this.Invoice = this.invoiceService.invoice!;
+    }));
+
   }
 
   cancelInvoice() {
@@ -358,7 +371,7 @@ export class InvoiceCartComponent extends AbstractInstanceClass implements OnIni
             'Please wait while your client is saved', undefined, DialogConfirm.BTN_NONE);
 
         this.invoiceService.aggregateCustomerInvoice(next.id).subscribe((invoice: Invoice) => {
-          debugger;
+          //debugger;
           dialog?.close();
           this.invoiceService.setInvoice(invoice);
           //this.invoiceService.invoice!.order!.clientId = invoice.order?.clientId

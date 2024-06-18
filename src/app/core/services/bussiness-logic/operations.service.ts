@@ -132,7 +132,7 @@ export class OperationsService {
   }
 
   getInactivityTime(): number {
-    return (this.cashService.config.sysConfig!) ? this.cashService.config!.sysConfig!.inactivityTime! : 120;
+    return /*(this.cashService.config.sysConfig!) ? this.cashService.config!.sysConfig!.inactivityTime! :*/ 120;
   }
 
   resetInactivity(cont: boolean, msg?: string) {
@@ -240,7 +240,7 @@ export class OperationsService {
       this.dialogService.openGenericAlert(DialogType.DT_INFORMATION, 'Confirm', 'Do you want void?', null,
         DialogConfirm.BTN_CONFIRM)!.afterClosed().subscribe((next: any) => {
         if (next !== undefined && next.confirm) {
-          debugger;
+          //debugger;
           this.currentOperation = 'void';
           //this.cancelCheck();
           this.authService.adminLogged() ? this.cancelCheck() : this.manager('void');
@@ -945,7 +945,7 @@ export class OperationsService {
   }
 
   getTotalToPaid(opType?: PaymentOpEnum) {
-    debugger;
+    //debugger;
 
     console.log('getTotalToPaid', opType, this.invoiceService.invoice);
     const total = this.invoiceService.invoice!.total;
@@ -2321,7 +2321,7 @@ export class OperationsService {
   }
 
   reopenOrder(receiptNumber: string, gotoPage?: boolean) {
-    debugger;
+    //debugger;
     if (this.invoiceService?.receiptNumber?.trim() === receiptNumber?.trim()) {
       if (gotoPage) {
         this.router.navigateByUrl("home/layout/invoice/departaments")
@@ -2380,12 +2380,12 @@ export class OperationsService {
     const $credit = context.invoiceService.credit(splitAmount ? splitAmount : context.invoiceService.invoice.balance,
       context.invoiceService.invoice.tip, transferType)
       .subscribe((data: any) => {
-          debugger;
+          //debugger;
           context.closeTimeout(dialogInfoEvents, timeOut, data);
           context.setOrCreateInvoice(data, PaymentOpEnum.CREDIT_CARD, splitAmount);
         },
         (err: any) => {
-          debugger;
+          //debugger;
           context.closeTimeout(dialogInfoEvents, timeOut, err);
           context.dialogService.openGenericInfo('Error', err);
           context.cashService.resetEnableState();

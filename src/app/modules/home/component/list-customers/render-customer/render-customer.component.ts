@@ -27,8 +27,8 @@ import {CdkPortal, PortalModule} from "@angular/cdk/portal";
   template: `
     <div
       [ngClass]="(selected) ?
-                'bg-[#557AD9] text-white':
-                'text-[#557AD9] bg-white'"
+                'bg-[#557AD9] text-white h-[220px]':
+                'text-[#557AD9] bg-white h-[180px]'"
       class="relative w-[320px] text-[#557AD9] items-start duration-300 transform
              border-l-4 border-l-blue-900 hover:-translate-y-2 shadow my-auto rounded-[12px] "
          (click)="onSelecteCustomer()"

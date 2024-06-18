@@ -51,7 +51,7 @@ export class FinancialReportComponent implements OnInit, OnDestroy {
       this.sales = new Sales(data.saleTax, data.taxSale, data.grossSale, data.refunds,
         data.taxRefunds, data.accountChargeTotal, data.accountPaymentTotal, data.netSale);
 
-      this.cash = new CashSales(data.cashSale, data.cashAccountPayment, data.paidOut,
+      this.cash = new CashSales(data.cashSale, data.cashAccountPayment, data.paidOut, data.paidIn,
         data.cashDue, data.ticketsCount, data.avgTickets);
 
       this.functions = new Functions(data.refunds, data.openChecks, data.voidTickets,

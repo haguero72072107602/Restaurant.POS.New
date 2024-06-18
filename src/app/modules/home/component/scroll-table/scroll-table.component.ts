@@ -27,7 +27,7 @@ export class ScrollTableComponent implements AfterViewInit, OnInit {
   constructor(
     private invoiceService: InvoiceService,
     private colorsService: ColorsService,
-    private cd: ChangeDetectorRef
+    //private cd: ChangeDetectorRef
   ) {
   }
 

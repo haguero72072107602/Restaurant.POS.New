@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild,} from '@angular/core';
 import {Router} from '@angular/router';
-import {Subscription} from 'rxjs';
+import {combineLatestAll, concat, forkJoin, observable, Subscription} from 'rxjs';
 import {CashSales, Functions, ICashSales, IFunctions, ISales, Sales} from '@models/financials';
 import {InformationType} from '@core/utils/information-type.enum';
 import {DataStorageService} from '@core/services/api/data-storage.service';
@@ -28,6 +28,7 @@ import {
 import {DateRangeComponent} from "@modules/home/component/daterange/daterange.component";
 import {ButtonDateRangeComponent} from "@modules/home/component/button-date-range/button-date-range.component";
 import {fnFormatDate, fnSetRangeDate} from "@core/utils/functions/functions";
+import {merge} from "rxjs/internal/operators/merge";
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -282,6 +283,7 @@ export class RptFinancialNewComponent
         data.cashSale,
         data.cashAccountPayment,
         data.paidOut,
+        data.paidIn,
         data.cashDue,
         data.ticketsCount,
         data.avgTickets
@@ -373,20 +375,39 @@ export class RptFinancialNewComponent
         )
       );
     } else
+
       this.subscription.push(
-        this.dataStorage.getCloseReport(startDate, endDate).subscribe(
-          (next: any) => {
-            console.log(next);
-            this.onSetDataReport(next);
-            this.cashService.resetEnableState();
-            this.showReport = true;
-          },
-          (err) => {
-            console.error(err);
-            this.dialogService.openGenericInfo(InformationType.ERROR, err);
-          }
-        )
-      );
+      forkJoin(
+        this.dataStorage.getCloseReport(startDate, endDate),
+        this.dataStorage.getCloseDayReportsByDate(startDate, endDate)
+      ).subscribe((next: any) => {
+          debugger;
+          console.log(next);
+          this.onSetDataReport(next[0]);
+          this.sales_revenes_block?.onSetDataReport(next[1], next[0]);
+          this.cashService.resetEnableState();
+          this.showReport = true;
+        },
+        (err) => {
+          console.error(err);
+          this.dialogService.openGenericInfo(InformationType.ERROR, err);
+        }
+      ));
+    /*
+    this.subscription.push(
+      this.dataStorage.getCloseReport(startDate, endDate).subscribe(
+        (next: any) => {
+          console.log(next);
+          this.onSetDataReport(next);
+          this.cashService.resetEnableState();
+          this.showReport = true;
+        },
+        (err) => {
+          console.error(err);
+          this.dialogService.openGenericInfo(InformationType.ERROR, err);
+        }
+      )
+    );
 
 
     this.subscription.push(
@@ -402,6 +423,8 @@ export class RptFinancialNewComponent
           this.dialogService.openGenericInfo(InformationType.ERROR, err);
         }
       ));
+     */
+
   }
 
   ngOnDestroy(): void {

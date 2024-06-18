@@ -138,6 +138,7 @@ export class FinancialsComponent implements OnInit, OnDestroy {
         data.financialReport.cashSale,
         data.financialReport.cashAccountPayment,
         data.financialReport.paidOut,
+        data.financialReport.paidIn,
         data.financialReport.cashDue,
         data.financialReport.ticketsCount,
         data.financialReport.avgTickets

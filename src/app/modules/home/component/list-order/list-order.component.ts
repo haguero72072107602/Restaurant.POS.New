@@ -273,7 +273,7 @@ export class ListOrderComponent extends AbstractInstanceClass implements OnInit,
   }
 
   evChangeDateRange($event: DateRange<Date>) {
-    debugger;
+    //debugger;
     this.ordersStore.updateDateRange($event);
     console.log("Interval to date ->  ",this.ordersStore.dateRange())
     this.onDateUpdate();

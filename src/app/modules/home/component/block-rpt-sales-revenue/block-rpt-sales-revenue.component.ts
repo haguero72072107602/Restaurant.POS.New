@@ -107,8 +107,9 @@ export class BlockRptSalesRevenueComponent implements OnInit {
     return "From " + this.reportStartDate + " To " + this.reportEndDate
   }
 
-  onSetDataReport(data: any) {
+  onSetDataReport(data: any, report? : any) {
 
+    debugger;
     if (data.length > 0) {
 
       this.sales_revenue_data = data;
@@ -124,22 +125,9 @@ export class BlockRptSalesRevenueComponent implements OnInit {
         return itemPrevius + itemCurrent;
       }, 0);
 
-      console.log('Average:', summatory, 'Just amount', this.JustAmount);
-      this.averageSales = Number(summatory / this.JustAmount.length).toFixed(0)
-        ? Number(summatory / this.JustAmount.length).toFixed(0)
-        : 'Load';
-
-      console.log('Average:', this.averageSales);
-      this.maxSales = Number(
-        this.JustAmount.reduce((itemPrevius, itemCurrent) => {
-          return itemPrevius > itemCurrent ? itemPrevius : itemCurrent;
-        })
-      ).toFixed(0);
-      this.minSales = Number(
-        this.JustAmount.reduce((itemPrevius, itemCurrent) => {
-          return itemPrevius < itemCurrent ? itemPrevius : itemCurrent;
-        })
-      ).toFixed(0);
+      this.averageSales = report?.averageSale;
+      this.maxSales = report?.highestSale;
+      this.minSales = report?.lowestSale;
 
       this.optionsSalesRevenue = {
         series: [

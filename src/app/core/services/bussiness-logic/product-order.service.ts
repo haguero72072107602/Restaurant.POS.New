@@ -51,6 +51,8 @@ export class ProductOrderService implements OnDestroy {
   }
 
   addProduct(product: Product): void {
+    debugger;
+    //checkGenericProduct
     this.initService.setOperation(EOperationType.Add, 'Product', 'Before add product id: ' + product.id);
     if (this.invoiceService.allowAddProductByStatus()) {
       if (!this.isAddByPluOrScan()) {
@@ -92,11 +94,11 @@ export class ProductOrderService implements OnDestroy {
       this.authService.storeInitialLogin();
       this.operationService.adminLogin()
         .subscribe((loginValid: any) => {
-          if (loginValid) {
-            this.authService.restoreInitialLogin()
+          this.authService.restoreInitialLogin();
+          if (loginValid.valid) {
             this.openDialogGenericProd(product);
           }
-        })
+        }, (error : any ) => {this.authService.restoreInitialLogin()});
     } else this.openDialogGenericProd(product);
   }
 
