@@ -102,22 +102,6 @@ export class CardsFinancialReportComponent implements OnInit, OnDestroy {
     }
   }
 
-  printFinancialReport() {
-
-    const dialogPrinting =
-      this.dialogService.openGenericInfo(InformationType.INFO, 'Printing Range Close Report...');
-
-    this.subscription.push(this.dataStorage.rangeClosePrint(this.reportStartDate!, this.reportEndDate!).subscribe(
-      next => {
-        console.log('printRangeCloseReport', next);
-        dialogPrinting!.close();
-      },
-      err => {
-        dialogPrinting!.close();
-        this.dialogService.openGenericInfo(InformationType.ERROR, err);
-      }
-    ));
-  }
 
   ngOnDestroy(): void {
     this.subscription.map(sub => sub.unsubscribe());

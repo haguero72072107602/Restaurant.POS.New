@@ -29,7 +29,8 @@ declare var DateRangePicker: any;
 
 })
 export class RptClockShiftComponent implements OnInit {
-  @ViewChild("dateRangePicker", {static: true}) dateRangePicker!: ElementRef;
+  @ViewChild("dateRangePicker", {static: true}) dateRangePicker! : ElementRef;
+  @ViewChild("selectStatus", {static: true}) selectStatus! : ElementRef;
 
   loading: boolean = false;
 
@@ -46,8 +47,6 @@ export class RptClockShiftComponent implements OnInit {
   };
   rangeDate!: DateRange<Date>;
 
-  optionAmount: any[] = [];
-  optionsUsers: any[] = [];
   orderTypes: any[] = [];
   payMethods: any[] = [];
 
@@ -84,32 +83,7 @@ export class RptClockShiftComponent implements OnInit {
     }
 
     this.operationService.resetInactivity(true);
-    this.optionAmount = [
-      {
-        value: 500,
-        label: "> $500",
-      },
-      {
-        value: 1000,
-        label: "> $1000",
-      },
-      {
-        value: 2000,
-        label: "> $2000",
-      },
-      {
-        value: 3000,
-        label: "> $3000",
-      },
-      {
-        value: 4000,
-        label: "> $4000",
-      },
-      {
-        value: 5000,
-        label: "> $5000",
-      }
-    ];
+
     this.orderTypes = [
       {
         value: 1,
@@ -205,14 +179,11 @@ export class RptClockShiftComponent implements OnInit {
           userId: item.applicationUserId,
           isManager: false
         });
-
-        this.rowData = this.rowData!.sort(this.GFG_sortFunction);
-        this.rowDataOriginal = this.rowData;
-
-        this.loading = false;
       })
-      console.log("report", nextReport)
-      console.log("data", this.rowData);
+      this.rowData = this.rowData!.sort(this.GFG_sortFunction);
+      this.rowDataOriginal = this.rowData;
+      this.onFilterData(this.selectStatus!.nativeElement.value);
+      this.loading = false;
     }, error => {
       this.loading = false;
       this.dialogService.openGenericInfo("Error", error)
@@ -244,21 +215,23 @@ export class RptClockShiftComponent implements OnInit {
     });
   }
 
-  onCalendar() {
-
-  }
-
   onChangeSelectRole(event: any) {
-    console.log("Filter:", event.target.value);
-    const newData = this.rowDataOriginal?.filter((item) => item.userName.includes(event.target.value));
-    this.rowData = newData;
+    this.onFilterData(event.target.value);
   }
 
+  onFilterData( filter : string )
+  {
+    this.rowData = filter === "-99" ? this.rowDataOriginal :
+      this.rowDataOriginal?.filter((item) => item.userName?.includes(filter));
+  }
+
+  /*
   onChangeSelectTotalAmount(event: any) {
     console.log("Filter total amount:", event.target.value);
     const newData = this.rowDataOriginal?.filter((item) => item.saleTax > (event.target.value));
     this.rowData = newData;
   }
+  */
 
   cellStyle(params: CellClassParams<any, any>) {
     return {

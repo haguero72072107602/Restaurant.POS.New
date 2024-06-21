@@ -61,9 +61,9 @@ export class BlockRptSalesRevenueComponent implements OnInit {
   @Input() closeDay?: boolean = true;
 
   @Output() evtProgress = new EventEmitter<boolean>();
-  optionsSalesTypesChart: any = {};
+
   showReport: boolean = false;
-  timePicker: boolean = true;
+
   maxDate?: Date;
   events: string[] = [];
   maxSales: number | string = 0;
@@ -72,30 +72,8 @@ export class BlockRptSalesRevenueComponent implements OnInit {
   optionsSalesRevenue: ChartOptions | undefined;
   JustAmount: any[] = [];
   JustDates: any[] = [];
-  private subscription: Subscription[] = new Array<Subscription>();
+
   private sales_revenue_data: any[] = [];
-  private data = [
-    {
-      name: 'Dine In',
-      count: 2,
-      total: 15.99,
-    },
-    {
-      name: 'Pick Up',
-      count: 1,
-      total: 5.0,
-    },
-    {
-      name: 'Delivery',
-      count: 1,
-      total: 5.62,
-    },
-    {
-      name: 'To Go',
-      count: 1,
-      total: 10.0,
-    },
-  ];
 
   constructor(
     private cashService: CashService,
@@ -157,13 +135,6 @@ export class BlockRptSalesRevenueComponent implements OnInit {
         labels: [''],
       };
 
-      /*this.sales = new Sales(data.saleTax, data.taxSale, data.grossSale, data.refunds,
-        data.taxRefunds, data.accountChargeTotal, data.accountPaymentTotal, data.netSale, undefined ,data.tipAmount);
-
-
-      this.lines = data.stationDataViewModels;
-      this.mediaPayments = data.paymentsDataViewModels;
-      this.mediaSales = data.mediaDataViewModels;*/
     } else {
       this.showReport = false;
     }
@@ -171,31 +142,10 @@ export class BlockRptSalesRevenueComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.maxDate = new Date();
-    this.optionsSalesTypesChart = {
-      data: this.data,
-      series: [
-        {
-          type: 'pie',
-          angleKey: 'total',
-          calloutLabelKey: 'name',
-          legendItemKey: 'name',
-          sectorLabelKey: 'total',
-          sectorLabel: {
-            color: 'white',
-            fontWeight: 'bold',
-          },
-          fills: ['#203665', '#375CAB', '#4D81F1', '#88ABF6'],
-          strokes: ['#203665', '#375CAB', '#4D81F1', '#88ABF6'],
-        },
-      ],
-    };
   }
 
   onClickSalesRevenue() {
-    //this.router.navigate(["/home/layout/reports/rptsalesrevenue"]);
-    //this.router.navigate(["/home/layout/reports/rptclockday"]);
     this.router.navigate(['/home/layout/reports/rptsalesrevenue']);
   }
 

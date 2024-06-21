@@ -19,35 +19,8 @@
           [fill]="optionsSalesRevenue.fill"
           [plotOptions]="optionsSalesRevenue.plotOptions"
         ></apx-chart>
-        <!--
-    <ag-charts-angular
-            class="relative w-[350px] h-[200px] mt-5"
-            [options]="optionsSalesRevenue"
-          />
-
-           -->
       }
     </div>
-    <!--
-  <div class="flex flex-col h-[400px] w-2/5">
-        <div class="rounded-2xl border-2 h-full bg-white">
-
-          <div class="text-center h-[20px] mt-2">
-            <span class="text-gray-500 text-md"> Sales by types </span>
-          </div>
-          <div class="w-full h-[90%]">
-            <ag-charts-angular
-            class="relative  cursor-pointer"
-            (click)="onClickSalesRevenue()"
-            [options]="optionsSalesTypesChart"
-          />
-
-          </div>
-
-        </div>
-      </div>
-
-      -->
   </div>
 
   <div class="flex gap-2 xl:gap-52 p-2 mt-[15px] justify-between mx-auto items-center">
@@ -78,13 +51,6 @@
         <div class="text-start">
           <span class="text-[#557AD9] text-2xl xl:text-4xl"> {{ averageSales | currency }} </span>
         </div>
-        <!--
-        <div class="text-start">
-        <span class="text-gray-500 text-[12px] xl:text-sm font-bold mt-3">
-          {{ getDateRangeFormat }}
-        </span>
-        </div>
-        -->
       </div>
     </div>
     <div
@@ -114,13 +80,6 @@
         <div class="text-start">
           <span class="text-[#3EC8AC] text-2xl xl:text-4xl"> {{ maxSales | currency }} </span>
         </div>
-        <!--
-        <div class="text-start">
-        <span class="text-gray-500 text-[10px] xl:text-sm font-bold mt-3">
-          {{ getDateRangeFormat }}
-        </span>
-        </div>
-        -->
       </div>
     </div>
     <div
@@ -150,13 +109,6 @@
         <div class="text-start">
           <span class="text-[#F35C6E] text-2xl xl:text-4xl"> {{ minSales | currency }} </span>
         </div>
-        <!--
-        <div class="text-start">
-        <span class="text-gray-500 text-[10px] xl:text-sm font-bold mt-3">
-          {{ getDateRangeFormat }}
-        </span>
-        </div>
-        -->
       </div>
     </div>
   </div>

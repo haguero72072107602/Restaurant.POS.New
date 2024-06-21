@@ -72,7 +72,7 @@ export class ButtonsCloseDay implements ICellRendererAngularComp {
         })
     } else {
       this.reportService
-        .cashierCloseShiftPrint(false, true, this.authService!.token!.user_id,
+        .cashierCloseShiftPrint(false, true, this.report!.userId,
           this.report!.openingTime, this.report!.closeTime)
         .subscribe((next: any) => {
           dialog!.close()

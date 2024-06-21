@@ -1,6 +1,15 @@
-import {AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild,} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild, ViewChildren,
+} from '@angular/core';
 import {Router} from '@angular/router';
-import {combineLatestAll, concat, forkJoin, observable, Subscription} from 'rxjs';
+import {forkJoin, Subscription} from 'rxjs';
 import {CashSales, Functions, ICashSales, IFunctions, ISales, Sales} from '@models/financials';
 import {InformationType} from '@core/utils/information-type.enum';
 import {DataStorageService} from '@core/services/api/data-storage.service';
@@ -8,13 +17,11 @@ import {CashService} from '@core/services/bussiness-logic/cash.service';
 import {OperationsService} from '@core/services/bussiness-logic/operations.service';
 
 import {initFlowbite} from 'flowbite';
-import {getFormatDate,} from '@core/utils/functions/transformers';
 import {ReportsService} from '@core/services/bussiness-logic/reports.service';
 import {MAT_DATE_FORMATS} from '@angular/material/core';
 import {FinancialsComponent} from '@modules/home/component/financials/financials.component';
 import {DialogService} from '@core/services/bussiness-logic/dialog.service';
 import {DateRange} from '@angular/material/datepicker';
-import {ChartOptions} from '@models/apexcharts-options.model';
 import {ChartComponent} from 'ng-apexcharts';
 import {BlockRptSalesRevenueComponent} from '../block-rpt-sales-revenue/block-rpt-sales-revenue.component';
 import {
@@ -28,7 +35,11 @@ import {
 import {DateRangeComponent} from "@modules/home/component/daterange/daterange.component";
 import {ButtonDateRangeComponent} from "@modules/home/component/button-date-range/button-date-range.component";
 import {fnFormatDate, fnSetRangeDate} from "@core/utils/functions/functions";
-import {merge} from "rxjs/internal/operators/merge";
+import {
+  TablePayMethodComponent
+} from "@modules/home/component/rpt-financial-new/table-pay-method/table-pay-method.component";
+import {ProgressCircleComponent} from "@modules/home/component/progress-circle/progress-circle.component";
+import {NgIf} from "@angular/common";
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -54,15 +65,21 @@ export const MY_DATE_FORMATS = {
     BlockRptSalesRevenueComponent,
     CardsFinancialReportComponent,
     DateRangeComponent,
-    ButtonDateRangeComponent
-  ]
+    ButtonDateRangeComponent,
+    TablePayMethodComponent,
+    ProgressCircleComponent,
+    NgIf
+  ],
+  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RptFinancialNewComponent
   implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild('financialscards', {static: true}) financials_cards?: FinancialsComponent;
-  @ViewChild('salesrevenues', {static: true}) sales_revenes_block?: BlockRptSalesRevenueComponent;
-  @ViewChild('menuitems', {static: true}) menuitems?: BlockRptMenuItemsBestsellerComponent;
-  @ViewChild('chart', {static: true}) chart?: ChartComponent;
+
+  @ViewChild('financials_cards', { static: false}) financials_cards?: FinancialsComponent;
+  @ViewChild('salesrevenues', {static: false}) sales_revenes_block?: BlockRptSalesRevenueComponent;
+  @ViewChild('menuitems', {static: false}) menuitems?: BlockRptMenuItemsBestsellerComponent;
+
+  //@ViewChild('chart', {static: true}) chart?: ChartComponent;
   @Input() fromDate?: string;
   @Input() toDate?: string;
   public sales?: ISales;
@@ -72,7 +89,7 @@ export class RptFinancialNewComponent
   lines?: any[];
   mediaPayments?: any[];
   mediaSales?: any[];
-  showReport: boolean = false;
+  showProgressReport: boolean = true;
   timePicker: boolean = true;
   maxDate?: Date;
 
@@ -82,85 +99,10 @@ export class RptFinancialNewComponent
   events: string[] = [];
   optionsPaymentsChart: any;
   optionsCardsChart: any;
-  optionsSalesRevenue: ChartOptions;
-  optionsItemsMenu: ChartOptions;
+
   protected readonly onchange = onchange;
   protected readonly RangeDateOperation = RangeDateOperation;
   private subscription: Subscription[] = new Array<Subscription>();
-  private sales_revenue_data = [
-    {
-      id: 1,
-      date: '2023-11-06',
-      amount: 6540,
-    },
-    {
-      id: 2,
-      date: '2023-11-07',
-      amount: 7340,
-    },
-    {
-      id: 3,
-      date: '2023-11-08',
-      amount: 12840,
-    },
-    {
-      id: 4,
-      date: '2023-11-09',
-      amount: 5000,
-    },
-    {
-      id: 5,
-      date: '2023-11-10',
-      amount: 9840,
-    },
-    {
-      id: 6,
-      date: '2023-11-11',
-      amount: 3840,
-    },
-    {
-      id: 7,
-      date: '2023-11-12',
-      amount: 26140,
-    },
-  ];
-  private items_menu = [
-    {
-      id: 1,
-      name: "Pollo frito",
-      amount: 20,
-    },
-    {
-      id: 2,
-      name: "Carne asada",
-      amount: 73,
-    },
-    {
-      id: 3,
-      name: "Huevo frito",
-      amount: 120,
-    },
-    {
-      id: 4,
-      name: "Cafe con leche",
-      amount: 23,
-    },
-    {
-      id: 5,
-      name: "Jugo de naranja",
-      amount: 15,
-    },
-    {
-      id: 6,
-      name: "Bistec de cerdo",
-      amount: 50,
-    },
-    {
-      id: 7,
-      name: "Paleta de cerdo",
-      amount: 30,
-    },
-  ];
 
   constructor(
     private dialogService: DialogService,
@@ -169,83 +111,8 @@ export class RptFinancialNewComponent
     private operationService: OperationsService,
     private dataStorage: DataStorageService,
     private router: Router,
+    //private cdr: ChangeDetectorRef
   ) {
-
-
-    const JustAmount = this.sales_revenue_data.map((item) => item.amount);
-    const JustDates = this.sales_revenue_data.map((item) => item.date);
-
-    this.optionsSalesRevenue = {
-      /* data: sales_revenue_data,
-      series: [
-        {
-          type: 'bar',
-          xKey: 'date',
-          yKey: 'amount',
-
-        },
-        {
-          type: 'line',
-          xKey: 'date',
-          yKey: 'amount',
-          direction:'vertical'
-
-        },
-      ],*/
-      series: [
-        {
-          name: 'Sales revenue',
-          data: JustAmount,
-        },
-      ],
-      chart: {
-        height: 350,
-        type: 'bar',
-      },
-      title: {
-        text: 'Sales revenue',
-      },
-      xaxis: {
-        categories: JustDates,
-      },
-      fill: {
-        colors: ['#3EC8AC']
-      },
-      plotOptions: {
-        bar: {
-          borderRadius: 5
-        }
-      },
-      labels: [""]
-    };
-
-    this.optionsItemsMenu = {
-      series: [
-        {
-          name: 'Sales revenue',
-          data: this.items_menu.map((item) => item.amount),
-        },
-      ],
-      chart: {
-        height: 350,
-        type: 'bar',
-      },
-      title: {
-        text: 'Sales revenue',
-      },
-      xaxis: {
-        categories: this.items_menu.map((item) => item.name),
-      },
-      fill: {},
-      plotOptions: {
-        bar: {
-          borderRadius: 5,
-          horizontal: true,
-          distributed: true
-        }
-      },
-      labels: []
-    }
   }
 
   get reportStartDate() {
@@ -258,14 +125,20 @@ export class RptFinancialNewComponent
 
   ngAfterViewInit(): void {
     initFlowbite();
-
     this.rangeSelectDate = fnSetRangeDate(RangeDateOperation.ThisMonth);
     this.onReportView();
   }
 
-  onSetDataReport(data: any) {
+  onSetDataReport(data: any, data1: any) {
 
     if (data) {
+
+      debugger;
+
+      this.sales_revenes_block?.onSetDataReport(data1, data);
+      this.financials_cards?.onGenerateReport(this.reportStartDate, this.reportEndDate, true);
+      this.menuitems?.onGenerateReport(this.reportStartDate, this.reportEndDate);
+
       this.sales = new Sales(
         data.saleTax,
         data.taxSale,
@@ -275,7 +148,6 @@ export class RptFinancialNewComponent
         data.accountChargeTotal,
         data.accountPaymentTotal,
         data.netSale,
-        this.sales_revenue_data,
         data.tipAmount
       );
 
@@ -301,24 +173,10 @@ export class RptFinancialNewComponent
       this.lines = data.stationDataViewModels;
       this.mediaPayments = data.paymentsDataViewModels;
       this.mediaSales = data.mediaDataViewModels;
-      this.optionsPaymentsChart = {
-        data: data.paymentsDataViewModels,
-        series: [
-          {
-            type: 'pie',
-            angleKey: 'total',
-            calloutLabelKey: 'name',
-            legendItemKey: 'name',
-            sectorLabelKey: 'total',
-            sectorLabel: {
-              color: 'white',
-              fontWeight: 'bold',
-            },
-            fills: ["#9B8AE6", "#4350E3", "#CBCED4"],
-            strokes: ["#9B8AE6", "#4350E3", "#CBCED4"]
-          },
-        ],
-      };
+
+
+      this.setDataConfigurPaymentsChart(data);
+
       this.optionsCardsChart = {
         data: data.mediaDataViewModels,
         series: [
@@ -376,55 +234,28 @@ export class RptFinancialNewComponent
       );
     } else
 
+      this.showProgressReport = true;
+
       this.subscription.push(
-      forkJoin(
-        this.dataStorage.getCloseReport(startDate, endDate),
-        this.dataStorage.getCloseDayReportsByDate(startDate, endDate)
-      ).subscribe((next: any) => {
-          debugger;
-          console.log(next);
-          this.onSetDataReport(next[0]);
-          this.sales_revenes_block?.onSetDataReport(next[1], next[0]);
-          this.cashService.resetEnableState();
-          this.showReport = true;
-        },
-        (err) => {
-          console.error(err);
-          this.dialogService.openGenericInfo(InformationType.ERROR, err);
-        }
-      ));
-    /*
-    this.subscription.push(
-      this.dataStorage.getCloseReport(startDate, endDate).subscribe(
-        (next: any) => {
-          console.log(next);
-          this.onSetDataReport(next);
-          this.cashService.resetEnableState();
-          this.showReport = true;
-        },
-        (err) => {
-          console.error(err);
-          this.dialogService.openGenericInfo(InformationType.ERROR, err);
-        }
-      )
-    );
+        forkJoin(
+          this.dataStorage.getCloseReport(startDate, endDate),
+          this.dataStorage.getCloseDayReportsByDate(startDate, endDate)
+        ).subscribe((next: any) => {
+            console.log(next);
+            this.showProgressReport = false;
 
+            setTimeout(() => {
+              this.onSetDataReport(next[0], next[1]);
+            }, 5);
 
-    this.subscription.push(
-      this.dataStorage.getCloseDayReportsByDate(startDate, endDate).subscribe(
-        (next: any) => {
-          console.log(next);
-
-          this.sales_revenes_block?.onSetDataReport(next);
-          this.showReport = true;
-        },
-        (err: any) => {
-          console.error(err);
-          this.dialogService.openGenericInfo(InformationType.ERROR, err);
-        }
-      ));
-     */
-
+            this.cashService.resetEnableState();
+          },
+          (err) => {
+            console.error(err);
+            this.showProgressReport = true;
+            this.dialogService.openGenericInfo(InformationType.ERROR, err);
+          }
+        ));
   }
 
   ngOnDestroy(): void {
@@ -440,13 +271,7 @@ export class RptFinancialNewComponent
   }
 
   onReportView() {
-
-    this.financials_cards!.onGenerateReport(this.reportStartDate, this.reportEndDate, true);
-
-    this.menuitems!.onGenerateReport(this.reportStartDate, this.reportEndDate)
-
     this.onGenerateReport(this.reportStartDate, this.reportEndDate, false);
-
   }
 
   onChangeDate($event: DateRange<Date>) {
@@ -455,4 +280,28 @@ export class RptFinancialNewComponent
 
     this.onReportView();
   }
+
+
+  setDataConfigurPaymentsChart(dataValue: any) {
+
+    this.optionsPaymentsChart = {
+      data: dataValue.paymentsDataViewModels,
+      series: [
+        {
+          type: 'pie',
+          angleKey: 'total',
+          calloutLabelKey: 'name',
+          legendItemKey: 'name',
+          sectorLabelKey: 'total',
+          sectorLabel: {
+            color: 'white',
+            fontWeight: 'bold',
+          },
+          fills: ["#9B8AE6", "#4350E3", "#CBCED4"],
+          strokes: ["#9B8AE6", "#4350E3", "#CBCED4"]
+        },
+      ],
+    };
+  }
+
 }
