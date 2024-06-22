@@ -16,7 +16,7 @@ export class Sales implements ISales {
   constructor(public saleTax: number, public saleWithTax: number, public grossSale: number,
               public deduction: number, public deductiontax: number, public chargesAccount: number,
               public paymentsAccounts: number, public netSale: number, public revenue?: any[],
-              public tipAmount?: number, public merchantFee?: number,
+              public tipAmount?: number, public merchantFee?: number
   ) {
   }
 }

@@ -34,7 +34,7 @@ export class CalculatorComponent {
   }
 
   onCloseDialog() {
-    debugger;
+    
     if (!this.isPassword) {
       if (Number(this.amountPayment) > 0) {
         this.dialogRef.close({cashInvoice: this.amountPayment, valid: true});

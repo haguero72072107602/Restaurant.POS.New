@@ -11,6 +11,7 @@ import {WorkerRecords} from 'src/app/models/worker-records';
 import {IInvoicesByStates} from "@models/invoices-by-user.model";
 import {CloseBatch} from "@core/utils/close.batch.enum";
 import {EmployeedModel, IPositionModel} from "@models/employeed.model";
+import {FinancialReportModel} from "@models/financials/financialReport.model";
 
 @Injectable({
   providedIn: 'root'
@@ -219,7 +220,6 @@ export class AdminOperationService {
     if (toDate) {
       params = params.append('toDate', toDate + '');
     }
-
     return this._http.get<any>(url + this.path + '/op/reports/financialsByUser/' + emp, {params})
       .pipe(catchError(this.processHttpMsgService.handleError));
   }
@@ -353,6 +353,31 @@ export class AdminOperationService {
       params = params.append('toDate', to + '');
     }
     return this._http.get<any>(url + this.path + '/op/reports/ProductsSalesDetails', {params})
+      .pipe(catchError(this.processHttpMsgService.handleError));
+  }
+
+
+  getCloseReportByUser(url: string, emp: string, fromDate: string, toDate: string, close : boolean, print: boolean): Observable<FinancialReportModel> {
+    let params = new HttpParams();
+
+    params = params.append('fromDate', fromDate + '');
+    params = params.append('toDate', toDate + '');
+    params = params.append('close', close + '');
+    params = params.append('print', print + '');
+
+    return this._http.get<any>(url + this.path + '/op/report/user/' + emp, {params})
+      .pipe(catchError(this.processHttpMsgService.handleError));
+  }
+
+  getCloseReportByAdmin(url: string, fromDate: string, toDate: string, close : boolean, print: boolean ): Observable<FinancialReportModel> {
+    let params = new HttpParams();
+
+    params = params.append('fromDate', fromDate + '');
+    params = params.append('toDate', toDate + '');
+    params = params.append('close', close + '');
+    params = params.append('print', print + '');
+
+    return this._http.get<any>(url + this.path + '/op/report', {params})
       .pipe(catchError(this.processHttpMsgService.handleError));
   }
 

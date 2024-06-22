@@ -9,7 +9,7 @@ import {
   ViewChild, ViewChildren,
 } from '@angular/core';
 import {Router} from '@angular/router';
-import {forkJoin, Subscription} from 'rxjs';
+import {forkJoin, last, merge, Observable, scan, Subscription} from 'rxjs';
 import {CashSales, Functions, ICashSales, IFunctions, ISales, Sales} from '@models/financials';
 import {InformationType} from '@core/utils/information-type.enum';
 import {DataStorageService} from '@core/services/api/data-storage.service';
@@ -40,6 +40,8 @@ import {
 } from "@modules/home/component/rpt-financial-new/table-pay-method/table-pay-method.component";
 import {ProgressCircleComponent} from "@modules/home/component/progress-circle/progress-circle.component";
 import {NgIf} from "@angular/common";
+import {map} from "rxjs/operators";
+import {FinancialReportModel} from "@models/financials/financialReport.model";
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -90,10 +92,12 @@ export class RptFinancialNewComponent
   mediaPayments?: any[];
   mediaSales?: any[];
   showProgressReport: boolean = true;
-  timePicker: boolean = true;
+
   maxDate?: Date;
 
   rangeSelectDate?: DateRange<Date>;
+
+  dataFinancial : FinancialReportModel | undefined;
 
 
   events: string[] = [];
@@ -129,48 +133,47 @@ export class RptFinancialNewComponent
     this.onReportView();
   }
 
-  onSetDataReport(data: any, data1: any) {
+  onSetDataReport(data: FinancialReportModel, data1: any) {
 
-    if (data) {
+    if (data && data1) {
 
-      debugger;
-
-      this.sales_revenes_block?.onSetDataReport(data1, data);
-      this.financials_cards?.onGenerateReport(this.reportStartDate, this.reportEndDate, true);
+      this.dataFinancial = data;
+      this.sales_revenes_block?.onSetDataReport(data1, this.dataFinancial);
       this.menuitems?.onGenerateReport(this.reportStartDate, this.reportEndDate);
 
       this.sales = new Sales(
-        data.saleTax,
-        data.taxSale,
-        data.grossSale,
-        data.refunds,
-        data.taxRefunds,
-        data.accountChargeTotal,
-        data.accountPaymentTotal,
-        data.netSale,
-        data.tipAmount
+        data.financialReport.saleTax,
+        data.financialReport.taxSale,
+        data.financialReport.grossSale,
+        data.financialReport.refunds,
+        data.financialReport.taxRefunds,
+        data.financialReport.accountChargeTotal,
+        data.financialReport.accountPaymentTotal,
+        data.financialReport.netSale,
+        [],
+        data.financialReport.tipAmount
       );
 
       this.cash = new CashSales(
-        data.cashSale,
-        data.cashAccountPayment,
-        data.paidOut,
-        data.paidIn,
-        data.cashDue,
-        data.ticketsCount,
-        data.avgTickets
+        data.financialReport.cashSale,
+        data.financialReport.cashAccountPayment,
+        data.financialReport.paidOut,
+        data.financialReport.paidIn,
+        data.financialReport.cashDue,
+        data.financialReport.ticketsCount,
+        data.financialReport.avgTickets
       );
 
       this.functions = new Functions(
-        data.refunds,
-        data.openChecks,
-        data.voidTickets,
-        data.paidOut,
-        data.paidIn,
-        data.discounts
+        data.financialReport.refunds,
+        data.financialReport.openChecks,
+        data.financialReport.voidTickets,
+        data.financialReport.paidOut,
+        data.financialReport.paidIn,
+        data.financialReport.discounts
       );
 
-      this.lines = data.stationDataViewModels;
+      this.lines = data.stationsSalesByPaymentReport;
       this.mediaPayments = data.paymentsDataViewModels;
       this.mediaSales = data.mediaDataViewModels;
 
@@ -238,10 +241,10 @@ export class RptFinancialNewComponent
 
       this.subscription.push(
         forkJoin(
-          this.dataStorage.getCloseReport(startDate, endDate),
+          this.dataStorage.getCloseReportByAdmin(startDate, endDate, false, false),
           this.dataStorage.getCloseDayReportsByDate(startDate, endDate)
         ).subscribe((next: any) => {
-            console.log(next);
+            console.log("Financial report", next);
             this.showProgressReport = false;
 
             setTimeout(() => {

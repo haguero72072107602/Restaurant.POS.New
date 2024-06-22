@@ -29,46 +29,25 @@ import {ChartOptions} from '@models/apexcharts-options.model';
 import {ChartComponent, NgApexchartsModule} from 'ng-apexcharts';
 import {Subscription} from 'rxjs';
 import {CurrencyPipe} from "@angular/common";
-
-export const MY_DATE_FORMATS = {
-  parse: {
-    dateInput: 'MM/DD/YYYY',
-  },
-  display: {
-    dateInput: 'MM/DD/YYYY',
-    monthYearLabel: 'MMMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
+import {FinancialReportModel} from "@models/financials/financialReport.model";
 
 @Component({
   standalone: true,
   selector: 'app-block-rpt-sales-revenue',
   templateUrl: './block-rpt-sales-revenue.component.html',
   styleUrl: './block-rpt-sales-revenue.component.css',
-  providers: [{provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}],
   imports: [
     NgApexchartsModule,
     CurrencyPipe
   ]
 })
-export class BlockRptSalesRevenueComponent implements OnInit {
-  @Input({required: true}) reportStartDate?: string;
-  @Input({required: true}) reportEndDate?: string;
-  @Input() showPrint?: boolean = true;
-  @Input() cashierId: string = '';
-  @Input() closeDay?: boolean = true;
+export class BlockRptSalesRevenueComponent {
 
-  @Output() evtProgress = new EventEmitter<boolean>();
-
-  showReport: boolean = false;
-
-  maxDate?: Date;
   events: string[] = [];
-  maxSales: number | string = 0;
-  minSales: number | string = 0;
-  averageSales: number | string = 0;
+  averageSales: number | undefined;
+  maxSales : number | undefined;
+  minSales : number | undefined;
+
   optionsSalesRevenue: ChartOptions | undefined;
   JustAmount: any[] = [];
   JustDates: any[] = [];
@@ -81,18 +60,14 @@ export class BlockRptSalesRevenueComponent implements OnInit {
   ) {
   }
 
-  get getDateRangeFormat() {
-    return "From " + this.reportStartDate + " To " + this.reportEndDate
-  }
+  onSetDataReport(data: any, report? : FinancialReportModel) {
 
-  onSetDataReport(data: any, report? : any) {
 
-    debugger;
-    if (data.length > 0) {
+    //if (data.length > 0) {
 
       this.sales_revenue_data = data;
       this.cashService.resetEnableState();
-      this.showReport = true;
+
 
       this.JustAmount = this.sales_revenue_data.map((item) => item.grossSale);
       this.JustDates = this.sales_revenue_data.map((item) =>
@@ -103,9 +78,9 @@ export class BlockRptSalesRevenueComponent implements OnInit {
         return itemPrevius + itemCurrent;
       }, 0);
 
-      this.averageSales = report?.averageSale;
-      this.maxSales = report?.highestSale;
-      this.minSales = report?.lowestSale;
+      this.averageSales = report?.financialReport.averageSale;
+      this.maxSales = report?.financialReport.highestSale;
+      this.minSales = report?.financialReport.lowestSale;
 
       this.optionsSalesRevenue = {
         series: [
@@ -135,14 +110,7 @@ export class BlockRptSalesRevenueComponent implements OnInit {
         labels: [''],
       };
 
-    } else {
-      this.showReport = false;
-    }
-
-  }
-
-  ngOnInit(): void {
-    this.maxDate = new Date();
+    //}
   }
 
   onClickSalesRevenue() {

@@ -56,7 +56,6 @@ export class AddCustomerComponent {
   }
 
   onProcessDialog() {
-    //debugger;
     if (this.formGroup.valid) {
       console.log("data form -> ", this.formGroup.getRawValue()!.dataCustomer);
       this.dialogRef.close(this.formGroup.getRawValue()!.dataCustomer)

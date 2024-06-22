@@ -81,7 +81,6 @@ export class ListModifiersComponent implements OnInit {
   }
 
   changeModifierGroup($event: ModifiersGroup) {
-    //debugger;
     this.modifierService.putModifierGroup($event)
       .subscribe((next: ModifiersGroup[]) => {
         this.rowData = next;

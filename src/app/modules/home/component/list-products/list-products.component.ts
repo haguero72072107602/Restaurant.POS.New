@@ -96,7 +96,6 @@ export class ListProductsComponent extends AbstractInstanceClass implements OnIn
     this.sub$.push(this.operationService.subscribeNotificationInvoicePending()
       .subscribe((next: boolean) => {
         if (next) {
-          //debugger;
           this.scrollEarring!.setDataPendingInvoice();
         }
       }));

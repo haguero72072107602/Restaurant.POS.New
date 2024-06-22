@@ -39,7 +39,6 @@ export class ButtonDateRangeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //debugger;
     if (this.dateRangeReference) {
       this.dateSelected = this.dateRangeReference
     } else {

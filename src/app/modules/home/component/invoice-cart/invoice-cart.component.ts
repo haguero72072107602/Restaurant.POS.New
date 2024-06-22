@@ -138,7 +138,6 @@ export class InvoiceCartComponent extends AbstractInstanceClass implements OnIni
   ngAfterViewInit(): void {
     //this.cd.detectChanges();
     this.sub$.push(this.invoiceService.getOrderObservable$().subscribe((order: Order | undefined) => {
-      //debugger;
       this.table = this.invoiceService.getInvoiceTable;
     }));
   }
@@ -157,7 +156,6 @@ export class InvoiceCartComponent extends AbstractInstanceClass implements OnIni
     }));
 
     this.sub$.push(this.invoiceService.evUpdateProds.subscribe((invoice: Invoice) => {
-       //debugger;
        this.Invoice = this.invoiceService.invoice!;
     }));
 
@@ -371,7 +369,6 @@ export class InvoiceCartComponent extends AbstractInstanceClass implements OnIni
             'Please wait while your client is saved', undefined, DialogConfirm.BTN_NONE);
 
         this.invoiceService.aggregateCustomerInvoice(next.id).subscribe((invoice: Invoice) => {
-          //debugger;
           dialog?.close();
           this.invoiceService.setInvoice(invoice);
           //this.invoiceService.invoice!.order!.clientId = invoice.order?.clientId

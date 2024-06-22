@@ -82,7 +82,6 @@ export class ButtonDateComponent implements OnInit, ControlValueAccessor {
   }
 
   setValue($event: Date) {
-    //debugger;
     if (!this.disabled) {
       this.value = $event;
       this.onChange(this.value)

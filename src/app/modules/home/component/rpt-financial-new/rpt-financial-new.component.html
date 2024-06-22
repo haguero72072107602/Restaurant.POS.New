@@ -22,24 +22,16 @@
     class="w-full h-[calc(100vh-150px)] overscroll-y-contain overflow-x-hidden dark:scrollbar-thick dark:scrollbar-thumb dark:scrollbar-track"
   >
 
-    @if (showProgressReport) {
+    <div [hidden]="!showProgressReport" class="w-full h-full">
       <app-progress-circle/>
-    } @else {
+    </div>
 
 
+    <div [hidden]="showProgressReport">
 
-      <!--  #financialscards -->
-      <app-cards-financial-report
-        #financials_cards
-        [reportEndDate]="reportEndDate!"
-        [reportStartDate]="reportStartDate!"
-      />
+      <app-cards-financial-report [financialReport]="dataFinancial!.financialReport" />
 
-      <app-block-rpt-sales-revenue
-        #salesrevenues
-        [reportEndDate]="reportEndDate!"
-        [reportStartDate]="reportStartDate!"
-      ></app-block-rpt-sales-revenue>
+      <app-block-rpt-sales-revenue #salesrevenues />
 
       <!-- grid gap-6 my-6 md:grid-cols-2 p-2 mt-[30px]-->
       <div class="flex gap-6 my-6 p-2 mt-[30px] w-full">
@@ -81,13 +73,14 @@
         </div>
 
       </div>
+
       <app-block-rpt-menu-items-bestseller
         #menuitems
         [reportEndDate]="reportEndDate!"
         [reportStartDate]="reportStartDate!"
       ></app-block-rpt-menu-items-bestseller>
+    </div>
 
-    }
   </div>
 
 

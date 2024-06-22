@@ -76,6 +76,7 @@ import {CustomerService} from "@core/services/api/customer.service";
 import {catchError} from "rxjs/operators";
 import {InfoCustomer} from "@models/info-user.model";
 import {Customer} from "@models/customer.model";
+import {FinancialReportModel} from "@models/financials/financialReport.model";
 
 @Injectable({
   providedIn: 'root'
@@ -496,6 +497,15 @@ export class DataStorageService {
     return this.adminOperationService.employDelete(this.url, employId);
   }
 
+  getCloseReportByUser(emp: string, fromDate: string, toDate: string, close : boolean, print: boolean) : Observable<FinancialReportModel> {
+    return this.adminOperationService.getCloseReportByUser(this.url, emp, fromDate, toDate, close, print)
+
+  }
+
+  getCloseReportByAdmin(fromDate: string, toDate: string, close : boolean, print: boolean ) : Observable<FinancialReportModel> {
+    return this.adminOperationService.getCloseReportByAdmin(this.url, fromDate, toDate, close, print)
+  }
+
   // Clients
   clientSetup(client: Customer) {
     return this.clientService.setClient(this.url, client);
@@ -830,4 +840,6 @@ export class DataStorageService {
   updateStateTable(): Observable<any> {
     return this.tableService.updateStateTable(this.url)
   }
+
+
 }
