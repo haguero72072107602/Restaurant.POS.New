@@ -1,32 +1,43 @@
-<section class="p-8">
-  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border border-gray-200">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-    <tr>
-      <th scope="col" class="px-6 py-3">
-        Payment Method
-      </th>
-      <th scope="col" class="px-6 py-3">
-        Count
-      </th>
-      <th scope="col" class="px-6 py-3">
-        Total
-      </th>
-    </tr>
-    </thead>
-    <tbody>
-      @for (data of payMethodData; track $index){
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            {{ data.name }}
+<section class="p-8 grid grid-cols-1 gap-4 xl:grid-cols-2">
+  @if (mediaDataView) {
+    @for (payment of onGroupByPayment(mediaDataView); track $index) {
+      <!--<h1>{{ payment }}</h1> -->
+      <table
+        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border border-gray-200 mb-6">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">
+            Method
           </th>
-          <td class="px-6 py-4">
-            {{ data.count }}
-          </td>
-          <td class="px-6 py-4">
-            {{ data.total }}
-          </td>
+          <th scope="col" class="px-6 py-3 text-right">
+            Count
+          </th>
+          <th scope="col" class="px-6 py-3 text-right">
+            Total
+          </th>
         </tr>
-      }
-    </tbody>
-  </table>
+        </thead>
+        <tbody>
+          @for (mediaData of filterMedia(mediaDataView, payment); track $index) {
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {{ mediaData.name }}
+              </th>
+              <td class="px-4 py-3 text-right">
+                {{ mediaData.count }}
+              </td>
+              <td class="px-4 py-3 text-right">
+                {{ mediaData.total }}
+              </td>
+            </tr>
+          }
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th class="px-6 py-2" colspan="2">TOTAL {{ payment.toUpperCase() }}</th>
+          <th class="px-6 py-2 text-right"> {{ sumMedia(mediaDataView, payment) | currency }}</th>
+        </tr>
+        </tbody>
+      </table>
+    }
+  }
+
 </section>

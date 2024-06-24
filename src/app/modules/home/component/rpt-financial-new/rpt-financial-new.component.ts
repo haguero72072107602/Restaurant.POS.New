@@ -173,6 +173,8 @@ export class RptFinancialNewComponent
         data.financialReport.discounts
       );
 
+      debugger;
+
       this.lines = data.stationsSalesByPaymentReport;
       this.mediaPayments = data.paymentsDataViewModels;
       this.mediaSales = data.mediaDataViewModels;
@@ -241,15 +243,15 @@ export class RptFinancialNewComponent
 
       this.subscription.push(
         forkJoin(
-          this.dataStorage.getCloseReportByAdmin(startDate, endDate, false, false),
+          this.dataStorage.getCloseReportDashboard(startDate, endDate, false, false),
           this.dataStorage.getCloseDayReportsByDate(startDate, endDate)
         ).subscribe((next: any) => {
             console.log("Financial report", next);
             this.showProgressReport = false;
 
-            setTimeout(() => {
-              this.onSetDataReport(next[0], next[1]);
-            }, 5);
+            //setTimeout(() => {
+            this.onSetDataReport(next[0] as FinancialReportModel, next[1]);
+            //}, 5);
 
             this.cashService.resetEnableState();
           },

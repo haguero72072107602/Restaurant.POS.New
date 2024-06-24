@@ -29,6 +29,10 @@ import {AgChartsAngularModule} from "ag-charts-angular";
 import {IInventorySubmajor} from "@models/inventory-submajor";
 import {SubmayorProductComponent} from "@modules/home/component/financials/submayor-product/submayor-product.component";
 import {fnFormatDate} from "@core/utils/functions/functions";
+import {
+  TablePayMethodComponent
+} from "@modules/home/component/rpt-financial-new/table-pay-method/table-pay-method.component";
+import {MediaDataViewModels} from "@models/financials/financialReport.model";
 
 
 @Component({
@@ -40,7 +44,8 @@ import {fnFormatDate} from "@core/utils/functions/functions";
     AgChartsAngularModule,
     CurrencyPipe,
     NgClass,
-    SubmayorProductComponent
+    SubmayorProductComponent,
+    TablePayMethodComponent
   ]
 })
 export class FinancialsComponent implements OnInit, OnDestroy {
@@ -55,7 +60,7 @@ export class FinancialsComponent implements OnInit, OnDestroy {
   public functions?: IFunctions | any;
   lines?: any[];
   mediaPayments?: any[];
-  mediaSales?: any[];
+  mediaSales?: MediaDataViewModels[];
   showReport: boolean = false;
   cardsSales: any[] = [];
   selectDate: string = '';

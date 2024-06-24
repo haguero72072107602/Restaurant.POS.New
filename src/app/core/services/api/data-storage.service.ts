@@ -506,6 +506,10 @@ export class DataStorageService {
     return this.adminOperationService.getCloseReportByAdmin(this.url, fromDate, toDate, close, print)
   }
 
+  getCloseReportDashboard(fromDate: string, toDate: string, close: boolean, print: boolean): Observable<FinancialReportModel> {
+    return this.adminOperationService.getCloseReportDashboard(this.url, fromDate, toDate, close, print)
+  }
+
   // Clients
   clientSetup(client: Customer) {
     return this.clientService.setClient(this.url, client);

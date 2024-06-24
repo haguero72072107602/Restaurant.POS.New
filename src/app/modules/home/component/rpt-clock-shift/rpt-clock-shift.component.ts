@@ -252,7 +252,14 @@ export class RptClockShiftComponent implements OnInit {
         valueFormatter: this.AmountFormat,
         cellStyle: this.cellStyle,
       },
-      {headerName: 'CASH', field: 'cashDue', valueFormatter: this.AmountFormat, cellStyle: this.cellStyle},
+      {
+        headerName: 'CASH',
+        field: 'cashDue',
+        valueFormatter: this.AmountFormat,
+        cellStyle: this.cellStyle,
+        aggFunc: "sum",
+        valueParser: "Number(newValue)"
+      },
       {headerName: 'CARD', field: 'netSale', valueFormatter: this.AmountFormat, cellStyle: this.cellStyle},
       {headerName: 'TIPS', field: 'tipAmount', valueFormatter: this.AmountFormat, cellStyle: this.cellStyle},
       {headerName: 'USER', field: 'userName', cellStyle: this.cellStyle},

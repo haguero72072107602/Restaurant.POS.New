@@ -381,6 +381,18 @@ export class AdminOperationService {
       .pipe(catchError(this.processHttpMsgService.handleError));
   }
 
+  getCloseReportDashboard(url: string, fromDate: string, toDate: string, close: boolean, print: boolean): Observable<FinancialReportModel> {
+    let params = new HttpParams();
+
+    params = params.append('fromDate', fromDate + '');
+    params = params.append('toDate', toDate + '');
+    params = params.append('close', close + '');
+    params = params.append('print', print + '');
+
+    return this._http.get<any>(url + this.path + '/op/report/dashboard', {params})
+      .pipe(catchError(this.processHttpMsgService.handleError));
+  }
+
 
 }
 

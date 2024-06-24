@@ -296,9 +296,10 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-2 mx-3 gap-4 my-6 md:grid-cols-2 p-2 mt-4">
+      <!-- grid grid-cols-2 mx-3 gap-4 my-6 md:grid-cols-2 p-2 mt-4 -->
+      <div class="flex gap-6 my-6 p-2 mt-[30px] w-full">
         @if (optionsPaymentsChart) {
-          <div class="rounded-2xl border-2 h-[350px] bg-white">
+          <div class="rounded-2xl border-2 bg-white w-[35%]">
             <div class="text-center h-[20px] mt-2">
               <span class="text-gray-500 text-md"> Payments types ($USD) </span>
             </div>
@@ -309,13 +310,16 @@
         }
 
         @if (optionsCardsChart) {
-          <div class="rounded-2xl border-2 h-[350px] bg-white">
+          <div class="rounded-2xl border-2 bg-white w-[65%]">
             <div class="text-center h-[20px] mt-2">
               <span class="text-gray-500 text-md"> Payments methods ($USD)</span>
             </div>
+            <app-table-pay-method [mediaDataView]="mediaSales">/</app-table-pay-method>
+            <!--
             <div class="ms-auto me-auto w-[300px] h-[300px] mt-2">
               <ag-charts-angular [options]="optionsCardsChart"/>
             </div>
+            -->
           </div>
         }
       </div>
